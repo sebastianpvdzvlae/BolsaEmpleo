@@ -1,0 +1,73 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+
+<h1> Busqueda de Artesanos</h1>
+
+<div class = "formulario">
+<table style="margin: 0 auto;">
+<tr>
+	<td>Buscar: </td>
+	<td><select id="opciones" onchange="mostrarBoton()">
+          <option value="servicio">Por servicios</option>
+		  <option value="artesano">Por artesanos</option>		  
+	</select></td>
+    <td></td>
+    <td><input type = "text" id="nombreInstructor" size="40" placeholder="Ingrese el dato a buscar" ></td>
+</tr>
+<tr id="Parroquias">
+<td>Parroquias:</td>
+<td><select>
+          <option value="none">Seleccione</option>
+          <option value="parroquia1">Parroquia1</option>
+          <option value="parroquia2">Parroquia2</option>
+          <option value="parroquia3">Parroquia3</option>
+</select></td>
+	
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td>
+        <div class= "botonBuscar">
+            <input type="submit" value="Buscar" onclick="mostrarTabla()">
+        </div>        
+    </td>    
+</tr>
+</table>
+</div>
+    
+<div class= "formularioTabla">
+  <form>
+<table id="tablaArtesanos" style='visibility:hidden;'>
+    <thead>
+    <th> Nombres </th>
+    <th> Apellidos </th>
+    <th> Servicio Ofrecido </th>
+    <th> Telefonos de Contacto </th>
+    <th> Direccion </th>
+    <th> Disponibilidad </th>
+    <th> </th>
+    </thead>    
+    <tr>
+    <td>Cosme</td>
+    <td>Fulanito</td>
+    <td>Albañil, carpintero</td>
+    <td>022222222</td>
+    <td>Av. la mas nueva y la otra</td>
+    <td>Si</td>
+    <td><input type="button" value="Ver Detalle"><input type="button" value="Modificar"></td>
+    </tr>
+     <tr>
+    <td>Elsa</td>
+    <td>Pato</td>
+    <td>Plomero, electricista</td>
+    <td>022222223</td>
+    <td>Av. de la vida y ruta viva</td>
+    <td>No</td>
+    <td><input type="button" value="Ver Detalle"><input type="button" value="Modificar"></td>
+    </tr>
+</table>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
+
+    {% if title %}
+    <title>{{ title }} - Microblog</title>
+    {% else %}
+    <title>Welcome to Microblog</title>
+    {% endif %}
+</head>
+
+
+
+<body>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+        function agregarTelefono() {
+            var table = document.getElementById('idTable');
+            var count = table.getElementsByTagName('tr').length;
+            if (count < 6) {
+                var row = table.insertRow(0);
+                row.innerHTML = "<input type=\"text\"/>";
+            }
+        }
+
+        function botonGuardar() {
+            alert("Datos Guardados con Exito");
+        }
+
+        function botonRegistrarse() {
+            alert("Datos Registrados con Exito");
+        }
+
+        function botonLogin() {
+            alert("Inicio de sesion");
+        }
+
+        function mostrarBoton() {
+            var opciones = document.getElementById("opciones");
+            var parroquias = document.getElementById("Parroquias");
+            var seleccionado = opciones.value;
+        }
+        function mostrarTabla() {
+            var tablaArtesanos = document.getElementById("tablaArtesanos");
+            var botonDatos = document.getElementById("btnDatos")
+            tablaArtesanos.style.visibility = "visible";
+            botonDatos.style.visibility = "visible";
+        }
+
+        // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+                document.getElementById("navbar").style.padding = "30px 10px";
+                document.getElementById("logo").style.fontSize = "25px";
+            } else {
+                document.getElementById("navbar").style.padding = "80px 10px";
+                document.getElementById("logo").style.fontSize = "35px";
+            }
+        }
+    </script>
+
+
+    <div class="topnav" id="myTopnav">
+        <a href="/index"><img src="{{url_for('static', filename='logo2.png')}}"></a>
+        <a style="font-size:30px; color: rgb(74, 116, 241)">Bolsa de Empleo</a>
+        <div class="topnav-right">
+
+            <div class="dropdown">
+                <button class="dropbtn">Artesanos
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesano</a>
+                    <a href="/RegistrarArtesano"><i class="fa fa-fw fa-address-card"></i>Registrar Datos</a>
+                    <a href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Clientes
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesanos</a>
+                    <a href="/RegistrarAcuerdo"><i class="fas fa-file-signature"></i>Registrar Convenio</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Cursos
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/CrearCurso"><i class="fa fa-fw fa-users"></i>Crear Cursos</a>
+                    <a href="/InfoCurso"><i class="fa fa-fw fa-book"></i>Informacion de Curso</a>
+                </div>
+            </div>
+            <a href="/Login" class="active"><i class="fa fa-user-circle"></i>Login</a>
+
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+    </div>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+
+</html>

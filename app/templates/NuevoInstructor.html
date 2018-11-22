@@ -1,0 +1,44 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+
+	<h1> Crear un nuevo Instructor</h1>
+
+	<div class="formulario">
+		<table align="center">
+		
+
+			<tr>
+				<td>Tipo de Identificacion:</td>
+				<td><select>
+						<option value="cedula">Cedula</option>
+						<option value="pasaporte">Pasaporte</option>
+						<option value="ruc">RUC</option>
+					</select></td>
+			</tr>
+			<tr>
+				<td>Numero de Identificacion:</td>
+				<td><input type="text" id="id" siz="40"></td>
+			</tr>
+			<tr>
+				<td>Nombres:</td>
+				<td><input type="text" id="nombres" siz="40"></td>
+			</tr>
+			<tr>
+				<td>Apellidos:</td>
+				<td><input type="text" id="apellidos" siz="40"></td>
+			</tr>
+			<tr>
+				<td>Telefono de contacto:</td>
+				<td><input type="text" id="telf" size="40"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="botones">
+		<tr>
+			<td> <input type="submit" value="Guardar" onclick="botonGuardar()">
+				<input type="submit" value="Limpiar Campos">
+				<input type="submit" value="Regresar" onclick="document.location.href='/InfoCurso'"> </td>
+		</tr>
+	</div>
+	{% endblock %}
