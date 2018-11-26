@@ -3,6 +3,10 @@ from flask_restplus import Api
 
 from usersController import api as users
 from sessionsController import api as sessions
+from coursesController import api as courses
+from acuerdosController import api as acuerdos
+from artesanosController import api as artesanos
+from clientesController import api as clientes
 
 
 app = Flask(__name__)
@@ -14,6 +18,10 @@ api = Api(app,
 
 api.add_namespace(users)
 api.add_namespace(sessions)
+api.add_namespace(courses)
+api.add_namespace(acuerdos)
+api.add_namespace(clientes)
+api.add_namespace(artesanos)
 
 
 if __name__ == '__main__':

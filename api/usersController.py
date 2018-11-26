@@ -15,7 +15,7 @@ locationPayload = api.model('locationPayload', {
 })
 
 userPayload = api.model('userPayload', {
-    "tipoUser" : fields.String,
+    "tipoUser" : fields.String(["admin","cliente","artesano"]),
     "tipoId" : fields.String,
     "identificacion": fields.String,
     "email" : fields.String,
@@ -46,7 +46,7 @@ class People(Resource):
             page * pageSize).limit(pageSize))
         for person in people:
             person['_id'] = str(person['_id'])
-        return {"count": len(people), "people": people}, 200
+        return {"count": len(people), "users": people}, 200
 
     @api.expect(userPayload)
     def post(self):

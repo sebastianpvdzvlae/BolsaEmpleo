@@ -17,11 +17,11 @@ sessionPayload = api.model('sessionPayload', {
 class Sessions(Resource):
     @api.expect(sessionPayload)
     def post(self):
-        db = get_db()
+        collection = get_db()["users"]
         body = api.payload
         body['password'] = str(hashlib.sha256(
             body['password'].encode()).hexdigest())
-        user = db["users"].find_one({"email": body["email"]})
+        user = collection.find_one({"email": body["email"]})
         if user is None:
             return {"invaliCredentials": True}, 401
         if user['password'] == body['password']:
