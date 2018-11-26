@@ -33,4 +33,9 @@ def NuevoInstructor():
 @app.route('/Registrate')
 def Registrate():
     return render_template('registrate.html', title='Registrarse al Sistema')
+#@app.route('/RegistrarArtesano/<string:id>')
+#def getID(id):
+ #       idpagina = {'pagina': id}
+  #      return render_template('RegistrarArtesano.html', title='Registrar Artesanos', idpagina=idpagina)
+
     

@@ -3,94 +3,104 @@
 {% block content %}
 
 
-	<h1> Registrar Artesano</h1>
-	<div class="formulario">
-		<table class="tabla1">
-			<tr>
-				<td class="tdTipo">Tipo de identificacion:</td>
-				<td align="center">
-					<div align="left">
-						<select name="opciones" style="font-size: 15px; align: left;">
-							<option value="1" name="opc_cedula">Cedula</option>
-							<option value="2" name="opc_pasaporte">Pasaporte</option>
-							<option value="3" name="opc_ruc">RUC</option>
-							<option value="4" name="opc_permiso">Permiso de trabajo</option>
-						</select>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>Identificacion:</td>
-				<td><input type="text" name="txt_id" value="" /></td>
-			</tr>
+<h1> Registrar Artesano</h1>
+<div class="formulario">
+	<table class="tabla1">
+		<tr>
+			<td class="tdTipo">Tipo de identificación:</td>
+			<td></td>
+			<td align="center">
+				<div align="left">
+					<select name="opciones" style="font-size: 15px; align: left;">
+						<option value="1" name="opc_cedula">Cédula</option>
+						<option value="2" name="opc_pasaporte">Pasaporte</option>
+						<option value="3" name="opc_ruc">RUC</option>
+						<option value="4" name="opc_permiso">Permiso de trabajo</option>
+					</select>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>Número de Identificación:</td>
+			<td></td>
+			<td><input type="text" name="txt_id" value="" /></td>
+		</tr>
 
-			<tr>
-				<td>Apellidos:</td>
-				<td><input type="text" name="txt_apellidos" value="" /></td>
-			</tr>
-			<tr>
-				<td>Nombres:</td>
-				<td><input type="text" name="txt_nombres" value="" /></td>
-			</tr>
+		<tr>
+			<td>Apellidos:</td>
+			<td></td>
+			<td><input type="text" name="txt_apellidos" value="" /></td>
+		</tr>
+		<tr>
+			<td>Nombres:</td>
+			<td></td>
+			<td><input type="text" name="txt_nombres" value="" /></td>
+		</tr>
 
-			<tr>
-				<td>Direccion:</td>
-				<td><input type="text" name="txt_direccion" value="" /></td>
-			</tr>
+		<tr>
+			<td>Dirección:</td>
+			<td></td>
+			<td><input type="text" name="txt_direccion" value="" /></td>
+		</tr>
 
 
 
-			<tr id="idRow">
+		<tr id="idRow">
 
-				<td>Telefono:</td>
-				<td><input type="text" name="txt_telefono" value="" id="inputTelefono" />
-					<table id="idTable">
-						<tr>
-						</tr>
-					</table>
-				</td>
-				<td>
-					<input type="image" src="{{url_for('static', filename='plus-circle-solid.svg')}}" class="button" id="btn_mas" onclick='agregarTelefono()'>
+			<td>Teléfono:</td>
+			<td>
+				<input type="image" src="{{url_for('static', filename='minus-sign-inside.svg')}}" class="button" id="btn_menos" style="display: none;" onclick='quitarTelefono()'>
+			</td>
+			<td><input type="text" name="txt_telefono" value="" id="inputTelefono" />
+				<table id="idTable">
+					<tr>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<input type="image" src="{{url_for('static', filename='plus-circle-solid.svg')}}" class="button" id="btn_mas" onclick='agregarTelefono()'>
+			</td>
+			
+		</tr>
 
-				</td>
+		<tr>
+			<td>Provincia:</td>
+			<td></td>
+			<td align="center">
+				<div align="center">
+					<select name="opciones" style="font-size: 15px">
+						<option value="1" name="opc_cedula"></option>
+					</select>
+				</div>
+			</td>
+		</tr>
 
-			</tr>
+		<tr class="h3">
+			<td>Canton:</td>
+			<td></td>
+			<td align="center">
+				<div align="center">
+					<select name="opciones" style="font-size: 15px">
+						<option value="1" name="opc_cedula"></option>
+					</select>
+				</div>
+			</td>
+		</tr>
 
-			<tr>
-				<td>Provincia:</td>
-				<td align="center">
-					<div align="center">
-						<select name="opciones" style="font-size: 15px">
-							<option value="1" name="opc_cedula"></option>
-						</select>
-					</div>
-				</td>
-			</tr>
+		<tr>
+			<td>Parroquia:</td>
+			<td></td>
+			<td align="center">
+				<div align="center">
+					<select name="opciones" style="font-size: 15px">
+						<option value="1" name="opc_cedula"></option>
+					</select>
+				</div>
+			</td>
+		</tr>
 
-			<tr class="h3">
-				<td>Canton:</td>
-				<td align="center">
-					<div align="center">
-						<select name="opciones" style="font-size: 15px">
-							<option value="1" name="opc_cedula"></option>
-						</select>
-					</div>
-				</td>
-			</tr>
-
-			<tr>
-				<td>Parroquia:</td>
-				<td align="center">
-					<div align="center">
-						<select name="opciones" style="font-size: 15px">
-							<option value="1" name="opc_cedula"></option>
-						</select>
-					</div>
-				</td>
-			</tr>
-
-		</table>
-	</div>
+	</table>
+</div>
 	<div class="botones">
 		<tr>
 			<td>
