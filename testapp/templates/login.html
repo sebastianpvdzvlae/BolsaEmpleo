@@ -1,0 +1,29 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+
+    <h1>Inicio de Sesion</h1>
+
+    <div class="formulario">
+        <form action='Login' method='POST'>
+        <table>
+            <tr>
+                <td>Correo electronico: </td>
+                <td><input type="email" name="email" id="email" size="40" placeholder="usuario@mail.com"></td>
+            </tr>
+            <tr>
+                <td>Contraseña:</td>
+                <td><input type="password" name="password" id="password" size="40" placeholder="*****"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Iniciar Sesion">
+        </form>
+    </div>
+    <div class="botones">
+        <tr>
+            <td><input type="submit" value="Iniciar Sesion" onclick="botonLogin()">
+                <input onclick="location.href = '/Registrate'" type="submit" value="Registrate">
+                <input type="submit" value="Invitado"> </td>
+        </tr>
+    </div>
+	{% endblock %}

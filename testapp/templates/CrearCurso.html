@@ -1,0 +1,25 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+	<h1> Crear un nuevo Curso de Capacitacion</h1>
+
+	<div class="formulario">
+		<table align="center">
+			<tr>
+				<td>Nombre del Curso:</td>
+				<td><input type="text" id="nombreCurso" size="40"></br></td>
+			</tr>
+			<tr>
+				<td>Descripcion del Curso:</td>
+				<td><textarea cols="40" rows="6" id="descripcion" placeholder="Escriba la descripcion del Curso"></textarea></td>
+			</tr>
+		</table>
+	</div>
+	<div class="botones">
+		<tr>
+			<td> <input type="submit" value="Guardar" onclick="botonGuardar()">
+				<input type="submit" value="Limpiar Campos">
+				<input type="submit" value="Regresar" onclick="location.href = '/index'"></td>
+		</tr>
+	</div>
+	{% endblock %}

@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
+
+    {% if title %}
+    <title>{{ title }} - Microblog</title>
+    {% else %}
+    <title>Welcome to Microblog</title>
+    {% endif %}
+</head>
+
+
+
+<body>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+
+    <div class="topnav" id="myTopnav">
+        <a href="Inicio.html"><img src="{{url_for('static', filename='logo2.png')}}"></a>
+        <a style="font-size:30px; color: rgb(74, 116, 241)">Bolsa de Empleo</a>
+        <div class="topnav-right">
+
+            <div class="dropdown">
+                <button class="dropbtn">Artesanos
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="BusquedaArtesanos.html"><i class="fa fa-fw fa-search"></i>Buscar Artesano</a>
+                    <a href="RegistrarArtesano.html"><i class="fa fa-fw fa-address-card"></i>Registrar Datos</a>
+                    <a href="InscripcionCurso.html"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Clientes
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="BusquedaArtesanos.html"><i class="fa fa-fw fa-search"></i>Buscar Artesanos</a>
+                    <a href="RegistrarAcuerdo.html"><i class="fas fa-file-signature"></i>Registrar Convenio</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Cursos
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="CrearCurso.html"><i class="fa fa-fw fa-users"></i>Crear Cursos</a>
+                    <a href="InfoCurso.html"><i class="fa fa-fw fa-book"></i>Informacion de Curso</a>
+                </div>
+            </div>
+            <a href="login.html" class="active"><i class="fa fa-user-circle"></i>Login</a>
+
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+    </div>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+
+</html>
