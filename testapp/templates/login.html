@@ -2,10 +2,10 @@
 
 {% block content %}
 
-    <h1>Inicio de Sesion</h1>
-
+<h1>Inicio de Sesion</h1>
+<form action='Login' method='POST'>
     <div class="formulario">
-        <form action='Login' method='POST'>
+
         <table>
             <tr>
                 <td>Correo electronico: </td>
@@ -16,14 +16,13 @@
                 <td><input type="password" name="password" id="password" size="40" placeholder="*****"></td>
             </tr>
         </table>
-        <input type="submit" value="Iniciar Sesion">
-        </form>
     </div>
     <div class="botones">
         <tr>
-            <td><input type="submit" value="Iniciar Sesion" onclick="botonLogin()">
+            <td><input type="submit" value="Iniciar Sesion">
                 <input onclick="location.href = '/Registrate'" type="submit" value="Registrate">
                 <input type="submit" value="Invitado"> </td>
         </tr>
     </div>
-	{% endblock %}
+</form>
+{% endblock %}

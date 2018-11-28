@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template
+from flask import render_template, flash
 import flask
 import flask_login
 import requests
@@ -54,11 +54,13 @@ def index():
 
 
 @app.route('/BusquedaArtesanos')
+@flask_login.login_required
 def BusquedaArtesanos():
     return render_template('BusquedaArtesanos.html', title='Buscar Artesanos')
 
 
 @app.route('/RegistrarArtesano')
+@flask_login.login_required
 def RegistrarArtesano():
     return render_template('RegistrarArtesano.html', title='Registrar Artesanos')
 
@@ -70,16 +72,19 @@ def InscripcionCurso():
 
 
 @app.route('/RegistrarAcuerdo')
+@flask_login.login_required
 def RegistrarAcuerdo():
     return render_template('RegistrarAcuerdo.html', title='Registrar Acuerdo')
 
 
 @app.route('/CrearCurso')
+@flask_login.login_required
 def CrearCurso():
     return render_template('CrearCurso.html', title='Crear Curso')
 
 
 @app.route('/InfoCurso')
+@flask_login.login_required
 def InfoCurso():
     return render_template('InfoCurso.html', title='Informacion de Curso')
 
@@ -104,6 +109,43 @@ def Login():
         return 'Bad login'
 
 
+@app.route('/Registrate', methods=['GET', 'POST'])
+def Registrate():
+        if flask.request.method == 'GET':
+                return render_template('registrate.html', title='Registrarse al Sistema')
+
+        tipoUser = flask.request.form.get('tipoUser')
+        tipoId = flask.request.form.get('tipoId')
+        identificacion = flask.request.form.get("identificacion")
+        email = flask.request.form.get("email")
+        nombres = flask.request.form.get("nombres")
+        apellidos = flask.request.form.get("apellidos")
+        password = flask.request.form.get('password')
+
+        res = requests.post('http://127.0.0.1:5000/users/', json={
+                                                                "tipoUser": tipoUser,
+                                                                "tipoId": tipoId,
+                                                                "identificacion": identificacion,
+                                                                "email": email,
+                                                                "apellidos": apellidos,
+                                                                "nombres": nombres,
+                                                                "direccion": "",
+                                                                "ubicacion": {
+                                                                "provincia": "",
+                                                                "canton": "",
+                                                                "parroquia": ""
+                                                                },
+                                                                "telefonos": [
+                                                                ""
+                                                                ],
+                                                                "password": password
+                                                                })
+        if res.status_code == 200:
+                flash('Registro exitoso')
+                return flask.redirect(flask.url_for('index'))
+        return 'Bad Registro'
+
+
 @app.route('/Logout')
 def logout():
     flask_login.logout_user()
@@ -112,17 +154,16 @@ def logout():
 
 @login_manager.unauthorized_handler
 def unauthorized_handler():
-    return 'Unauthorized'
-
+        flash('No posee la autorizacion adecuada para ingresar a esa pagina')
+        return flask.redirect(flask.url_for('index'))
 
 @app.route('/NuevoInstructor')
+@flask_login.login_required
 def NuevoInstructor():
     return render_template('NuevoInstructor.html', title='Nuevo Instructor de Curso')
 
 
-@app.route('/Registrate')
-def Registrate():
-    return render_template('registrate.html', title='Registrarse al Sistema')
+
 
 
 if __name__ == '__main__':
