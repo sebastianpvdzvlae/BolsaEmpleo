@@ -92,8 +92,11 @@ def CambiarContraseña():
                 return render_template('CambiarContraseña.html', title='Cambiar Contraseña')
 
         password = flask.request.form.get('newpassword')
-        res = request.put('http://127.0.0.1:5000/sessions/{}'.format(flask_login.current_user.id), 
-        json={"password": password}))
+        res = requests.put('http://127.0.0.1:5000/sessions/{}'.format(flask_login.current_user.id), json={"password": password})
+        if res.status_code == 200:
+                flash('Cambio exitoso')
+                return flask.redirect(flask.url_for('index'))
+        
 
 
 @app.route('/InfoCurso')
@@ -117,7 +120,7 @@ def Login():
                 user = User()
                 user.id = usrid
                 flask_login.login_user(user)
-                return flask.redirect(flask.url_for('index')
+                return flask.redirect(flask.url_for('index'))
 
         return 'Bad login'
 
