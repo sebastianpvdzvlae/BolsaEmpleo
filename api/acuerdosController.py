@@ -8,7 +8,7 @@ from database import get_db
 api = Namespace('acuerdos', description='Acuerdos related operations')
 
 
-AcuerdoPayload = api.model('AcuerdoPayload', {
+acuerdoPayload = api.model('acuerdoPayload', {
     "cliente": fields.String,
     "artesano": fields.String,
     "acuerdo": fields.String,
@@ -40,7 +40,7 @@ class Acuerdos(Resource):
             acuerdo['_id'] = str(acuerdo['_id'])
         return {"count": len(acuerdos), "acuerdos": acuerdos}, 200
 
-    @api.expect(AcuerdoPayload)
+    @api.expect(acuerdoPayload)
     def post(self):
         collection = get_db()['acuerdos']
         body = api.payload
@@ -58,14 +58,14 @@ class Acuerdo(Resource):
         res['_id'] = str(res['_id'])
         return res, 200
 
-    @api.expect(AcuerdoPayload)
+    @api.expect(acuerdoPayload)
     def put(self, id):
         collection = get_db()['acuerdos']
         course = collection.find_one({"_id": ObjectId(id)})
         if course == None:
             return {"id": id}, 404
         body = api.payload
-        collection.find_one_and_replace({"_id": ObjectId(id)}, body)
+        collection.find_one_and_replace({"_id": ObjectId(id)}, {"$set": body})
         course = collection.find_one({"_id": ObjectId(id)})
         course['_id'] = str(course['_id'])
         return course, 200

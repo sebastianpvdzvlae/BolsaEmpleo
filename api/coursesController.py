@@ -7,14 +7,20 @@ from database import get_db
 api = Namespace('courses', description='Courses related operations')
 
 
-CreateCoursePayload = api.model('createCoursePayload', {
+createCoursePayload = api.model('createCoursePayload', {
     "nombre": fields.String,
     "descripcion": fields.String
 })
 
-CoursePayload = api.model('createCoursePayload', {
+coursePayload = api.model('coursePayload', {
     "nombre": fields.String,
-    "descripcion": fields.String
+    "descripcion": fields.String,
+    "fechaInicio" : fields.Date,
+    "fechaFin" : fields.Date,
+    "numParticipantes" : fields.Integer,
+    "lugar" : fields.String,
+    "horario" : fields.String,
+    "participantes" : fields.List(fields.String)
 })
 
 courseParser = api.parser()
@@ -38,7 +44,7 @@ class Courses(Resource):
             course['_id'] = str(course['_id'])
         return {"count": len(courses), "courses": courses}, 200
 
-    @api.expect(CreateCoursePayload)
+    @api.expect(createCoursePayload)
     def post(self):
         collection = get_db()['courses']
         body = api.payload
@@ -58,7 +64,7 @@ class Course(Resource):
         res['_id'] = str(res['_id'])
         return res, 200
 
-    @api.expect(CoursePayload)
+    @api.expect(coursePayload)
     def put(self, id):
         collection = get_db()['courses']
         course = collection.find_one({"_id": ObjectId(id)})
