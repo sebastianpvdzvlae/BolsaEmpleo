@@ -107,7 +107,8 @@
         <a href="/index"><img src="{{url_for('static', filename='logo2.png')}}"></a>
         <a style="font-size:30px; color: rgb(74, 116, 241)">Bolsa de Empleo</a>
         <div class="topnav-right">
-
+        {% if current_user.is_authenticated %}
+            {% if current_user.tipoUser == "artesano" %}
             <div class="dropdown">
                 <button class="dropbtn">Artesanos
                     <i class="fa fa-caret-down"></i>
@@ -118,6 +119,8 @@
                     <a href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
                 </div>
             </div>
+            {% endif %}
+            {% if current_user.tipoUser == "cliente" %}
             <div class="dropdown">
                 <button class="dropbtn">Clientes
                     <i class="fa fa-caret-down"></i>
@@ -127,6 +130,8 @@
                     <a href="/RegistrarAcuerdo"><i class="fas fa-file-signature"></i>Registrar Convenio</a>
                 </div>
             </div>
+            {% endif %}
+            {% if current_user.tipoUser == "cliente" %}
             <div class="dropdown">
                 <button class="dropbtn">Cursos
                     <i class="fa fa-caret-down"></i>
@@ -136,10 +141,25 @@
                     <a href="/InfoCurso"><i class="fa fa-fw fa-book"></i>Informacion de Curso</a>
                 </div>
             </div>
+            {% endif %}
+        {% endif %}
+        {% if current_user.is_anonymous %}
+        <a href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesanos</a>
+        {% endif %}
             {% if current_user.is_anonymous %}
             <a href="/Login" class="active"><i class="fa fa-user-circle"></i>Login</a>
             {% else %}
-            <a href="/Logout" class="active"><i class="fa fa-user-circle"></i>Logout</a>
+            <div class="dropdown">
+                <button class="dropbtn">{{current_user.nombres}}
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/CambiarContraseña"><i class="fa fa-fw fa-users"></i>Cambiar Contraseña</a>
+                    <a href="/Logout"><i class="fa fa-user-circle"></i>Logout</a>
+                </div>
+            </div>
+
+
             {% endif %}
             
 

@@ -1,0 +1,33 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+
+<h1>Cambiar Contraseña</h1>
+<form action='CambiarContraseña' method='POST'>
+    <div class="formulario">
+        <table>
+            <tr>
+                <td>Contraseña Actual:</td>
+                <td><input type="password" name="password" id="password" size="40"><br></td>
+            </tr>
+            <tr>
+                <td>Nueva Contraseña:</td>
+                <td><input type="password" name="newpassword" id="newpassword" size="40"><br></td>
+            </tr>
+            <tr> 
+                <td>Repetir Nueva Contraseña:</td>
+                <td><input type="password" name="newpassword2" id="newpassword2" size="40"></td>
+            </tr> 
+        </table>
+    </div>
+    <div class="botones">
+        <tr>
+            <td> <input type="submit" value="CambiarContraseña"></td>
+        </tr>
+    </div>
+
+</form>
+
+
+
+{% endblock %}

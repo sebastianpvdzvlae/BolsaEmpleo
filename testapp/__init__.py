@@ -16,6 +16,8 @@ login_manager.init_app(app)
 class User(flask_login.UserMixin):
     nombres = None
     apellidos = None
+    tipoUser = None
+    identificacion = None
     pass
 
 
@@ -28,6 +30,8 @@ def user_loader(usrid):
         user.id = usrid
         user.nombres = res.json()['nombres']
         user.apellidos = res.json()['apellidos']
+        user.tipoUser = res.json()['tipoUser']
+        user.identificacion = res.json()['identificacion']
         return user
     return
 
@@ -54,7 +58,6 @@ def index():
 
 
 @app.route('/BusquedaArtesanos')
-@flask_login.login_required
 def BusquedaArtesanos():
     return render_template('BusquedaArtesanos.html', title='Buscar Artesanos')
 
@@ -82,6 +85,16 @@ def RegistrarAcuerdo():
 def CrearCurso():
     return render_template('CrearCurso.html', title='Crear Curso')
 
+@app.route('/CambiarContraseña', methods=['GET', 'POST'])
+@flask_login.login_required
+def CambiarContraseña():
+        if flask.request.method == 'GET':
+                return render_template('CambiarContraseña.html', title='Cambiar Contraseña')
+
+        password = flask.request.form.get('newpassword')
+        res = request.put('http://127.0.0.1:5000/sessions/{}'.format(flask_login.current_user.id), 
+        json={"password": password}))
+
 
 @app.route('/InfoCurso')
 @flask_login.login_required
@@ -104,7 +117,7 @@ def Login():
                 user = User()
                 user.id = usrid
                 flask_login.login_user(user)
-                return flask.redirect(flask.url_for('index'))
+                return flask.redirect(flask.url_for('index')
 
         return 'Bad login'
 
@@ -121,6 +134,7 @@ def Registrate():
         nombres = flask.request.form.get("nombres")
         apellidos = flask.request.form.get("apellidos")
         password = flask.request.form.get('password')
+
 
         res = requests.post('http://127.0.0.1:5000/users/', json={
                                                                 "tipoUser": tipoUser,
