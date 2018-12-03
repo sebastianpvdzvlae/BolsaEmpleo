@@ -13,6 +13,10 @@ sessionPayload = api.model('sessionPayload', {
     "password": fields.String
 })
 
+passwordPayload = api.model('passwordPayload', {
+    "password": fields.String
+})
+
 @api.route('/')
 class Sessions(Resource):
     @api.expect(sessionPayload)
@@ -27,3 +31,19 @@ class Sessions(Resource):
         if user['password'] == body['password']:
             return {"_id" : str(user['_id'])}, 200
         return {"invaliCredentials": True}, 401
+
+
+@api.route('/<string:id>')
+class Session(Resource):
+    @api.expect(passwordPayload)
+    def put(self, id):
+        collection = get_db()["users"]
+        body = api.payload
+        body['password'] = str(hashlib.sha256(
+            body['password'].encode()).hexdigest())
+        user = collection.find_one({"_id": ObjectId(id)})
+        if user is None:
+            return {"id": id}, 404
+        collection.update_one({"_id": ObjectId(id)}, {
+                              "$set": {"password": body['password']}})
+        return {"passwordUpdated": True}, 200

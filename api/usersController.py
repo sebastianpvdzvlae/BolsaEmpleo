@@ -27,6 +27,18 @@ userPayload = api.model('userPayload', {
     "password" : fields.String #el password se almacena hasheado como MD5
 })
 
+userUpdatePayload = api.model('userPayload', {
+    "tipoUser": fields.String(["admin", "cliente", "artesano"]),
+    "tipoId": fields.String,
+    "identificacion": fields.String,
+    "email": fields.String,
+    "apellidos": fields.String,
+    "nombres": fields.String,
+    "direccion": fields.String,
+    "ubicacion": fields.Nested(locationPayload),
+    "telefonos": fields.List(fields.String),
+})
+
 userParser = api.parser()
 userParser.add_argument(
     'page', type=int, help='page number', location='head')
@@ -53,7 +65,7 @@ class People(Resource):
         db = get_db()
         body = api.payload
         body['password'] = str(hashlib.sha256(body['password'].encode()).hexdigest())
-        if db["users"].find_one({"identificacion": body["identificacion"]}) or db["users"].find_one({"email": body["email"]}):
+        if db["users"].find_one({"tipoId": body["tipoId"], "identificacion": body["identificacion"]}) or db["users"].find_one({"email": body["email"]}):
             return {"personExists": True}, 400
         res = db["users"].insert_one(body)
         return {"_id": str(res.inserted_id)}, 200
@@ -83,7 +95,7 @@ class Person(Resource):
         person = db['users'].find_one({"_id": ObjectId(id)})
         if person == None:
             return {"id": id}, 404
-        db['users'].find_one_and_replace({"_id": ObjectId(id)}, body)
+        db['users'].find_one_and_replace({"_id": ObjectId(id)}, {"$set" : body})
         person = db['users'].find_one({"_id": ObjectId(id)})
         person['_id'] = str(person['_id'])
         return person, 200
