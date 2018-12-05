@@ -108,7 +108,7 @@
         <a style="font-size:30px; color: rgb(74, 116, 241)">Bolsa de Empleo</a>
         <div class="topnav-right">
         {% if current_user.is_authenticated %}
-            {% if current_user.tipoUser == "artesano" %}
+            {% (if current_user.tipoUser == "artesano" or if current_user.tipoUser == "admin") %}
             <div class="dropdown">
                 <button class="dropbtn">Artesanos
                     <i class="fa fa-caret-down"></i>
@@ -120,7 +120,7 @@
                 </div>
             </div>
             {% endif %}
-            {% if current_user.tipoUser == "cliente" %}
+            {% if (current_user.tipoUser == "cliente" or if current_user.tipoUser == "admin") %}
             <div class="dropdown">
                 <button class="dropbtn">Clientes
                     <i class="fa fa-caret-down"></i>
@@ -131,7 +131,7 @@
                 </div>
             </div>
             {% endif %}
-            {% if current_user.tipoUser == "cliente" %}
+            {% if (current_user.tipoUser == "cliente" or if current_user.tipoUser == "admin") %}
             <div class="dropdown">
                 <button class="dropbtn">Cursos
                     <i class="fa fa-caret-down"></i>

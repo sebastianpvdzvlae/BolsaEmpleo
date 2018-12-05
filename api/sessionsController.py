@@ -37,6 +37,8 @@ class Sessions(Resource):
                 collection.update_one({"email": body["email"]}, {
                                 "$set": {"estado": 0}})
                 return {"userBlocked": True}, 403
+            elif not user['estado']:   
+                return {"userBlocked": True}, 403    
             collection.update_one({"email": body["email"]}, {
                                 "$inc": {"intentos": 1}})
         return {"invaliCredentials": True}, 401
