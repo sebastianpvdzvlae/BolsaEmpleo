@@ -24,10 +24,13 @@ userPayload = api.model('userPayload', {
     "direccion": fields.String,
     "ubicacion": fields.Nested(locationPayload),
     "telefonos" : fields.List(fields.String),
-    "password" : fields.String #el password se almacena hasheado como MD5
+    "password" : fields.String, #el password se almacena hasheado como MD5
+    "estado": fields.Boolean, #activo 1, inactivo 0
+    "intentos": fields.Integer, #numero de intentos para el login, max 3
+    "servicios" : fields.List(fields.String) #solo si es artesano
 })
 
-userUpdatePayload = api.model('userPayload', {
+userUpdatePayload = api.model('userUpdatePayload', {
     "tipoUser": fields.String(["admin", "cliente", "artesano"]),
     "tipoId": fields.String,
     "identificacion": fields.String,
@@ -37,7 +40,24 @@ userUpdatePayload = api.model('userPayload', {
     "direccion": fields.String,
     "ubicacion": fields.Nested(locationPayload),
     "telefonos": fields.List(fields.String),
+    "estado" : fields.Boolean,
+    "intentos": fields.Integer,
+    "servicios": fields.List(fields.String)
 })
+
+queryUsers = {"tipoUser": 1,
+              "tipoId": 1,
+              "identificacion": 1,
+              "email": 1,
+              "apellidos": 1,
+              "nombres": 1,
+              "direccion": 1,
+              "ubicacion": 1,
+              "telefonos": 1,
+              "estado": 1,
+              "intentos": 1,
+              "servicios": 1
+              }
 
 userParser = api.parser()
 userParser.add_argument(
@@ -54,7 +74,7 @@ class People(Resource):
         args = request.args
         page = int(args['page'])
         pageSize = int(args['pageSize'])
-        people = list(db["users"].find().skip(
+        people = list(db["users"].find({}, queryUsers).skip(
             page * pageSize).limit(pageSize))
         for person in people:
             person['_id'] = str(person['_id'])
