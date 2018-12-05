@@ -96,7 +96,6 @@ def CambiarContraseña():
         if res.status_code == 200:
                 flash('Cambio exitoso')
                 return flask.redirect(flask.url_for('index'))
-        
 
 
 @app.route('/InfoCurso')
@@ -121,7 +120,9 @@ def Login():
                 user.id = usrid
                 flask_login.login_user(user)
                 return flask.redirect(flask.url_for('index'))
-
+        elif res.status_code == 403:
+                flash('Usuario bloqueado')
+                return flask.redirect(flask.url_for('index'))
         return 'Bad login'
 
 
