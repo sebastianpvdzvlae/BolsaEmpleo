@@ -1,9 +1,9 @@
 {% extends "navbar.html" %}
 
 {% block content %}
-
+<script src="{{ url_for('static',filename='javascript/registrate.js') }}" type="text/javascript"></script>
 <h1>Registrate</h1>
-<form action='Registrate' method='POST'>
+<!--<form action='Registrate' method='POST'>-->
     <div class="formulario">
         <table>
             <tr>
@@ -49,11 +49,11 @@
     </div>
     <div class="botones">
         <tr>
-            <td> <input type="submit" value="Registrarse">
-                <input onclick="location.href = 'login.html'" type="submit" value="Cancelar"> </td>
+            <td> <input type="submit" value="Registrarse" onclick="botonGuardar()">
+                <input onclick="location.href = 'Login'" type="submit" value="Cancelar"> </td>
         </tr>
     </div>
 
-</form>
+<!--</form>-->
 
 	{% endblock %}

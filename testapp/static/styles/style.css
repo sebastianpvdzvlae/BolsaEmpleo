@@ -218,6 +218,28 @@ input[type=submit]:hover {
     
 }
 
+input[type=reset] {
+    padding: 5px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    box-sizing: border-box;
+    background-color: rgb(175, 194, 250);
+    color: black;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+    width: 100%;
+}
+
+
+input[type=reset]:hover {
+    background-color: rgb(135, 144, 216);
+    cursor: pointer;
+    
+}
+
 input[type=button] {
   padding: 10px;
   margin-right: 5px;

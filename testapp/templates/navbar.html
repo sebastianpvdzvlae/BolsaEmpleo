@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ url_for('static',filename='javascript/main.js') }}"></script>
 
     {% if title %}
     <title>{{ title }}</title>
@@ -63,10 +65,6 @@
 			
 			table.deleteRow(0);
 		}
-
-        function botonGuardar() {
-            alert("Datos Guardados con Exito");
-        }
 
         function botonRegistrarse() {
             alert("Datos Registrados con Exito");

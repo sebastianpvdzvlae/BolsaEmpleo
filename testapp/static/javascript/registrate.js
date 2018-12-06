@@ -21,10 +21,13 @@
                     canton:"",
                     parroquia: "",
                 },
-                telefonos = [],
-                password: password.value
+                telefonos : [],
+                password: password.value,
+                estado: true,
+                intentos: 0,
+                servicios: []
             }
-            url='http://127.0.0.1:5000/users/';
+            url = serverUrl + '/users/';
             console.log(user);
            $.ajax({
                 url: url,
@@ -34,13 +37,14 @@
                 dataType: "json"
             }).then(function (response) {
                 console.log(response._id);
-                
+                window.alert("Usuario registrado exitosamente!");
+                window.location.href = "Login";
             }).fail(function (data, textStatus, xhr) {
-                window.alert("Credenciales invalidas");            
+                window.alert("No se puede registrar el usuario");            
                 console.log([data, textStatus, xhr]);
             });
         }else{
-            window.alert("Las contraseñas deben ser iguales");
+            window.alert("Las contraseñas no conisiden");
         }
         
   }  
