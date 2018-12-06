@@ -44,7 +44,7 @@
                 console.log([data, textStatus, xhr]);
             });
         }else{
-            window.alert("Las contraseñas no conisiden");
+            window.alert("Las contraseñas no coinciden");
         }
         
   }  
