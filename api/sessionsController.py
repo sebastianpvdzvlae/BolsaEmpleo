@@ -35,7 +35,9 @@ class Sessions(Resource):
                 return {"_id" : str(user['_id'])}, 200
             elif user['intentos'] >= 3 and user['estado']:   
                 collection.update_one({"email": body["email"]}, {
-                                "$set": {"estado": 0}})
+                                "$set": {"estado": False}})
+                return {"userBlocked": True}, 403
+            elif not user['estado']:
                 return {"userBlocked": True}, 403
             collection.update_one({"email": body["email"]}, {
                                 "$inc": {"intentos": 1}})
@@ -44,6 +46,15 @@ class Sessions(Resource):
 
 @api.route('/<string:id>')
 class Session(Resource):
+    def get(self, id):
+        collection = get_db()["users"]
+        user = collection.find_one({"_id": ObjectId(id)})
+        if user is None:
+            return {"id": id}, 404
+        collection.update_one({"_id": ObjectId(id)}, {
+                              "$set": {"estado": True, "intentos": 0}})
+        return {"UnblockedUser": True}, 200
+
     @api.expect(passwordPayload)
     def put(self, id):
         collection = get_db()["users"]

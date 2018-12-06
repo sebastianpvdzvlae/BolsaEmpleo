@@ -95,7 +95,7 @@ class People(Resource):
 class Person(Resource):
     def get(self, id):
         db = get_db()
-        res = db["users"].find_one({"_id": ObjectId(id)})
+        res = db["users"].find_one({"_id": ObjectId(id)}, queryUsers)
         if res is None:
             return {"id": id}, 404
         res['_id'] = str(res['_id'])
@@ -115,7 +115,7 @@ class Person(Resource):
         person = db['users'].find_one({"_id": ObjectId(id)})
         if person == None:
             return {"id": id}, 404
-        db['users'].find_one_and_replace({"_id": ObjectId(id)}, {"$set" : body})
+        db['users'].update_one({"_id": ObjectId(id)}, {"$set" : body})
         person = db['users'].find_one({"_id": ObjectId(id)})
         person['_id'] = str(person['_id'])
         return person, 200

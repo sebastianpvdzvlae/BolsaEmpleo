@@ -13,6 +13,20 @@ artesanosParser.add_argument(
 artesanosParser.add_argument('pageSize', type=int,
                         help='page size', location='head')
 
+queryArtesanos = {"tipoUser": 1,
+              "tipoId": 1,
+              "identificacion": 1,
+              "email": 1,
+              "apellidos": 1,
+              "nombres": 1,
+              "direccion": 1,
+              "ubicacion": 1,
+              "telefonos": 1,
+              "estado": 1,
+              "intentos": 1,
+              "servicios": 1
+              }
+
 
 @api.route('/')
 class Artesanos(Resource):
@@ -22,7 +36,7 @@ class Artesanos(Resource):
         args = request.args
         page = int(args['page'])
         pageSize = int(args['pageSize'])
-        people = list(db["users"].find({"tipoUser": "artesano"}).skip(
+        people = list(db["users"].find({"tipoUser": "artesano"}, queryArtesanos).skip(
             page * pageSize).limit(pageSize))
         for person in people:
             person['_id'] = str(person['_id'])
