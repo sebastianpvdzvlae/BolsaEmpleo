@@ -123,7 +123,7 @@ def Login():
         elif res.status_code == 403:
                 flash('Usuario bloqueado')
                 return flask.redirect(flask.url_for('index'))
-        return 'Bad login'
+        return flask.redirect(flask.url_for('Login'))
 
 
 @app.route('/Registrate', methods=['GET', 'POST'])
@@ -156,8 +156,14 @@ def Registrate():
                                                                 "telefonos": [
                                                                 ""
                                                                 ],
-                                                                "password": password
+                                                                "password": password,
+                                                                "estado": 1,
+                                                                "intentos": 0,
+                                                                "servicios": [
+                                                                ""
+                                                                ]
                                                                 })
+
         if res.status_code == 200:
                 flash('Registro exitoso')
                 return flask.redirect(flask.url_for('index'))
