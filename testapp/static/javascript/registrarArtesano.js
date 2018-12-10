@@ -1,5 +1,10 @@
+var pageSize = 5;
+var currentPage = 0;
+$(document).ready(function () {
+    
+});
+
 function botonGuardar(){
-    console.log("function guardar triggered");
     var tipoIdentificacion = opciones.options[opciones.selectedIndex];
     var identificacion  = document.getElementById("identificacion");
     var nombres = document.getElementById("nombres");

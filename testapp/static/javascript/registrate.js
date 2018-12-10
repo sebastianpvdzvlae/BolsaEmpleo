@@ -29,6 +29,9 @@
             }
             url = serverUrl + '/users/';
             console.log(user);
+            $.ajaxSetup({
+                headers: { 'Allow-Control-Allow-Origin': '*' }
+            });
            $.ajax({
                 url: url,
                 type: "POST",
