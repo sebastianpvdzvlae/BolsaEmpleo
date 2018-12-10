@@ -1,12 +1,47 @@
-function tablaArtesanos(page, pageSize) {
-    url = serverUrl + "/artesanos/";
-    $.get({ url: url, cache: false, data: { page: page, pageSize: pageSize } }
+var pageSize = 5;
+var currentPage = 0;
+$(document).ready(function () {
+    tablaArtesanos(0);
+    $("#btnNext").on('click', {}, function () {
+        if ($(this).hasClass('disabled')) return;
+        currentPage++;
+        tablaArtesanos(currentPage);
+    });
+
+    $("#btnBack").on('click', {}, function () {
+        if ($(this).hasClass('disabled')) return;
+        currentPage--;
+        tablaArtesanos(currentPage);
+    });
+});
+
+function tablaArtesanos(page) {
+    var txtBusqueda = $("#txtBusqueda").val()
+    if (txtBusqueda == ""){
+        url = serverUrl + "/artesanos/";
+        var data = { page: page, pageSize: pageSize }
+    }
+    else{
+        url = serverUrl + "/services/";
+        var data = { page: page, pageSize: pageSize, service: txtBusqueda}
+    }
+    $.get({ url: url, cache: false, data }
     ).then(function (response) {
-        count = response.count;
-        items = response.users;
+        $("#tablaArtesanos").find("tbody").remove();
+        var total = response.total;
+        var items = response.items;
+        var pages = Math.ceil(total / pageSize);
+        $("#btnNext").addClass('disabled');
+        if (pages > currentPage+1) {
+            $("#btnNext").removeClass('disabled');
+        }
+        $("#btnBack").addClass('disabled');
+        if (currentPage > 0) {
+            $("#btnBack").removeClass('disabled');
+        }
         var tbl = document.getElementById("tablaArtesanos");
         var tblBody = document.createElement("tbody");
-        for (var i = 0; i < count; i++) {
+        for (var i = 0; i < items.length; i++) {
             var fila = document.createElement("tr");
             var celda = document.createElement("td");
             var textoCelda = document.createTextNode(items[i]['nombres']);

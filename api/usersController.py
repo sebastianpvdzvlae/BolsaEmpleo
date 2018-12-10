@@ -78,7 +78,7 @@ class People(Resource):
             page * pageSize).limit(pageSize))
         for person in people:
             person['_id'] = str(person['_id'])
-        return {"count": len(people), "users": people}, 200
+        return {"total": db['users'].count_documents({}), "items": people}, 200
 
     @api.expect(userPayload)
     def post(self):

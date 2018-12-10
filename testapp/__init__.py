@@ -101,7 +101,11 @@ def CambiarContraseña():
 @app.route('/InfoCurso')
 @flask_login.login_required
 def InfoCurso():
-    return render_template('InfoCurso.html', title='Informacion de Curso')
+        if flask_login.current_user.tipoUser == 'admin':
+                return render_template('InfoCurso.html', title='Informacion de Curso')
+        else:
+                flash('No posee la autorizacion adecuada para ingresar a esa pagina')
+                return flask.redirect(flask.url_for('index'))
 
 
 @app.route('/Login', methods=['GET', 'POST'])

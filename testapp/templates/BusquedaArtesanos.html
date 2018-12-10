@@ -7,7 +7,7 @@
 <h1> Busqueda de Artesanos</h1>
 
 <div class = "formulario">
-<table style="margin: 0 auto;">
+<table id="Artesanos" style="margin: 0 auto;">
 <tr>
 	<td>Buscar: </td>
 	<td><select id="opciones" onchange="mostrarBoton()">
@@ -15,9 +15,9 @@
 		  <option value="artesano">Por artesanos</option>		  
 	</select></td>
     <td></td>
-    <td><input type = "text" id="nombreInstructor" size="40" placeholder="Ingrese el dato a buscar" ></td>
+    <td><input type = "text" id="txtBusqueda" size="40" placeholder="Ingrese el dato a buscar" ></td>
 </tr>
-<tr id="Parroquias">
+<!--<tr id="Parroquias">
 <td>Parroquias:</td>
 <td><select>
           <option value="none">Seleccione</option>
@@ -26,13 +26,13 @@
           <option value="parroquia3">Parroquia3</option>
 </select></td>
 	
-</tr>
+</tr>-->
 <tr>
     <td></td>
     <td></td>
     <td>
         <div class= "botonBuscar">
-            <input type="submit" value="Buscar" onclick="tablaArtesanos(0, 10)">
+            <input type="submit" value="Buscar" onclick="tablaArtesanos(0)">
         </div>        
     </td>    
 </tr>
@@ -40,7 +40,6 @@
 </div>
     
 <div class= "formularioTabla">
-  <form>
 <table id="tablaArtesanos">
     <thead>
     <th> Nombres </th>
@@ -51,7 +50,18 @@
     <!--<th> Disponibilidad </th>-->
     <th> </th>
     </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="8">
+                <div>
+                    <input type="button" id="btnBack" value="Atras"></input>
+                    <input type="button" id="btnNext" value="Siguiente"></input>
+                </div>
+            </th>
+        </tr>
+    </tfoot>
 </table>
-</form>
 </div>
 {% endblock %}
