@@ -1,0 +1,63 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+
+<h1> Desbloquear Usuarios</h1>
+
+<div class = "formulario">
+<table style="margin: 0 auto;">
+<tr>
+    <td style = "text-align: center">Buscar: </td>
+</tr>
+<tr>
+    <td ><select id="opciones" onchange="mostrarBoton()">
+        <option value="correoElectronico">Por E-mail</option>
+  </select></td>
+</tr>
+	
+</tr>
+<tr>
+    <td><input type = "text" id="correo" size="40" placeholder="Ingrese el dato a buscar" ></td>
+</tr>
+<tr>
+    <td>
+        <div class= "botonBuscar" >
+            <input type="submit" value="Buscar" onclick="mostrarTabla()">
+        </div>        
+    </td>    
+</tr>
+</table>
+</div>
+    
+<div class= "formularioTabla">
+  <form>
+<table id="tablaArtesanos" style='visibility:hidden;'>
+    <thead>
+    <th> Nombres </th>
+    <th> Apellidos </th>
+    <th> Identificacion </th>
+    <th> Correo Electronico </th>
+    <th> Estado </th>
+    <th> </th>
+    </thead>    
+    <tr>
+    <td>Cosme</td>
+    <td>Fulanito</td>
+    <td>17276394</td>
+    <td>cosme.fulanito@gmail.com</td>
+    <td>Bloqueado</td>
+    <td><input type="button" value="Desbloquear">
+    </tr>
+    <tr>
+        <td>Cosme1</td>
+        <td>Fulanito1</td>
+        <td>172763941</td>
+        <td>cosme1.fulanit1o@gmail.com</td>
+        <td>Bloqueado</td>
+        <td><input type="button" value="Desbloquear">
+    </tr>
+</table>
+</form>
+</div>
+
+{% endblock %}

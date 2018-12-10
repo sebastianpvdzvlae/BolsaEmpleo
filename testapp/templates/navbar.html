@@ -98,6 +98,14 @@
                 document.getElementById("logo").style.fontSize = "35px";
             }
         }
+
+    
+    function mostrarTabla(){
+        var tablaArtesanos = document.getElementById("tablaArtesanos");
+        var botonDatos = document.getElementById("btnDatos")
+        tablaArtesanos.style.visibility="visible"; 
+        botonDatos.style.visibility="visible";
+    }
     </script>
 
 
@@ -106,6 +114,9 @@
         <a style="font-size:30px; color: rgb(74, 116, 241)">Bolsa de Empleo</a>
         <div class="topnav-right">
         {% if current_user.is_authenticated %}
+            {% if current_user.tipoUser == "admin" %}
+            <a href="/UsuariosBloqueados"><i class="fa fa-fw fa-search"></i>Usuarios Bloqueados</a>
+            {% endif %}
             {% if (current_user.tipoUser == "artesano" or current_user.tipoUser == "admin") %}
             <div class="dropdown">
                 <button class="dropbtn">Artesanos

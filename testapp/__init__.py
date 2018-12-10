@@ -143,7 +143,6 @@ def Registrate():
         apellidos = flask.request.form.get("apellidos")
         password = flask.request.form.get('password')
 
-
         res = requests.post('http://127.0.0.1:5000/users/', json={
                                                                 "tipoUser": tipoUser,
                                                                 "tipoId": tipoId,
@@ -189,6 +188,11 @@ def unauthorized_handler():
 @flask_login.login_required
 def NuevoInstructor():
     return render_template('NuevoInstructor.html', title='Nuevo Instructor de Curso')
+
+@app.route('/UsuariosBloqueados')
+@flask_login.login_required
+def UsuariosBloqueados():
+    return render_template('UsuariosBloqueados.html', title='Administrar usuarios bloqueados')
 
 
 
