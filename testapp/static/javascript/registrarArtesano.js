@@ -1,7 +1,63 @@
-var pageSize = 5;
+var pageSize = 24;
 var currentPage = 0;
+url = serverUrl + "/provinces/";
+var provincia = {};
 $(document).ready(function () {
-    
+    var data = { page: currentPage, pageSize: pageSize }
+    $.get({ url: url, cache: false, data })
+    .then(function (response) {
+        $("#provincia").find("option").remove();
+        $.map(response.items, function (province) {
+            $("#provincia").append('<option value = "' + province._id + '">' + province.nombre +'</option>');
+        });
+        $.get({ url: url + $('#provincia').find(":selected").val(), cache: false })
+            .then(function (response) {
+                provincia = response;
+                $("#canton").find("option").remove();
+                var i = 0;
+                $.map(response.cantones, function (canton) {
+                    console.log(canton);
+                    $("#canton").append('<option value = "' + i + '">' + canton.nombre + '</option>');
+                    i++;
+                });
+
+            }).fail(function (data, textStatus, xhr) {
+                console.log([data, textStatus, xhr]);
+            });
+        $("#parroquia").find("option").remove();
+        var i = 0;
+        $.map(provincia.cantones[parseInt($('#canton').find(":selected").val())].parroquias, function (parroquia) {
+            console.log(parroquia);
+            $("#parroquia").append('<option value = "' + i + '">' + parroquia + '</option>');
+            i++;
+        });
+    }).fail(function (data, textStatus, xhr) {
+        console.log([data, textStatus, xhr]);
+    });
+    $("#provincia").change(function () {
+        $.get({ url: url + this.value, cache: false})
+        .then(function (response) {
+            provincia = response;
+            $("#canton").find("option").remove();
+            var i = 0;
+            $.map(response.cantones, function (canton) {
+                console.log(canton);
+                $("#canton").append('<option value = "' + i + '">' + canton.nombre + '</option>');
+                i++;
+            });
+        }).fail(function (data, textStatus, xhr) {
+            console.log([data, textStatus, xhr]);
+        });
+    });
+    $("#canton").change(function () {
+        $("#parroquia").find("option").remove();
+        var i = 0;
+        $.map(provincia.cantones[parseInt($('#provincia').find(":selected").val())].parroquias, function (parroquia) {
+            console.log(parroquia);
+            $("#parroquia").append('<option value = "' + i + '">' + parroquia + '</option>');
+            i++;
+        });
+    });
 });
 
 function botonGuardar(){
@@ -45,11 +101,10 @@ function botonGuardar(){
         },
         telefonos: telefono,
         password: ""
-    }
-    url='http://127.0.0.1:5000/users/';
+    };
     console.log(user);
    $.ajax({
-        url: url,
+        url: serverUrl + "/users/",
         type: "POST",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(user),

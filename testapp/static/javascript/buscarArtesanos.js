@@ -25,8 +25,8 @@ function tablaArtesanos(page) {
         url = serverUrl + "/services/";
         var data = { page: page, pageSize: pageSize, service: txtBusqueda}
     }
-    $.get({ url: url, cache: false, data }
-    , "jsonp").then(function (response) {
+    $.get({ url: url, cache: false, data })
+    .then(function (response) {
         $("#tablaArtesanos").find("tbody").remove();
         var total = response.total;
         var items = response.items;

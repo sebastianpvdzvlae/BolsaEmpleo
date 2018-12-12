@@ -10,6 +10,7 @@ from artesanosController import api as artesanos
 from clientesController import api as clientes
 from instructorsController import api as instructors
 from servicesController import api as services
+from provincesController import api as provinces
 
 
 app = Flask(__name__)
@@ -28,6 +29,7 @@ api.add_namespace(clientes)
 api.add_namespace(artesanos)
 api.add_namespace(instructors)
 api.add_namespace(services)
+api.add_namespace(provinces)
 
 
 if __name__ == '__main__':
