@@ -10,7 +10,7 @@
 			<td></td>
 			<td align="center">
 				<div align="left">
-					<select name="opciones" style="font-size: 15px; align: left;">
+					<select id="opciones" name="opciones" style="font-size: 15px; align: left;">
 						<option value="cedula" name="opc_cedula">Cédula</option>
 						<option value="pasaporte" name="opc_pasaporte">Pasaporte</option>
 						<option value="ruc" name="opc_ruc">RUC</option>
@@ -22,24 +22,24 @@
 		<tr>
 			<td>Número de Identificación:</td>
 			<td></td>
-			<td><input type="text" name="txt_id" value="" /></td>
+			<td><input type="text" id="txt_id" value="" /></td>
 		</tr>
 
 		<tr>
 			<td>Apellidos:</td>
 			<td></td>
-			<td><input type="text" name="txt_apellidos" value="" /></td>
+			<td><input type="text" id="txt_apellidos" value="" /></td>
 		</tr>
 		<tr>
 			<td>Nombres:</td>
 			<td></td>
-			<td><input type="text" name="txt_nombres" value="" /></td>
+			<td><input type="text" id="txt_nombres" value="" /></td>
 		</tr>
 
 		<tr>
 			<td>Dirección:</td>
 			<td></td>
-			<td><input type="text" name="txt_direccion" value="" /></td>
+			<td><input type="text" id="txt_direccion" value="" /></td>
 		</tr>
 
 
@@ -103,7 +103,7 @@
 	<div class="botones">
 		<tr>
 			<td>
-				<input type="submit" name="btn_registrar" value="Registrar" onclick="botonGuardar()" />
+				<input type="submit" name="btn_registrar" value="Registrar" onclick="registrarArtesano()" />
 				<input type="submit" name="btn_limpiar" value="Limpiar Campos" />
 				<input type="submit" name="btn_regresar" value="Regresar" onclick="location.href = '/index'" />
 			</td>
