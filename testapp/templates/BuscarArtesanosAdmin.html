@@ -1,0 +1,59 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+
+<script src="{{ url_for('static',filename='javascript/buscarArtesanosAdmin.js') }}"></script>
+
+<h1> Busqueda de Artesanos</h1>
+
+<div class="formulario">
+    <table id="Artesanos" style="margin: 0 auto;">
+        <tr>
+            <td>Buscar: </td>
+            <td>
+                <select id="opciones" onchange="mostrarBoton()">
+                    <option value="servicio">Por servicios</option>
+                    <option value="artesano">Por artesanos</option>
+                </select>
+            </td>
+            <td></td>
+            <td><input type="text" id="txtBusqueda" size="40" placeholder="Ingrese el dato a buscar"></td>
+        </tr>
+        </tr>-->
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <div class="botonBuscar">
+                    <input type="submit" value="Buscar" onclick="tablaArtesanosAdmin(0)">
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="formularioTabla">
+    <table id="tablaArtesanos">
+        <thead>
+        <th> Nombres </th>
+        <th> Apellidos </th>
+        <th> Servicio Ofrecido </th>
+        <th> Telefonos de Contacto </th>
+        <th> Direccion </th>
+        <th> Editar Información</th>
+        <th> </th>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th colspan="8">
+                    <div>
+                        <input type="button" id="btnBack" value="Atras"></input>
+                        <input type="button" id="btnNext" value="Siguiente"></input>
+                    </div>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+{% endblock %}
