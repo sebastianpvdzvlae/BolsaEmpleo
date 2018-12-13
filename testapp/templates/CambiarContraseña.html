@@ -1,6 +1,7 @@
 {% extends "navbar.html" %}
 
 {% block content %}
+<script src="{{ url_for('static',filename='javascript/cambiarContraseña.js') }}" type="text/javascript"></script>
 
 <h1>Cambiar Contraseña</h1>
 <form action='CambiarContraseña' method='POST'>
@@ -22,7 +23,7 @@
     </div>
     <div class="botones">
         <tr>
-            <td> <input type="submit" value="CambiarContraseña"></td>
+            <td> <input type="submit" value="CambiarContraseña" onclick="botonCambioClave()"></td>
         </tr>
     </div>
 
