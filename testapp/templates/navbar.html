@@ -29,43 +29,6 @@
             }
         }
 
-		function agregarTelefono() {
-			var table = document.getElementById('idTable');
-			var count = table.getElementsByTagName('tr').length;
-			var btn_menos = document.getElementById('btn_menos');
-			var btn_mas = document.getElementById('btn_mas');
-		
-			if(count == 1){
-				btn_menos.style.display = 'block';
-			}
-			
-			if(count == 6){
-				btn_mas.style.display = 'none';
-			}
-			
-			if (count < 6) {
-				var row = table.insertRow(0);
-				row.innerHTML = "<input type=\"text\" id=\"telf"+ count + "\"/>";
-			}
-		}
-
-        		function quitarTelefono() {
-			var table = document.getElementById('idTable');
-			var count = table.getElementsByTagName('tr').length;
-			var btn_mas = document.getElementById('btn_mas');
-			var btn_menos = document.getElementById('btn_menos');
-			
-			if(count == 2){
-				btn_menos.style.display = 'none';
-			}
-			
-			if(count == 6){
-				btn_mas.style.display = 'block';
-			}
-			
-			table.deleteRow(0);
-		}
-
         function botonRegistrarse() {
             alert("Datos Registrados con Exito");
         }
@@ -124,7 +87,7 @@
                 </button>
                 <div class="dropdown-content">
                     <a href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesano</a>
-                    <a href="/RegistrarArtesano"><i class="fa fa-fw fa-address-card"></i>Registrar Datos</a>
+                    <a href="/RegistrarArtesano/{{current_user.id}}"><i class="fa fa-fw fa-address-card"></i>Registrar Datos</a>
                     <a href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
                 </div>
             </div>

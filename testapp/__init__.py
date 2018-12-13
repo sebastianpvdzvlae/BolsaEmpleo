@@ -65,10 +65,11 @@ def BusquedaArtesanos():
 
 
 @app.route('/RegistrarArtesano')
+@app.route('/RegistrarArtesano/<id>')
 @flask_login.login_required
-def RegistrarArtesano():
+def RegistrarArtesano(id = ''):
         if flask_login.current_user.tipoUser == 'admin' or flask_login.current_user.tipoUser == 'artesano':
-                return render_template('RegistrarArtesano.html', title='Registrar Artesanos')
+                return render_template('RegistrarArtesano.html', title='Registrar Artesanos', id = id)
         else:
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))

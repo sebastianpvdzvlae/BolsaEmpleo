@@ -54,7 +54,7 @@ class Session(Resource):
         if user is None:
             return {"id": id}, 404
         collection.update_one({"_id": ObjectId(id)}, {
-                              "$set": {"estado": True, "intentos": 0}})
+                              "$set": {"estado": not user['estado'], "intentos": 0}})
         return {"UnblockedUser": True}, 200
 
     @api.expect(passwordPayload)
