@@ -2,7 +2,9 @@ var pageSize = 24;
 var currentPage = 0;
 url = serverUrl + "/provinces/";
 var provincia = {};
+var id = 000;
 $(document).ready(function () {
+    //$();
     var data = { page: currentPage, pageSize: pageSize }
     $.get({ url: url, cache: false, data })
     .then(function (response) {
@@ -69,9 +71,9 @@ function registrarArtesano(){
     var nombres = document.getElementById("txt_nombres");
     var apellidos = document.getElementById("txt_apellidos");
     var direccion = document.getElementById("txt_direccion");
-    var provincias = $("#provincia").val();//provincia.options[provincia.selectedIndex];
-    var cantones = $("#canton").val();//canton.options[canton.selectedIndex];
-    var parroquias = $("#parroquia").val();//parroquia.options[parroquia.selectedIndex];
+    var provincias = $("#provincia").val();
+    var cantones = $("#canton").val();
+    var parroquias = $("#parroquia").val();
     var telf0 = document.getElementById("inputTelefono");
     var table = document.getElementById('idTable');
     var telefono = new Array();
@@ -82,18 +84,9 @@ function registrarArtesano(){
         var input = document.getElementById(idTelf);
         telefono.push(input.value);
     }
-    for(i=table.rows.length+1; i<=6; i++){
-        telefono.push("");
-    }
-    /*for(i=0; i<6;i++){
-        alert(telefono[i]);
-    }*/
-
     var user = {
-        tipoUser : "Artesano",
         tipoId: tipoIdentificacion.value,
         identificacion: identificacion.value,
-        email: "",
         apellidos: apellidos.value,
         nombres: nombres.value,
         direccion: direccion.value,
@@ -102,13 +95,12 @@ function registrarArtesano(){
             canton: provincia.cantones[cantones].nombre,
             parroquia: provincia.cantones[cantones].parroquias[parroquias],
         },
-        telefonos: telefono,
-        password: ""
+        telefonos: telefono
     };
     console.log(user);
-   /*$.ajax({
-        url: serverUrl + "/users/",
-        type: "POST",
+   $.ajax({
+        url: serverUrl + "/users/" + id,
+        type: "PUT",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(user),
         dataType: "json"
@@ -118,5 +110,5 @@ function registrarArtesano(){
     }).fail(function (data, textStatus, xhr) {
         window.alert("Hubo un error al guardar los datos");            
         console.log([data, textStatus, xhr]);
-    });*/
+    });
 }
