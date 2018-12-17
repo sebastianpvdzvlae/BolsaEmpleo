@@ -1,1 +1,1 @@
-var serverUrl = "localhost:5000";
+var serverUrl = "http://172.29.41.172:5000";
