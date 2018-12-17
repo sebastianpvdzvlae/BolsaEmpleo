@@ -9,13 +9,16 @@
 <div class = "formulario">
 <table id="Artesanos" style="margin: 0 auto;">
 <tr>
-	<td>Buscar: </td>
-	<td><select id="opciones" onchange="mostrarBoton()">
-          <option value="servicio">Por servicios</option>
-		  <option value="artesano">Por artesanos</option>		  
-	</select></td>
+	<td>Buscar por servicios: </td>
+	<td><select id="opciones" onchange="mostrarBoton()" >
+          <option value="">Albañil</option>
+          <option value="">Electricista</option>
+          <option value="">Pintor</option>
+          <option value="">Carpintero</option>		  
+    </select></td>
+    
+    
     <td></td>
-    <td><input type = "text" id="txtBusqueda" size="40" placeholder="Ingrese el dato a buscar" ></td>
 </tr>
 <!--<tr id="Parroquias">
 <td>Parroquias:</td>
