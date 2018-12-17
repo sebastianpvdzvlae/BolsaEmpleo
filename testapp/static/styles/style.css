@@ -175,7 +175,19 @@ table {
   border-collapse: collapse;
 }
 
+#tablaAcuerdos{
+  width: 100%;
+  padding: 10px 10px;
+  margin: auto;
+  border-collapse: collapse;
+}
+
 #tablaArtesanos td{
+  border-collapse: collapse;
+  padding: 20px;
+}
+
+#tablaAcuerdos td{
   border-collapse: collapse;
   padding: 20px;
 }
@@ -188,11 +200,26 @@ table {
   
 }
 
+#tablaAcuerdos thead{
+  background-color:  rgb(200, 206, 255);
+  border-bottom: solix 5px #0f362D;
+  text-align: left;
+  
+}
+
 #tablaArtesanos tr:nth-child(even){ /*Para que solo pinte los pares*/   
   background-color: #ddd
 }
 
+#tablaAcuerdos tr:nth-child(even){ /*Para que solo pinte los pares*/   
+  background-color: #ddd
+}
+
 #tablaArtesanos tr:hover td{
+  background-color:  #a7a7a7;
+}
+
+#tablaAcuerdos tr:hover td{
   background-color:  #a7a7a7;
 }
 

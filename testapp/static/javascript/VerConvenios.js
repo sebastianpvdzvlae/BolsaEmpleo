@@ -50,6 +50,10 @@ function tablaConvenios(page) {
                 celda.appendChild(textoCelda);
                 fila.appendChild(celda);
                 celda = document.createElement("td");
+                textoCelda = document.createTextNode(acuerdos[i]['descripcion']);
+                celda.appendChild(textoCelda);
+                fila.appendChild(celda);
+                celda = document.createElement("td");
                 textoCelda = document.createTextNode(acuerdos[i]['fechaInicio']);
                 celda.appendChild(textoCelda);
                 fila.appendChild(celda);
