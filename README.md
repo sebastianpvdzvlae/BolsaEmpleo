@@ -1,7 +1,7 @@
 # BolsaEmpleo
 proyecto bolsa de empleo GDAPP
 
-##Dependencias
+## Dependencias
 
     flask 
     flask-restplus
@@ -9,6 +9,7 @@ proyecto bolsa de empleo GDAPP
     flask-login
     requests
     pymongo
-##Backup & Restore DB
-mongodump --archive=test.20150715.archive --db test
-mongorestore --archive=test.20150715.archive --db test
+## Backup & Restore DB
+
+    mongodump --archive=test.20150715.archive --db test
+    mongorestore --archive=test.20150715.archive --db test
