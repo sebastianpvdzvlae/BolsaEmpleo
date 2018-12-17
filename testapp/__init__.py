@@ -63,6 +63,14 @@ def index():
 def BusquedaArtesanos():
     return render_template('BusquedaArtesanos.html', title='Buscar Artesanos')
 
+@app.route('/BusquedaAdministrador')
+@flask_login.login_required
+def BusquedaAdministrador():
+        if flask_login.current_user.tipoUser == 'admin':
+                return render_template('BuscarArtesanosAdmin.html', title='Buscar Artesanos Admininstrador')
+        else:
+                flash('No posee la autorizacion adecuada para ingresar a esa pagina')
+                return flask.redirect(flask.url_for('index'))
 
 @app.route('/RegistrarArtesano')
 @app.route('/RegistrarArtesano/<id>')
@@ -204,6 +212,12 @@ def unauthorized_handler():
 @flask_login.login_required
 def NuevoInstructor():
     return render_template('NuevoInstructor.html', title='Nuevo Instructor de Curso')
+
+@app.route('/Convenios')
+@flask_login.login_required
+def Convenios():
+    return render_template('VerConvenio.html', title='Ver Convenios')
+
 
 @app.route('/UsuariosBloqueados')
 @flask_login.login_required

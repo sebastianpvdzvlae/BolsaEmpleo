@@ -77,10 +77,21 @@
         <a style="font-size:30px; color: rgb(74, 116, 241)">Bolsa de Empleo</a>
         <div class="topnav-right">
         {% if current_user.is_authenticated %}
+
             {% if current_user.tipoUser == "admin" %}
-            <a href="/UsuariosBloqueados"><i class="fa fa-fw fa-search"></i>Usuarios Bloqueados</a>
-            {% endif %}
-            {% if (current_user.tipoUser == "artesano" or current_user.tipoUser == "admin") %}
+            <a href="/UsuariosBloqueados"><i class="fas fa-user-slash"></i>Usuarios Bloqueados</a>
+            <div class="dropdown">
+                <button class="dropbtn">Artesanos
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesano</a>
+                    <a href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
+                    <a href="/RegistrarAcuerdo"><i class="fas fa-file-signature"></i>Registrar Convenio</a>
+                </div>
+            </div>
+
+            {% elif current_user.tipoUser == "artesano" %}
             <div class="dropdown">
                 <button class="dropbtn">Artesanos
                     <i class="fa fa-caret-down"></i>
@@ -91,19 +102,26 @@
                     <a href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
                 </div>
             </div>
+
             {% endif %}
-            {% if (current_user.tipoUser == "cliente" or current_user.tipoUser == "admin") %}
+
+
+            {% if  current_user.tipoUser == "cliente" %}
+
             <div class="dropdown">
                 <button class="dropbtn">Clientes
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
                     <a href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesanos</a>
-                    <a href="/RegistrarAcuerdo"><i class="fas fa-file-signature"></i>Registrar Convenio</a>
+                    <a href="/Convenios"><i class="fas fa-file-alt"></i> Convenios</a>
                 </div>
             </div>
+
             {% endif %}
-            {% if (current_user.tipoUser == "cliente" or current_user.tipoUser == "admin") %}
+
+
+            {% if current_user.tipoUser == "admin" %}
             <div class="dropdown">
                 <button class="dropbtn">Cursos
                     <i class="fa fa-caret-down"></i>
