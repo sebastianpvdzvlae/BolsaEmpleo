@@ -63,7 +63,7 @@ class Instructor(Resource):
         if instructor == None:
             return {"id": id}, 404
         body = api.payload
-        collection.find_one_and_replace({"_id": ObjectId(id)}, {"$set": body})
+        collection.update_one({"_id": ObjectId(id)}, {"$set": body})
         instructor = collection.find_one({"_id": ObjectId(id)})
         instructor['_id'] = str(instructor['_id'])
         return instructor, 200

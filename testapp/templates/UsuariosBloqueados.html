@@ -1,6 +1,7 @@
 {% extends "navbar.html" %}
 
 {% block content %}
+<script src="{{ url_for('static',filename='javascript/usuariosBloqueados.js') }}"></script>
 
 <h1> Desbloquear Usuarios</h1>
 
@@ -31,7 +32,7 @@
     
 <div class= "formularioTabla">
   <form>
-<table id="tablaArtesanos" style='visibility:hidden;'>
+<table id="tablaArtesanos">
     <thead>
     <th> Nombres </th>
     <th> Apellidos </th>

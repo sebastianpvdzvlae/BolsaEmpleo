@@ -73,11 +73,10 @@ function tablaArtesanos(page) {
             button.appendChild(textoCelda);
             button.onclick = function (id){
                 $.get({ url: serverUrl + "/sessions/" + id, cache: false, data : {} }).then(function (response) {});
+                window.location.reload(true);
             };
             celda.appendChild(button);
             fila.appendChild(celda);
-            button = document.createElement("button");
-
             tblBody.appendChild(fila);
         }
         tbl.appendChild(tblBody);
