@@ -67,7 +67,7 @@ def BusquedaArtesanos():
 @flask_login.login_required
 def BusquedaAdministrador():
         if flask_login.current_user.tipoUser == 'admin':
-                return render_template('BuscarArtesanosAdmin.html', title='Buscar Artesanos Admininstrador')
+                return render_template('BusquedaArtesanosAdmin.html', title='Buscar Artesanos Admininstrador')
         else:
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
