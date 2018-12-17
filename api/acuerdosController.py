@@ -65,7 +65,7 @@ class Acuerdo(Resource):
         if course == None:
             return {"id": id}, 404
         body = api.payload
-        collection.find_one_and_replace({"_id": ObjectId(id)}, {"$set": body})
+        collection.update_one({"_id": ObjectId(id)}, {"$set": body})
         course = collection.find_one({"_id": ObjectId(id)})
         course['_id'] = str(course['_id'])
         return course, 200
