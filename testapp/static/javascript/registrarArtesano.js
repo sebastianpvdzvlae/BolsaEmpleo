@@ -66,7 +66,7 @@ function registrarArtesano(){
     }).then(function (response) {
         console.log(response._id);
         window.alert("Datos guardados con exito");
-        window.location.href = "index";
+        window.location.reload(true);
     }).fail(function (data, textStatus, xhr) {
         window.alert("Hubo un error al guardar los datos");            
         console.log([data, textStatus, xhr]);
