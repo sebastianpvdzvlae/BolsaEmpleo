@@ -1,7 +1,8 @@
-- inscripcion a cursos
+- inscripcion a cursos (Juan)
 - cambiar servicios de un artesano para ser determinados por los cursos que tomo.**
-- registrar convenio
-- crear curso
-- crear una tabla para acceder a informacion de cursos.
-- bloquear y desbloquear usuarios
-- busqueda de convenios solo muestra los que pertenecen al cliente o al artesano que consulta.
+- registrar convenio (Michelle)
+- crear curso (Erika)
+- crear una tabla para acceder a informacion de cursos. (Jeff)
+- bloquear y desbloquear usuarios (Alejo)
+- busqueda de convenios solo muestra los que pertenecen al cliente o al artesano que consulta. (Sebas)
+- agregar semantic UI (Juan)
