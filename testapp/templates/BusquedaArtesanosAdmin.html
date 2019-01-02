@@ -9,16 +9,27 @@
 <div class="formulario">
     <table id="Artesanos" style="margin: 0 auto;">
         <tr>
-            <td>Buscar: </td>
-            <td>
-                <select id="txtBusqueda" onchange="mostrarBoton()">
-                    <option value="servicio">Por servicios</option>
-                    <option value="artesano">Por artesanos</option>
-                </select>
-            </td>
+            <td>Buscar por servicios: </td>
+            <td><select id="txtBusqueda" onchange="mostrarBoton()">
+                    <option value=""></option>
+                    <option value="Albañil">Albañil</option>
+                    <option value="Electricista">Electricista</option>
+                    <option value="Pintor">Pintor</option>
+                    <option value="Carpintero">Carpintero</option>
+                </select></td>
+        
+        
             <td></td>
-            <td><input type="text" id="txtBusqueda" size="40" placeholder="Ingrese el dato a buscar"></td>
         </tr>
+        <!--<tr id="Parroquias">
+        <td>Parroquias:</td>
+        <td><select>
+                  <option value="none">Seleccione</option>
+                  <option value="parroquia1">Parroquia1</option>
+                  <option value="parroquia2">Parroquia2</option>
+                  <option value="parroquia3">Parroquia3</option>
+        </select></td>
+        	
         </tr>-->
         <tr>
             <td></td>
@@ -40,7 +51,7 @@
         <th> Servicio Ofrecido </th>
         <th> Telefonos de Contacto </th>
         <th> Direccion </th>
-        <th> Editar Informaci�n</th>
+        <th> Editar Información</th>
         <th> </th>
         </thead>
         <tbody></tbody>

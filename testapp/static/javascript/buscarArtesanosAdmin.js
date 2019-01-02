@@ -65,10 +65,10 @@ function tablaArtesanosAdmin(page) {
                 celda.appendChild(textoCelda);
                 fila.appendChild(celda);
                 celda = document.createElement("td");
-                boton = document.createElement("input");
-                boton.type = "button";
+                boton = document.createElement("a");
+                //boton.type = "button";
                 boton.value = "Editar Informacion";
-                boton.onclick="javascript:redirigir(id)"
+                boton.href = serverUrl + "/RegistrarArtesano/" + items[i]['_id']
                 celda.appendChild(boton);
                 fila.appendChild(celda);
                 tblBody.appendChild(fila);
@@ -82,6 +82,6 @@ function tablaArtesanosAdmin(page) {
 }
 
 function redirigir(id) {
-    location.href = serverUrl+"/RegistrarArtesano"+id
+    location.href = serverUrl+"/RegistrarArtesano/"+id
         
 }
