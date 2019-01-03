@@ -1,14 +1,18 @@
-function limpiarCampos(){
+function limpiarCamposRegistrarArtesano() {
     document.getElementById("opciones").selectedIndex = "0";
     document.getElementById('txt_id').value = "";
     document.getElementById('txt_apellidos').value = "";
     document.getElementById('txt_nombres').value = "";
-    document.getElementById('txt_direccion').value = "";    
+    document.getElementById('txt_direccion').value = "";
     document.getElementById('txt_telefono').value = "";
     limpiarTelefono();
     document.getElementById("provincias").selectedIndex = "0";
     document.getElementById("cantones").selectedIndex = "0";
     document.getElementById("parroquias").selectedIndex = "0";
+}
+function limpiarCamposCrearCurso() {
+    nombre_curso = document.getElementById("nombreCurso").value = "";
+    descripcion_curso = document.getElementById("descripcion").value = "";
 }
 
 function limpiarTelefono(){
