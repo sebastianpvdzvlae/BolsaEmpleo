@@ -1,4 +1,5 @@
-  function botonGuardar() {
+  function botonGuardar() {       
+
         var tipoUsuario = tipoUser.options[tipoUser.selectedIndex];
         var tipoIdentificacion = tipoId.options[tipoId.selectedIndex];
         var identificacion  = document.getElementById("identificacion");
