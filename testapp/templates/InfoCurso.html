@@ -1,82 +1,83 @@
-
 	{% extends "navbar.html" %}
 
 	{% block content %}
-	
-	<h1> Llenar Informacion de Curso de Capacitacion</h1>
+<script src="{{ url_for('static',filename='javascript/informacionCurso.js') }}"></script>
 
-	<div class="formulario">
-		<table align="center">
-			<tr>
-				<td>Seleccione un Curso:</td>
-				<td><select>
-						<option value="curso1">Curso 1</option>
-						<option value="curso2">Curso 2</option>
-						<option value="curso3">Curso 3</option>
-					</select></td>
-			</tr>
-			<tr>
-				<td>Nombre del Curso:</td>
-				<td><input type="text" id="nombreCurso" siz="40" disabled></td>
-			</tr>
-			<tr>
-				<td>
-					<p><b>Llene los siguientes campos:</b></p>
-				</td>
-			</tr>
-			<tr>
-				<td>Fecha de Inicio:</td>
-				<td><input type="date" id="fechaInicio" size="40"></td>
-			</tr>
-			<tr>
-				<td>Fecha de Fin:</td>
-				<td><input type="date" id="fechaFin" size="40"></td>
-			</tr>
-			<tr>
-				<td>Numero de Participantes Maximo:</td>
-				<td><input type="number" id="numParticipantes" size="40"></td>
-			</tr>
-			<tr>
-				<td>Lugar:</td>
-				<td><input type="text" id="lugar" size="40"></td>
-			</tr>
-			<tr>
-				<td>Horario:</td>
-				<td><input type="text" id="horario" size="40"></td>
-			</tr>
-			<tr>
-				<td>Ingrese un nuevo Instructor: </td>
-				<td>
-					<input type="image" src="{{url_for('static', filename='plus-circle-solid.svg')}}" class="button" id="btn_mas" onclick="document.location.href='/NuevoInstructor'">
-				</td>
-			</tr>
-		</table>
-		<table id="tablaArtesanos" style="width: 70%">
-			<thead>
-				<th> Identificacion </th>
-				<th> Nombres </th>
-				<th> Apellidos </th>
-				<th> Telefonos de Contacto </th>
-			</thead>
-			<tr>
-				<td>Uno</td>
-				<td>Dos</td>
-				<td>Tres</td>
-				<td>Cuatro</td>
-			</tr>
-			<tr>
-				<td>Uno</td>
-				<td>Dos</td>
-				<td>Tres</td>
-				<td>Cuatro</td>
-			</tr>
-		</table>
-	</div>
-	<div class="botones">
-		<tr>
-			<td> <input type="submit" value="Guardar" onclick="botonGuardar()"  >
-				<input type="submit" value="Limpiar Campos">
-				<input type="submit" value="Regresar" onclick="location.href = '/index'"></td>
-		</tr>
-	</div>
+<h1> Llenar Informacion de Curso de Capacitacion</h1>
+
+<div class="formulario">
+    <table align="center">
+        <tr>
+            <td>Seleccione el Curso:</td>
+            <td>
+                <select id="cursos">
+                    <option value="curso1">Curso 1</option>
+                    <option value="curso2">Curso 2</option>
+                    <option value="curso3">Curso 3</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <p><b>Llene los siguientes campos:</b></p>
+            </td>
+        </tr>
+        <tr>
+            <td>Fecha de Inicio:</td>
+            <td><input type="date" id="fechaInicio" size="40"></td>
+        </tr>
+        <tr>
+            <td>Fecha de Fin:</td>
+            <td><input type="date" id="fechaFin" size="40"></td>
+        </tr>
+        <tr>
+            <td>Numero de Participantes Maximo:</td>
+            <td><input type="number" id="numParticipantes" size="40"></td>
+        </tr>
+        <tr>
+            <td>Lugar:</td>
+            <td><input type="text" id="lugar" size="40"></td>
+        </tr>
+        <tr>
+            <td>Horario:</td>
+            <td><input type="text" id="horario" size="40"></td>
+        </tr>
+        <tr>
+            <td>Ingrese un nuevo Instructor: </td>
+            <td>
+                <input type="image" src="{{url_for('static', filename='plus-circle-solid.svg')}}" class="button" id="btn_mas" onclick="document.location.href='/NuevoInstructor'">
+            </td>
+        </tr>
+    </table>
+    <table id="tablaArtesanos" style="width: 70%">
+        <thead>
+        <th> Identificacion </th>
+        <th> Nombres </th>
+        <th> Apellidos </th>
+        <th> Telefonos de Contacto </th>
+        </thead>
+        <tr>
+            <td>Uno</td>
+            <td>Dos</td>
+            <td>Tres</td>
+            <td>Cuatro</td>
+        </tr>
+        <tr>
+            <td>Uno</td>
+            <td>Dos</td>
+            <td>Tres</td>
+            <td>Cuatro</td>
+        </tr>
+    </table>
+</div>
+<div class="botones">
+    <tr>
+        <td>
+            <input type="submit" value="Guardar" onclick="botonGuardar()">
+            <input type="submit" value="Limpiar Campos">
+            <input type="submit" value="Regresar" onclick="location.href = '/index'">
+        </td>
+    </tr>
+</div>
 	{% endblock %}
