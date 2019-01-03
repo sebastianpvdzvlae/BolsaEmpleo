@@ -1,11 +1,11 @@
-function botonGuardar() {   
+function crearCurso() {   
     var nombre_curso = document.getElementById("nombreCurso");
     var descripcion_curso  = document.getElementById("descripcion");
 	var curso = {
 		nombre: nombre_curso.value,
 		descripcion: descripcion_curso.value
 	}
-	url='http://127.0.0.1:5000/sessions/';
+	url='http://127.0.0.1:5000/courses/';
 	console.log(curso);
     $.ajax({
 		url: url,
