@@ -10,7 +10,6 @@
 <script src="{{ url_for('static',filename='javascript/validacionesGenerales.js') }}" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="{{ url_for('static',filename='javascript/registrarArtesano.js') }}"></script>
-<<<<<<< HEAD
 
 <h1> Registrar Artesano</h1>
 <div class="formulario">
@@ -51,50 +50,6 @@
 			<td></td>
 			<td><input type="text" id="txt_direccion" value="" onchange="cambiarColorCampo(this)"/></td>
 		</tr>
-=======
-<script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}"></script>
-
-<h1> Registrar Artesano</h1>
-<div class="formulario">
-    <table class="tabla1">
-        <tr>
-            <td class="tdTipo">Tipo de identificación:</td>
-            <td></td>
-            <td align="center">
-                <div align="left">
-                    <select id="opciones" name="opciones" style="font-size: 15px; align: left;">
-                        <option value="cedula" name="opc_cedula">Cédula</option>
-                        <option value="pasaporte" name="opc_pasaporte">Pasaporte</option>
-                        <option value="ruc" name="opc_ruc">RUC</option>
-                        <option value="permiso" name="opc_permiso">Permiso de trabajo</option>
-                    </select>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Número de Identificación:</td>
-            <td></td>
-            <td><input type="text" id="txt_id" value="" /></td>
-        </tr>
-
-        <tr>
-            <td>Apellidos:</td>
-            <td></td>
-            <td><input type="text" id="txt_apellidos" value="" /></td>
-        </tr>
-        <tr>
-            <td>Nombres:</td>
-            <td></td>
-            <td><input type="text" id="txt_nombres" value="" /></td>
-        </tr>
-
-        <tr>
-            <td>Dirección:</td>
-            <td></td>
-            <td><input type="text" id="txt_direccion" value="" /></td>
-        </tr>
-
->>>>>>> 904bbe3367206dcf2a72d36af83bb9382afc3b64
 
 
         <tr id="idRow">
@@ -113,7 +68,6 @@
                 <input type="image" src="{{url_for('static', filename='plus-circle-solid.svg')}}" class="button" id="btn_mas" onclick='agregarTelefono()'>
             </td>
 
-<<<<<<< HEAD
 			<td>Teléfono:</td>
 			<td>
 				<input type="image" src="{{url_for('static', filename='minus-sign-inside.svg')}}" class="button" id="btn_menos" style="display: none;" onclick='quitarTelefono()'>
@@ -129,9 +83,6 @@
 			</td>
 			
 		</tr>
-=======
-        </tr>
->>>>>>> 904bbe3367206dcf2a72d36af83bb9382afc3b64
 
         <tr>
             <td>Provincia:</td>
@@ -174,7 +125,6 @@
         </td>
     </tr>
 </div>
-<<<<<<< HEAD
 	<div class="botones">
 		<tr>
 			<td>
@@ -184,6 +134,4 @@
 			</td>
 		</tr>
 	</div>
-=======
->>>>>>> 904bbe3367206dcf2a72d36af83bb9382afc3b64
 	{% endblock %}
