@@ -54,19 +54,6 @@
 
         <tr id="idRow">
 
-            <td>Teléfono:</td>
-            <td>
-                <input type="image" src="{{url_for('static', filename='minus-sign-inside.svg')}}" class="button" id="btn_menos" style="display: none;" onclick='quitarTelefono()'>
-            </td>
-            <td>
-                <input type="text" name="txt_telefono" value="" id="inputTelefono" />
-                <table id="idTable">
-                    <tr></tr>
-                </table>
-            </td>
-            <td>
-                <input type="image" src="{{url_for('static', filename='plus-circle-solid.svg')}}" class="button" id="btn_mas" onclick='agregarTelefono()'>
-            </td>
 
 			<td>Teléfono:</td>
 			<td>
@@ -115,15 +102,6 @@
         </tr>
 
     </table>
-</div>
-<div class="botones">
-    <tr>
-        <td>
-            <input type="submit" name="btn_registrar" value="Registrar" onclick="registrarArtesano()" />
-            <input type="submit" name="btn_limpiar" value="Limpiar Campos" onclick="limpiarCamposRegistrarArtesano()" />
-            <input type="submit" name="btn_regresar" value="Regresar" onclick="location.href = '/index'" />
-        </td>
-    </tr>
 </div>
 	<div class="botones">
 		<tr>
