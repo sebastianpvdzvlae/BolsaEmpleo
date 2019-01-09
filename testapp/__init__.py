@@ -123,10 +123,11 @@ def CambiarContraseña():
 
 
 @app.route('/InfoCurso')
+@app.route('/InfoCurso/<id>')
 @flask_login.login_required
-def InfoCurso():
+def InfoCurso(id = ''):
         if flask_login.current_user.tipoUser == 'admin' or flask_login.current_user.tipoUser == 'cliente':
-                return render_template('InfoCurso.html', title='Informacion de Curso')
+                return render_template('InfoCurso.html', id = id, title='Informacion de Curso')
         else:
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
@@ -227,6 +228,13 @@ def UsuariosBloqueados():
         else:
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
+
+@app.route('/ListarCursos')
+@flask_login.login_required
+def ListarCursos():
+    return render_template('ListarCursos.html', title='Listado Cursos')
+
+
 
 
 
