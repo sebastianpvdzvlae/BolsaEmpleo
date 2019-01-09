@@ -14,7 +14,6 @@ $(document).ready(function() {
           
             });
             cargarDatos();
-            //cargarTablaInstructores();
         }).fail(function (data, textStatus, xhr) {
             console.log([data, textStatus, xhr]);
         });
@@ -31,10 +30,10 @@ function cargarDatos() {
             curso = response;
             $('#fechaInicio').val("");
             $('#fechaFin').val("");
-            if (curso.fechaInicio != null)
-                $('#fechaInicio').val(curso.fechaInicio);
-            if (curso.fechaFin != null)
-                $('#fechaFin').val(curso.fechaFin);
+            if (curso.fecha_inicio != "") 
+                $('#fechaInicio').val(curso.fecha_inicio);
+            if (curso.fecha_fin != "")
+                $('#fechaFin').val(curso.fecha_fin);
             if (curso.numParticipantes != "")
                 $('#numParticipantes').val(curso.numParticipantes);
             if (curso.lugar != "")
@@ -105,6 +104,7 @@ function formato(texto) { //cambiar formato de dd/mm/yyyy a yyyy-mm-dd
 }
 
 function registrarInfoCurso() {
+    url = serverUrl + "/courses/"; 
     var opcCursos = document.getElementById("cursos");
     var curso = opcCursos.options[opcCursos.selectedIndex];
     
