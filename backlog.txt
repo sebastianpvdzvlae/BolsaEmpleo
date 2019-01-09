@@ -6,3 +6,4 @@
 - bloquear y desbloquear usuarios (Alejo)
 - busqueda de convenios solo muestra los que pertenecen al cliente o al artesano que consulta. (Sebas)
 - agregar semantic UI (Juan)
+- cambiar todo a semantic (Todos)

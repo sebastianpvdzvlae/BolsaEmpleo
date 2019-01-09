@@ -27,7 +27,7 @@ function tablaArtesanosAdmin(page) {
     }
     $.get({ url: url, cache: false, data })
         .then(function (response) {
-            $("#tablaArtesanos").find("tbody").remove();
+            $("#tablaArtesanos").children('tbody').empty("");
             var total = response.total;
             var items = response.items;
             var pages = Math.ceil(total / pageSize);
@@ -39,41 +39,19 @@ function tablaArtesanosAdmin(page) {
             if (currentPage > 0) {
                 $("#btnBack").removeClass('disabled');
             }
-            var tbl = document.getElementById("tablaArtesanos");
-            var tblBody = document.createElement("tbody");
-            var id;//asignar valor a esta variable
+            var tableBody = $('#tablaArtesanos').children('tbody');
             for (var i = 0; i < items.length; i++) {
-                var fila = document.createElement("tr");
-                var celda = document.createElement("td");
-                var textoCelda = document.createTextNode(items[i]['nombres']);
-                celda.appendChild(textoCelda);
-                fila.appendChild(celda);
-                celda = document.createElement("td");
-                textoCelda = document.createTextNode(items[i]['apellidos']);
-                celda.appendChild(textoCelda);
-                fila.appendChild(celda);
-                celda = document.createElement("td");
-                textoCelda = document.createTextNode(items[i]['servicios']);
-                celda.appendChild(textoCelda);
-                fila.appendChild(celda);
-                celda = document.createElement("td");
-                textoCelda = document.createTextNode(items[i]['telefonos']);
-                celda.appendChild(textoCelda);
-                fila.appendChild(celda);
-                celda = document.createElement("td");
-                textoCelda = document.createTextNode(items[i]['direccion']);
-                celda.appendChild(textoCelda);
-                fila.appendChild(celda);
-                celda = document.createElement("td");
-                boton = document.createElement("a");
-                //boton.type = "button";
-                boton.value = "Editar Informacion";
-                boton.href = serverUrl + "/RegistrarArtesano/" + items[i]['_id']
-                celda.appendChild(boton);
-                fila.appendChild(celda);
-                tblBody.appendChild(fila);
+                tableBody.append(
+                    "<tr>" +
+                    "<td>" + items[i]['nombres'] + "</td>" +
+                    "<td>" + items[i]['apellidos'] + "</td>" +
+                    "<td>" + items[i]['servicios'] + "</td>" +
+                    "<td>" + items[i]['telefonos'] + "</td>" +
+                    "<td>" + items[i]['direccion'] + "</td>" +
+                    '<td> <a class="ui button" href="' + window.location.origin + "/RegistrarArtesano/" + items[i]['_id'] + '">Editar</a></td>' +
+                    "</tr>"
+                );
             }
-            tbl.appendChild(tblBody);
         }).fail(function (data, textStatus, xhr) {
             window.alert("Error tabla");
             console.log([data, textStatus, xhr]);

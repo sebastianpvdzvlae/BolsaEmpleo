@@ -7,6 +7,8 @@
     <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ url_for('static',filename='javascript/main.js') }}"></script>
+    <link href="{{ url_for('static',filename='styles/semantic.css') }}" rel="stylesheet" type="text/css">
+    <script src="{{ url_for('static',filename='styles/semantic.min.js') }}"></script>
 
     {% if title %}
     <title>{{ title }}</title>
@@ -49,14 +51,12 @@
             botonDatos.style.visibility = "visible";
         }
 
-
-    
-    function mostrarTabla(){
-        var tablaArtesanos = document.getElementById("tablaArtesanos");
-        var botonDatos = document.getElementById("btnDatos")
-        tablaArtesanos.style.visibility="visible"; 
-        botonDatos.style.visibility="visible";
-    }
+        function mostrarTabla(){
+            var tablaArtesanos = document.getElementById("tablaArtesanos");
+            var botonDatos = document.getElementById("btnDatos")
+            tablaArtesanos.style.visibility="visible"; 
+            botonDatos.style.visibility="visible";
+        }
     </script>
 
 
@@ -93,7 +93,6 @@
 
             {% endif %}
 
-
             {% if  current_user.tipoUser == "cliente" %}
 
             <div class="dropdown">
@@ -108,7 +107,6 @@
 
             {% endif %}
 
-
             {% if current_user.tipoUser == "admin" %}
             <div class="dropdown">
                 <button class="dropbtn">Cursos
@@ -117,7 +115,7 @@
                 <div class="dropdown-content">
                     <a href="/CrearCurso"><i class="fa fa-fw fa-users"></i>Crear Cursos</a>
                     <a href="/InfoCurso"><i class="fa fa-fw fa-book"></i>Informacion de Curso</a>
-                    <a href="/ListaCursos"><i class="fa fa-fw fa-book"></i>Listar Cursos</a>
+                    <a href="/ListarCursos"><i class="fa fa-fw fa-book"></i>Listar Cursos</a>
                 </div>
             </div>
             {% endif %}
