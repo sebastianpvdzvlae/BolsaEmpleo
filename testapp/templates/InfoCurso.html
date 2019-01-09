@@ -1,7 +1,12 @@
-	{% extends "navbar.html" %}
+{% extends "navbar.html" %}
 
-	{% block content %}
+{% block content %}
+
+{% if id %}
+<input type="hidden" value="{{ id }}" id="hiddenId" />
+{% endif %}
 <script src="{{ url_for('static',filename='javascript/informacionCurso.js') }}"></script>
+<script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}"></script>
 
 <h1> Llenar Informacion de Curso de Capacitacion</h1>
 
@@ -10,14 +15,9 @@
         <tr>
             <td>Seleccione el Curso:</td>
             <td>
-                <select id="cursos">
-                    <option value="curso1">Curso 1</option>
-                    <option value="curso2">Curso 2</option>
-                    <option value="curso3">Curso 3</option>
-                </select>
+                <select id="cursos" onchange="cargarDatos()"></select>
             </td>
         </tr>
-
         <tr>
             <td>
                 <p><b>Llene los siguientes campos:</b></p>
@@ -50,34 +50,26 @@
             </td>
         </tr>
     </table>
-    <table id="tablaArtesanos" style="width: 70%">
-        <thead>
-        <th> Identificacion </th>
-        <th> Nombres </th>
-        <th> Apellidos </th>
-        <th> Telefonos de Contacto </th>
-        </thead>
-        <tr>
-            <td>Uno</td>
-            <td>Dos</td>
-            <td>Tres</td>
-            <td>Cuatro</td>
-        </tr>
-        <tr>
-            <td>Uno</td>
-            <td>Dos</td>
-            <td>Tres</td>
-            <td>Cuatro</td>
-        </tr>
-    </table>
+    <div class="formularioTabla">
+        <table id="tablaInstructores" >
+            <thead>
+            <th> Identificacion </th>
+            <th> Nombres </th>
+            <th> Apellidos </th>
+            <th> Telefonos de Contacto </th>
+            </thead>
+            <tbody></tbody>
+
+        </table>
+    </div>
 </div>
-<div class="botones">
-    <tr>
-        <td>
-            <input type="submit" value="Guardar" onclick="botonGuardar()">
-            <input type="submit" value="Limpiar Campos">
-            <input type="submit" value="Regresar" onclick="location.href = '/index'">
-        </td>
-    </tr>
-</div>
-	{% endblock %}
+    <div class="botones">
+        <tr>
+            <td>
+                <input type="submit" value="Guardar" onclick="registrarInfoCurso()">
+                <input type="submit" value="Limpiar Campos" onclick="limpiarCamposInfoCurso() ">
+                <input type="submit" value="Regresar" onclick="location.href = '/index'">
+            </td>
+        </tr>
+    </div>
+    {% endblock %}
