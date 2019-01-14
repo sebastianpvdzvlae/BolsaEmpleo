@@ -1,0 +1,56 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+
+<script src="{{ url_for('static',filename='javascript/listarCursos.js') }}"></script>
+
+<h1> Cursos </h1>
+
+<div class="formularioTabla">
+    <div class="formulario">
+        <table id="Cursos" style="margin: 0 auto;">
+            <tr>
+                <td>Buscar por servicios: </td>
+                <td>
+                    <select id="txtBusqueda" onchange="">
+                        <option value=""></option>
+                    </select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <div class="botonBuscar">
+                        <input type="submit" value="Buscar" onclick="">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table id="tablaCursos">
+        <thead>
+        <th> Nombre </th>
+        <th> Fecha Inicio </th>
+        <th> Fecha Fin </th>
+        <th> Numero de participantes </th>
+        <th> Lugar </th>
+        <th> Horario </th>
+        <th> Editar Informacion </th>
+        <th> </th>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th colspan="8">
+                    <div>
+                        <input type="button" id="btnBack" value="Atras"></input>
+                        <input type="button" id="btnNext" value="Siguiente"></input>
+                    </div>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+{% endblock %}

@@ -51,14 +51,12 @@
             botonDatos.style.visibility = "visible";
         }
 
-
-    
-    function mostrarTabla(){
-        var tablaArtesanos = document.getElementById("tablaArtesanos");
-        var botonDatos = document.getElementById("btnDatos")
-        tablaArtesanos.style.visibility="visible"; 
-        botonDatos.style.visibility="visible";
-    }
+        function mostrarTabla(){
+            var tablaArtesanos = document.getElementById("tablaArtesanos");
+            var botonDatos = document.getElementById("btnDatos")
+            tablaArtesanos.style.visibility="visible"; 
+            botonDatos.style.visibility="visible";
+        }
     </script>
 
 
@@ -95,7 +93,6 @@
 
             {% endif %}
 
-
             {% if  current_user.tipoUser == "cliente" %}
 
             <div class="dropdown">
@@ -110,7 +107,6 @@
 
             {% endif %}
 
-
             {% if current_user.tipoUser == "admin" %}
             <div class="dropdown">
                 <button class="dropbtn">Cursos
@@ -119,7 +115,7 @@
                 <div class="dropdown-content">
                     <a href="/CrearCurso"><i class="fa fa-fw fa-users"></i>Crear Cursos</a>
                     <a href="/InfoCurso"><i class="fa fa-fw fa-book"></i>Informacion de Curso</a>
-                    <a href="/ListaCursos"><i class="fa fa-fw fa-book"></i>Listar Cursos</a>
+                    <a href="/ListarCursos"><i class="fa fa-fw fa-book"></i>Listar Cursos</a>
                 </div>
             </div>
             {% endif %}

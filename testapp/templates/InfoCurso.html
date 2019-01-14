@@ -1,10 +1,15 @@
-	{% extends "navbar.html" %}
+{% extends "navbar.html" %}
 
-	{% block content %}
+
+{% block content %}
+
+{% if id %}
+<input type="hidden" value="{{ id }}" id="hiddenId" />
+{% endif %}
+<script src="{{ url_for('static',filename='javascript/informacionCurso.js') }}"></script>
+<script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}"></script>
 <script src="{{ url_for('static',filename='javascript/validacionesGenerales.js') }}" type="text/javascript"></script>
 <script src="{{ url_for('static',filename='javascript/validarDatosInfoCurso.js') }}" type="text/javascript"></script>
-<script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}" type="text/javascript"></script>
-<script src="{{ url_for('static',filename='javascript/informacionCurso.js') }}" type="text/javascript"></script>
 
 <h1> Llenar Informacion de Curso de Capacitacion</h1>
 
@@ -13,14 +18,9 @@
         <tr>
             <td>Seleccione el Curso:</td>
             <td>
-                <select id="cursos">
-                    <option value="curso1">Curso 1</option>
-                    <option value="curso2">Curso 2</option>
-                    <option value="curso3">Curso 3</option>
-                </select>
+                <select id="cursos" onchange="cargarDatos()"></select>
             </td>
         </tr>
-
         <tr>
             <td>
                 <p><b>Llene los siguientes campos:</b></p>
@@ -53,25 +53,28 @@
             </td>
         </tr>
     </table>
-    <table id="tablaArtesanos" style="width: 70%">
-        <thead>
-        <th> Identificacion </th>
-        <th> Nombres </th>
-        <th> Apellidos </th>
-        <th> Telefonos de Contacto </th>
-        </thead>
+    <div class="formularioTabla">
+        <table id="tablaInstructores" >
+            <thead>
+            <th> Identificacion </th>
+            <th> Nombres </th>
+            <th> Apellidos </th>
+            <th> Telefonos de Contacto </th>
+            </thead>
+            <tbody></tbody>
+
+        </table>
+    </div>
+</div>
+    <div class="botones">
         <tr>
-            <td>Uno</td>
-            <td>Dos</td>
-            <td>Tres</td>
-            <td>Cuatro</td>
+            <td>
+                <input type="submit" value="Guardar" onclick="registrarInfoCurso()">
+                <input type="submit" value="Limpiar Campos" onclick="limpiarCamposInfoCurso() ">
+                <input type="submit" value="Regresar" onclick="location.href = '/index'">
+            </td>
         </tr>
-        <tr>
-            <td>Uno</td>
-            <td>Dos</td>
-            <td>Tres</td>
-            <td>Cuatro</td>
-        </tr>
+<<<<<<< HEAD
     </table>
 </div>
 <div class="botones">
@@ -84,3 +87,7 @@
     </tr>
 </div>
 {% endblock %}
+=======
+    </div>
+    {% endblock %}
+>>>>>>> 3ac05056372f72dfe3ad3671d9f8bd2831b5f4a8

@@ -16,6 +16,24 @@ function limpiarCamposCrearCurso() {
     descripcion_curso = document.getElementById("descripcion").value = "";
 }
 
+function limpiarCamposInfoCurso() {
+    document.getElementById("cursos").selectedIndex = "0";
+    document.getElementById("fechaInicio").value = "";
+    document.getElementById("fechaFin").value = "";
+    document.getElementById("numParticipantes").value = "";
+    document.getElementById("lugar").value = "";
+    document.getElementById("horario").value = "";
+}
+
+function limpiarCamposRegistrarInstructor() {
+
+    document.getElementById("tipoID").selectedIndex = "0";
+    document.getElementById("id").value = "";
+    document.getElementById("nombres").value = "";
+    document.getElementById("apellidos").value = "";
+    document.getElementById("telf").value = "";
+}
+
 function limpiarTelefono(){
     var table = document.getElementById('idTable');
     var count = table.getElementsByTagName('tr').length;

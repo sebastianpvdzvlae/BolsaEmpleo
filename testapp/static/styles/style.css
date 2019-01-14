@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 body {
   margin: 0;
@@ -182,6 +182,13 @@ table {
   border-collapse: collapse;
 }
 
+#tablaInstructores {
+    width: 100%;
+    padding: 10px 10px;
+    margin: auto;
+    border-collapse: collapse;
+}
+
 #tablaArtesanos td{
   border-collapse: collapse;
   padding: 20px;
@@ -192,6 +199,10 @@ table {
   padding: 20px;
 }
 
+#tablaInstructores td {
+    border-collapse: collapse;
+    padding: 20px;
+}
 
 #tablaArtesanos thead{
   background-color:  rgb(200, 206, 255);
@@ -207,6 +218,12 @@ table {
   
 }
 
+#tablaInstructores thead {
+    background-color: rgb(200, 206, 255);
+    border-bottom: solix 5px #0f362D;
+    text-align: left;
+}
+
 #tablaArtesanos tr:nth-child(even){ /*Para que solo pinte los pares*/   
   background-color: #ddd
 }
@@ -215,12 +232,20 @@ table {
   background-color: #ddd
 }
 
+#tablaInstructores tr:nth-child(even) { /*Para que solo pinte los pares*/
+    background-color: #ddd
+}
+
 #tablaArtesanos tr:hover td{
   background-color:  #a7a7a7;
 }
 
 #tablaAcuerdos tr:hover td{
   background-color:  #a7a7a7;
+}
+
+#tablaInstructores tr:hover td {
+    background-color: #a7a7a7;
 }
 
 input[type=submit] {
