@@ -16,7 +16,6 @@ $(document).ready(function () {
     });
 });
 
-
 function cargarTablaCursos(page) {
     url = serverUrl + "/courses/";
     var data = { page: page, pageSize: pageSize }
