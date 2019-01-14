@@ -37,7 +37,7 @@ function camposVacios(){
     var passw = document.getElementById("password").value;
 
     if(identificacion == "" || nombres == "" || apellidos == "" || email=="" || passw == ""){
-        alert("Campos Obligatorios Vaciós");
+        alert("Campos Obligatorios Vacíos");
         if(identificacion == ""){
             document.getElementById("identificacion").style.borderColor="#E70D34";
         }

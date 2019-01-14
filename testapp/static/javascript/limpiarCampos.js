@@ -10,6 +10,7 @@ function limpiarCamposRegistrarArtesano() {
     document.getElementById("cantones").selectedIndex = "0";
     document.getElementById("parroquias").selectedIndex = "0";
 }
+
 function limpiarCamposCrearCurso() {
     nombre_curso = document.getElementById("nombreCurso").value = "";
     descripcion_curso = document.getElementById("descripcion").value = "";
@@ -26,3 +27,19 @@ function limpiarTelefono(){
     btn_mas.style.display = 'block';
 }
 	
+function limpiarCamposRegistraConvenio(){
+    var acuerdo = document.getElementById("acuerdo").value = "";
+    var descripcionTarea = document.getElementById("descripcion").value = "";
+    var valor = document.getElementById("valor").value = "";
+    var fechaInicio = document.getElementById("fechaInicio").value = "";
+    var fechaFin = document.getElementById("fechaFin").value = "";
+    var comentario = document.getElementById("comentario").value = "";
+}
+
+function limpiarCamposInfoCurso(){
+    var fecha_inicio = document.getElementById("fechaInicio").value = "";
+	var fecha_fin = document.getElementById("fechaFin").value = "";
+	var numParticipantes = document.getElementById("numParticipantes").value = "";
+	var lugar = document.getElementById("lugar").value = "";
+	var horario = document.getElementById("horario").value = "";
+}

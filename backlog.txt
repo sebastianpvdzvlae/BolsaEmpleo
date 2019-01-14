@@ -1,6 +1,7 @@
 - inscripcion a cursos (Juan)
 - cambiar servicios de un artesano para ser determinados por los cursos que tomo.**
 - registrar convenio (Michelle)
+    -ver cliente y artesano.
 - crear curso (Erika)
 - crear una tabla para acceder a informacion de cursos. (Jeff)
 - bloquear y desbloquear usuarios (Alejo)

@@ -48,7 +48,7 @@ function registrarInfoCurso() {
 		lugar: lugar.value,
 		horario: horario.value
 	}
-	url='http://127.0.0.1:5000/sessions/';
+	url=serverUrl + "/courses/";
 	console.log(info_curso);
     $.ajax({
 		url: url,

@@ -1,9 +1,9 @@
-function validarDatosRegistrarConvenio(){    
+function validarDatosInfoCurso(){    
     var fechaInicio = document.getElementById("fechaInicio").value;
     var fechaFin = document.getElementById("fechaFin").value;
     if(camposVacios()){//campos llenos
         if(validarfechaFinMayor(fechaFin, fechaInicio)){
-            botonGuardar();
+            registrarInfoCurso();
         }else{            
             document.getElementById("fechaFin").style.borderColor="#E70D34";
         }
@@ -11,22 +11,22 @@ function validarDatosRegistrarConvenio(){
 }
 
 function camposVacios(){
-    var acuerdoDe  = document.getElementById("acuerdo").value;
-    var descripcionTarea = document.getElementById("descripcion").value;
-    var valorContrato = document.getElementById("valor").value;
     var fechaInicio = document.getElementById("fechaInicio").value;
-    var fechaFin = document.getElementById("fechaFin").value;
+	var fechaFin = document.getElementById("fechaFin").value;
+	var numParticipantes = document.getElementById("numParticipantes").value;
+	var lugar = document.getElementById("lugar").value;
+	var horario = document.getElementById("horario").value;
 
-    if(acuerdoDe == "" || descripcionTarea == "" || valorContrato == "" || !isNaN(fechaInicio) || !isNaN(fechaFin)){
+    if(numParticipantes == "" || lugar == "" || horario == "" || !isNaN(fechaInicio) || !isNaN(fechaFin)){
         alert("Campos Obligatorios Vacíos");
-        if(acuerdoDe == ""){
-            document.getElementById("acuerdo").style.borderColor="#E70D34";
+        if(numParticipantes == ""){
+            document.getElementById("numParticipantes").style.borderColor="#E70D34";
         }
-        if(descripcionTarea == ""){
-            document.getElementById("descripcion").style.borderColor="#E70D34";
+        if(lugar == ""){
+            document.getElementById("lugar").style.borderColor="#E70D34";
         }
-        if(valorContrato == ""){
-            document.getElementById("valor").style.borderColor="#E70D34";
+        if(horario == ""){
+            document.getElementById("horario").style.borderColor="#E70D34";
         }
         if(!isNaN(fechaInicio)){
             document.getElementById("fechaInicio").style.borderColor="#E70D34";
