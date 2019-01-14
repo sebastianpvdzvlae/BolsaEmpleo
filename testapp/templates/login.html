@@ -7,9 +7,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <h1>Inicio de Sesion</h1>
-<form action='Login' method='POST'>
-    <div class="formulario">
-
+<form class="ui form" action='Login' method='POST'>
+        <div class="field">
+            <label>Correo electronico:</label>
+            <input type="text" name="email" id="email" placeholder="usuario@mail.com">
+        </div>
+        <div class="field">
+            <label>Contraseña:</label>
+            <input type="password" name="password" id="password" placeholder="******">
+        </div>
+<!--
         <table>
             <tr>
                 <td>Correo electronico: </td>
@@ -19,14 +26,11 @@
                 <td>Contraseña:</td>
                 <td><input type="password" name="password" id="password" size="40" placeholder="*****" onchange="cambiarColorCampo(this)"></td>
             </tr>
-        </table>
-    </div>
-    <div class="botones">
-        <tr>
-            <td><input type="submit" value="Iniciar Sesion">
-                <input type="reset" onclick="location.href = '/Registrate'" value="Registrate">
-                <input type="reset" onclick="location.href = '/index'"value="Invitado"> </td>
-        </tr>
+        </table>-->
+    <div class="three fields">
+        <input type="submit" value="Iniciar Sesion" class="ui blue button">
+        <a class="ui green button" onclick="location.href = '/Registrate'">Registrate</a>
+        <a class="ui button" onclick="location.href = '/index'">Invitado</a>
     </div>
 </form>
 {% endblock %}

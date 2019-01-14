@@ -6,7 +6,6 @@
 
 <h1> Busqueda de Artesanos</h1>
 
-<div class = "formulario">
 <table id="Artesanos" style="margin: 0 auto;">
 <tr>
 	<td>Buscar por servicios: </td>
@@ -41,10 +40,9 @@
     </td>    
 </tr>
 </table>
-</div>
     
 <div class= "formularioTabla">
-<table id="tablaArtesanos">
+<table id="tablaArtesanos" class="ui celled table">
     <thead>
     <th> Nombres </th>
     <th> Apellidos </th>
@@ -59,9 +57,13 @@
     <tfoot>
         <tr>
             <th colspan="8">
-                <div>
-                    <input type="button" id="btnBack" value="Atras"></input>
-                    <input type="button" id="btnNext" value="Siguiente"></input>
+                <div class="ui right floated pagination menu">
+                    <a class="icon item" id="btnBack" href="#">
+                        <i class="chevron left icon"></i>
+                    </a>
+                    <a class="icon item" id="btnNext" href="#">
+                        <i class="right chevron icon"></i>
+                    </a>
                 </div>
             </th>
         </tr>

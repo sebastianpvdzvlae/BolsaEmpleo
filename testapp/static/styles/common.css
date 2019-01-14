@@ -1,0 +1,122 @@
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* Turn on custom 8px wide scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  /* 1px wider than Lion. */
+  /* This is more usable for users trying to click it. */
+  background-color: rgba(0, 0, 0, 0);
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+}
+  /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+  ::-webkit-scrollbar:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb:vertical {
+  /* This is the EXACT color of Mac OS scrollbars. 
+     Yes, I pulled out digital color meter */
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  -moz-background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 2px solid rgba(0, 0, 0, 0);
+  min-height: 10px;
+  /*Prevent it from getting too small */
+}
+
+  ::-webkit-scrollbar-thumb:vertical:hover {
+    background: rgba(0, 0, 0, 0.6);
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 2px solid rgba(0, 0, 0, 0);
+    min-height: 10px;
+    /*Prevent it from getting too small */
+  }
+
+  ::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(0, 0, 0, 0.8);
+    /* Some darker color when you click it */
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+  }
+
+ul,
+li {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+  li:before {
+    content: '' !important;
+  }
+
+.clickable {
+  cursor: pointer;
+}
+
+.no-clickable {
+  cursor: default;
+}
+
+.hidden {
+  visibility: hidden !important;
+}
+
+.invisible {
+  display: none !important;
+}
+
+.width-100 {
+  width: 100% !important;
+}
+
+.padding-0 {
+  padding: 0 !important;
+}
+
+.margin-0 {
+  margin: 0 !important;
+}
+
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+.overflow-auto {
+  overflow: auto !important;
+}
+
+.floated-right {
+  float: right !important;
+}
+
+.floated-left {
+  float: left !important;
+}
+
+
+[main-layout] [content] {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-width: 1020px;
+  overflow: hidden;
+}
+
+[main-layout] [all-screen-dimmer] {
+  opacity: 0 !important;
+}

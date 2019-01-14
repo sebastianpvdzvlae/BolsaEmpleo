@@ -1,4 +1,4 @@
-var pageSize = 10;
+var pageSize = 5;
 var currentPage = 0;
 
 $(document).ready(function () {
@@ -24,7 +24,7 @@ function tablaArtesanos(page) {
 
     $.get({ url: url, cache: false, data })
     .then(function (response) {
-        $("#tablaArtesanos").find("tbody").remove();
+        $("#tablaArtesanos").children('tbody').empty("");
         var total = response.total;
         var items = response.items;
         var pages = Math.ceil(total / pageSize);
@@ -36,9 +36,18 @@ function tablaArtesanos(page) {
         if (currentPage > 0) {
             $("#btnBack").removeClass('disabled');
         }
-        var tbl = document.getElementById("tablaArtesanos");
-        var tblBody = document.createElement("tbody");
+        var tableBody = $('#tablaArtesanos').children('tbody');
         for (var i = 0; i < items.length; i++) {
+            tableBody.append(
+                "<tr>" +
+                "<td><label>" + items[i]['nombres'] + "</label></td>" +
+                "<td><label>" + items[i]['apellidos'] + "</label></td>" +
+                "<td><label>" + items[i]['identificacion'] + "</label></td>" +
+                "<td><label>" + items[i]['email'] + "</label></td>" +
+                "<td>" + '<a class="ui green button" id="btnUnlock">' + ((items[i]['estado']) ? "Desbloqueado" : "Bloqueado") + "</a>" + "</td>" +
+                "</tr>"
+            );
+            /*
             var fila = document.createElement("tr");
             var celda = document.createElement("td");
             var button = document.createElement("button");
@@ -70,16 +79,12 @@ function tablaArtesanos(page) {
  
             if(items[i]['estado'])
                 txtBtnEstado = "Bloquear"
-            button.appendChild(textoCelda);
-            button.onclick = function (id){
+            button.appendChild(textoCelda);*/
+            $("#btnUnlock").onclick = function (id){
                 $.get({ url: serverUrl + "/sessions/" + id, cache: false, data : {} }).then(function (response) {});
                 window.location.reload(true);
             };
-            celda.appendChild(button);
-            fila.appendChild(celda);
-            tblBody.appendChild(fila);
         }
-        tbl.appendChild(tblBody);
     }).fail(function (data, textStatus, xhr) {
         window.alert("Error tabla");
         console.log([data, textStatus, xhr]);
