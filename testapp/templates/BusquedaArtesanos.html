@@ -5,41 +5,21 @@
 <script src="{{ url_for('static',filename='javascript/buscarArtesanos.js') }}"></script>
 
 <h1> Busqueda de Artesanos</h1>
-
-<table id="Artesanos" style="margin: 0 auto;">
-<tr>
-	<td>Buscar por servicios: </td>
-	<td><select id="txtBusqueda" onchange="mostrarBoton()" >
+<form class="ui form">
+<div class="field">
+    <label>Buscar por servicios:</label>
+	<select class="ui dropdown" id="txtBusqueda" onchange="mostrarBoton()" >
           <option value=""></option>
           <option value="Albañil">Albañil</option>
           <option value="Electricista">Electricista</option>
           <option value="Pintor">Pintor</option>
           <option value="Carpintero">Carpintero</option>		  
-    </select></td>
-    
-    
-    <td></td>
-</tr>
-<!--<tr id="Parroquias">
-<td>Parroquias:</td>
-<td><select>
-          <option value="none">Seleccione</option>
-          <option value="parroquia1">Parroquia1</option>
-          <option value="parroquia2">Parroquia2</option>
-          <option value="parroquia3">Parroquia3</option>
-</select></td>
-	
-</tr>-->
-<tr>
-    <td></td>
-    <td></td>
-    <td>
-        <div class= "botonBuscar">
-            <input type="submit" value="Buscar" onclick="tablaArtesanos(0)">
+    </select>
+</div>
+        <div class= "field">
+            <input class="ui button" type="submit" value="Buscar" onclick="tablaArtesanos(0)">
         </div>        
-    </td>    
-</tr>
-</table>
+</form>
     
 <div class= "formularioTabla">
 <table id="tablaArtesanos" class="ui celled table">
@@ -49,14 +29,12 @@
     <th> Servicio Ofrecido </th>
     <th> Telefonos de Contacto </th>
     <th> Direccion </th>
-    <!--<th> Disponibilidad </th>-->
-    <th> </th>
     </thead>
     <tbody>
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="8">
+            <th colspan="6">
                 <div class="ui right floated pagination menu">
                     <a class="icon item" id="btnBack" href="#">
                         <i class="chevron left icon"></i>
