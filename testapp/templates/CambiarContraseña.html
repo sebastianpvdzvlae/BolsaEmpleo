@@ -6,31 +6,22 @@
 <script src="{{ url_for('static',filename='javascript/cambiarContraseña.js') }}" type="text/javascript"></script>
 
 <h1>Cambiar Contraseña</h1>
-<form action='CambiarContraseña' method='POST'>
-    <div class="formulario">
-        <table>
-            <tr>
-                <td>Contraseña Actual:</td>
-                <td><input type="password" name="password" id="password" size="40" onchange="cambiarColorCampo(this)"><br></td>
-            </tr>
-            <tr>
-                <td>Nueva Contraseña:</td>
-                <td><input type="password" name="newpassword" id="newpassword" size="40" onchange="cambiarColorCampo(this)"><br></td>
-            </tr>
-            <tr> 
-                <td>Repetir Nueva Contraseña:</td>
-                <td><input type="password" name="newpassword2" id="newpassword2" size="40" onchange="cambiarColorCampo(this)"></td>
-            </tr> 
-        </table>
+<form class="ui form" action='CambiarContraseña' method='POST'>
+    <div class="field">
+        <label>Contraseña Actual:</label>
+        <input type="password" name="password" id="password" size="40" onchange="cambiarColorCampo(this)">
     </div>
-    <div class="botones">
-        <tr>
-            <td> <a class= "ui button" onclick="validarDatosCambiarContraseña()">Cambiar Contraseña</a></td>
-        </tr>
+    <div class="field">
+        <label>Nueva Contraseña:</label>
+        <input type="password" name="newpassword" id="newpassword" size="40" onchange="cambiarColorCampo(this)">
     </div>
-
+    <div class="field">
+        <label>Repetir Nueva Contraseña:</label>
+        <input type="password" name="newpassword2" id="newpassword2" size="40" onchange="cambiarColorCampo(this)">
+    </div>
+    <div class="field">
+        <a class= "ui green button" onclick="validarDatosCambiarContraseña()">Cambiar Contraseña</a>
+    </div>
 </form>
-
-
 
 {% endblock %}

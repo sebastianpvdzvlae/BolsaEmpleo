@@ -4,31 +4,49 @@
 
 <script src="{{ url_for('static',filename='javascript/buscarArtesanos.js') }}"></script>
 
-<h1 class="ui centered align header"> Búsqueda de Artesanos</h1>
-
-<div class="ui raised very padded text container segment">
-    <div class="ui stackable two column grid">
-        <div class="column">
-            <h4 class="ui header">Buscar por Servicios:</h2>
-        </div>
-        <div class="column" style="width: 50%;">
-            <select class="ui fluid dropdown" id="txtBusqueda" onchange="mostrarBoton()">
-                <option value=""></option>
-                <option value="Albañil">Albañil</option>
-                <option value="Electricista">Electricista</option>
-                <option value="Pintor">Pintor</option>
-                <option value="Carpintero">Carpintero</option>
-                <option value="Carpintero">Plomero</option>
-            </select>
-        </div>
-        <div class="centered row">
-            <a class="ui labeled blue icon button" onclick="tablaArtesanos(0)">
-                <i class="search icon"></i>
-                Buscar
-            </a>
-        </div>
-    </div>
-
+<h1> Busqueda de Artesanos</h1>
+<form class="ui form">
+<div class="field">
+    <label>Buscar por servicios:</label>
+	<select class="ui dropdown" id="txtBusqueda" onchange="mostrarBoton()" >
+          <option value=""></option>
+          <option value="Albañil">Albañil</option>
+          <option value="Electricista">Electricista</option>
+          <option value="Pintor">Pintor</option>
+          <option value="Carpintero">Carpintero</option>		  
+    </select>
+</div>
+        <div class= "field">
+            <input class="ui button" type="submit" value="Buscar" onclick="tablaArtesanos(0)">
+        </div>        
+</form>
+    
+<div class= "formularioTabla">
+<table id="tablaArtesanos" class="ui celled table">
+    <thead>
+    <th> Nombres </th>
+    <th> Apellidos </th>
+    <th> Servicio Ofrecido </th>
+    <th> Telefonos de Contacto </th>
+    <th> Direccion </th>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="6">
+                <div class="ui right floated pagination menu">
+                    <a class="icon item" id="btnBack" href="#">
+                        <i class="chevron left icon"></i>
+                    </a>
+                    <a class="icon item" id="btnNext" href="#">
+                        <i class="right chevron icon"></i>
+                    </a>
+                </div>
+            </th>
+        </tr>
+    </tfoot>
+</table>
 </div>
 
 <div class="formularioTabla">

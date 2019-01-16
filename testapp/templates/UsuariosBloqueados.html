@@ -5,29 +5,26 @@
 
 <h1> Desbloquear Usuarios</h1>
 
-<table style="margin: 0 auto;">
-<tr>
-    <td style = "text-align: center">Buscar: </td>
-</tr>
-<tr>
-    <td ><select id="opciones" onchange="mostrarBoton()">
-        <option value="correoElectronico">Por E-mail</option>
-  </select></td>
-</tr>
-	
-</tr>
-<tr>
-    <td><input type = "text" id="correo" size="40" placeholder="Ingrese el dato a buscar" ></td>
-</tr>
-<tr>
-    <td>
-        <div class= "botonBuscar" >
-            <input type="submit" value="Buscar" onclick="mostrarTabla()">
-        </div>        
-    </td>    
-</tr>
-</table>
-    
+<form class="ui form">
+    <div class="field">
+        <label>Buscar:</label>
+        <div class="fields">
+            <div class="four wide field">
+                <select id="opciones" onchange="mostrarBoton()">
+                    <option value="correoElectronico">Por E-mail</option>
+                </select>
+            </div>
+            <div class="twelve wide field">
+                <input type="text" id="correo" size="40" placeholder="Ingrese el dato a buscar">
+            </div>
+        </div>
+    </div>
+    <div class= "field" >
+        <a class="ui button" onclick="mostrarTabla()">Buscar</a>
+    </div>
+</form>        
+
+<div class="ui container">
 <table class="ui compact celled table" id="tablaArtesanos">
     <thead>
     <th> Nombres </th>
@@ -40,7 +37,7 @@
     </tbody>    
     <tfoot>
         <tr>
-            <th colspan="8">
+            <th colspan="5">
                 <div class="ui right floated pagination menu">
                     <a class="icon item" id="btnBack">
                         <i class="chevron left icon"></i>
@@ -48,12 +45,12 @@
                     <a class="icon item" id="btnNext">
                         <i class="right chevron icon"></i>
                     </a>
-                    <!--<input class="ui button" id="btnBack" value="Atras"></input>
-                    <input class="ui button" id="btnNext" value="Siguiente"></input>-->
                 </div>
             </th>
         </tr>
     </tfoot>
 </table>
+
+</div>
 
 {% endblock %}

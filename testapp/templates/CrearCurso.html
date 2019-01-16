@@ -10,25 +10,27 @@
 
 <h1> Crear un nuevo Curso de Capacitacion</h1>
 
-<div class="formulario">
-    <table align="center">
-        <tr>
-            <td>Nombre del Curso:</td>
-            <td><input type="text" id="nombreCurso" size="40" onchange="cambiarColorCampo(this)"></br></td>
-        </tr>
-        <tr>
-            <td>Descripcion del Curso:</td>
-            <td><textarea cols="40" rows="6" id="descripcion" placeholder="Escriba la descripcion del Curso" onchange="cambiarColorCampo(this)"></textarea></td>
-        </tr>
-    </table>
-</div>
-<div class="botones">
-    <tr>
-        <td>
-            <input type="submit" value="Guardar" onclick="validarDatosCrearCurso()"/>
-            <input type="submit" value="Limpiar Campos" onclick="limpiarCamposCrearCurso()"/>
-            <input type="submit" value="Regresar" onclick="location.href = '/index'"/>
-        </td>
-    </tr>
-</div>
-	{% endblock %}
+<form class="ui form">
+    <div class="field">
+        <label>Nombre del Curso:</label>
+        <input type="text" id="nombreCurso" size="40" onchange="cambiarColorCampo(this)">
+    </div>
+    <div class="field">
+        <label>Descripcion del Curso:</label>
+        <textarea cols="40" rows="6" id="descripcion" placeholder="Escriba la descripcion del Curso" onchange="cambiarColorCampo(this)"></textarea>
+    </div>
+    <div class="ui container">
+        <div class="ui stackable three column center aligned grid">
+            <div class="column">
+                <a class="ui primary button" onclick="validarDatosCrearCurso()">Guardar</a>
+            </div>
+            <div class="column">
+                <a class="ui button" onclick="limpiarCamposCrearCurso()">Limpiar Campos</a>
+            </div>
+            <div class="column">
+                <a class="ui button" onclick="location.href = '/index'">Regresar</a>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

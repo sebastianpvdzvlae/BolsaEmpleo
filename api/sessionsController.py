@@ -14,7 +14,12 @@ sessionPayload = api.model('sessionPayload', {
 })
 
 passwordPayload = api.model('passwordPayload', {
-    "password": fields.String
+    "oldPassword": fields.String,
+    "newPassword": fields.String
+})
+
+lockUsersPayload = api.model('lockUsersPayload',{
+    "action": fields.String
 })
 
 @api.route('/')
@@ -48,24 +53,35 @@ class Sessions(Resource):
 
 @api.route('/<string:id>')
 class Session(Resource):
-    def get(self, id):
-        collection = get_db()["users"]
-        user = collection.find_one({"_id": ObjectId(id)})
-        if user is None:
-            return {"id": id}, 404
-        collection.update_one({"_id": ObjectId(id)}, {
-                              "$set": {"estado": not user['estado'], "intentos": 0}})
-        return {"UnblockedUser": True}, 200
-
     @api.expect(passwordPayload)
     def put(self, id):
         collection = get_db()["users"]
         body = api.payload
-        body['password'] = str(hashlib.sha256(
-            body['password'].encode()).hexdigest())
+        body['oldPassword'] = str(hashlib.sha256(
+            body['oldPassword'].encode()).hexdigest())
         user = collection.find_one({"_id": ObjectId(id)})
         if user is None:
             return {"id": id}, 404
-        collection.update_one({"_id": ObjectId(id)}, {
-                              "$set": {"password": body['password']}})
-        return {"passwordUpdated": True}, 200
+        elif user['password'] == body['oldPassword']:
+            collection.update_one({"_id": ObjectId(id)}, {"$set": {"password": body['password']}})
+            return {"passwordUpdated": True}, 200
+        return {"passwordUpdated": False}, 403
+
+        
+@api.route('/unlock-users/<string:id>')
+class Lock(Resource):
+    @api.expect(lockUsersPayload)
+    def post(self, id):
+        collection = get_db()["users"]
+        user = collection.find_one({"_id": ObjectId(id)})
+        if user is None:
+            return {"id": id}, 404
+        body = api.payload
+        status = True
+        if body['action'] == "lock":
+            status = False
+        elif body['action'] == "unlock":
+            status = True
+        collection.update_one({"_id": ObjectId(id)}, {"$set": {"estado": status, "intentos": 0}})
+        return {"UserIsLocked": not status}, 200
+

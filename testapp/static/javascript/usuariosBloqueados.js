@@ -44,42 +44,9 @@ function tablaArtesanos(page) {
                 "<td><label>" + items[i]['apellidos'] + "</label></td>" +
                 "<td><label>" + items[i]['identificacion'] + "</label></td>" +
                 "<td><label>" + items[i]['email'] + "</label></td>" +
-                "<td>" + '<a class="ui green button" id="btnUnlock">' + ((items[i]['estado']) ? "Desbloqueado" : "Bloqueado") + "</a>" + "</td>" +
+                "<td>" + '<a class="ui green button" id="btnUnlock">' + ((items[i]['estado']) ? "Bloquear" : "Desbloquear") + "</a>" + "</td>" +
                 "</tr>"
             );
-            /*
-            var fila = document.createElement("tr");
-            var celda = document.createElement("td");
-            var button = document.createElement("button");
-            var txtBtnEstado = "Desbloquear";
-
-            var textoCelda = document.createTextNode(items[i]['nombres']);
-            celda.appendChild(textoCelda);
-            fila.appendChild(celda);
-            celda = document.createElement("td");
-
-            textoCelda = document.createTextNode(items[i]['apellidos']);
-            celda.appendChild(textoCelda);
-            fila.appendChild(celda);
-            celda = document.createElement("td");
-
-            textoCelda = document.createTextNode(items[i]['identificacion']);
-            celda.appendChild(textoCelda);
-            fila.appendChild(celda);
-            celda = document.createElement("td");
-
-            textoCelda = document.createTextNode(items[i]['email']);
-            celda.appendChild(textoCelda);
-            fila.appendChild(celda);
-            celda = document.createElement("td");
-
-            textoCelda = document.createTextNode((items[i]['estado'])?"Desbloqueado":"Bloqueado");
-            celda.appendChild(textoCelda);
-            fila.appendChild(celda);
- 
-            if(items[i]['estado'])
-                txtBtnEstado = "Bloquear"
-            button.appendChild(textoCelda);*/
             $("#btnUnlock").onclick = function (id){
                 $.get({ url: serverUrl + "/sessions/" + id, cache: false, data : {} }).then(function (response) {});
                 window.location.reload(true);
