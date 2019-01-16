@@ -1,10 +1,8 @@
-- inscripcion a cursos (Juan)
+- inscripcion a cursos (Juan)--> relacionar instructor con cursos
 - cambiar servicios de un artesano para ser determinados por los cursos que tomo.**
-- registrar convenio (Michelle)
-    -ver cliente y artesano.
+- registrar convenio (Michelle)-->relacionar cliente y artesano.
 - crear curso (Erika)
 - crear una tabla para acceder a informacion de cursos. (Jeff)
 - bloquear y desbloquear usuarios (Alejo)
 - busqueda de convenios solo muestra los que pertenecen al cliente o al artesano que consulta. (Sebas)
-- agregar semantic UI (Juan)
-- cambiar todo a semantic (Todos)
+- cambiar Combo Box Servicios

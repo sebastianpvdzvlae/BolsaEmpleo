@@ -4,63 +4,55 @@
 
 <script src="{{ url_for('static',filename='javascript/buscarArtesanosAdmin.js') }}"></script>
 
-<h1> Busqueda de Artesanos</h1>
+<h1 class="ui centered align header"> Búsqueda de Artesanos</h1>
 
-<div class="formulario">
-    <table id="Artesanos" style="margin: 0 auto;">
-        <tr>
-            <td>Buscar por servicios: </td>
-            <td><select id="txtBusqueda" onchange="mostrarBoton()">
-                    <option value=""></option>
-                    <option value="Albañil">Albañil</option>
-                    <option value="Electricista">Electricista</option>
-                    <option value="Pintor">Pintor</option>
-                    <option value="Carpintero">Carpintero</option>
-                </select></td>
-        
-        
-            <td></td>
-        </tr>
-        <!--<tr id="Parroquias">
-        <td>Parroquias:</td>
-        <td><select>
-                  <option value="none">Seleccione</option>
-                  <option value="parroquia1">Parroquia1</option>
-                  <option value="parroquia2">Parroquia2</option>
-                  <option value="parroquia3">Parroquia3</option>
-        </select></td>
-        	
-        </tr>-->
-        <tr>
-            <td></td>
-            <td></td>
-            <td>
-                <div class="botonBuscar">
-                    <input type="submit" value="Buscar" onclick="tablaArtesanosAdmin(0)">
-                </div>
-            </td>
-        </tr>
-    </table>
+
+<div class="ui raised very padded text container segment">
+    <div class="ui doubling two column grid">
+        <div class="column">
+            <h4 class="ui header">Buscar por Servicios:</h2>
+        </div>
+        <div class="column" style="width: 50%;">
+            <select class="ui fluid dropdown" id="txtBusqueda" onchange="mostrarBoton()">
+                <option value=""></option>
+                <option value="Albañil">Albañil</option>
+                <option value="Electricista">Electricista</option>
+                <option value="Pintor">Pintor</option>
+                <option value="Carpintero">Carpintero</option>
+            </select>
+        </div>
+        <div class="centered row">
+            <div class="botonBuscar">
+                <input type="submit" class="ui blue submit button" value="Buscar" onclick="tablaArtesanosAdmin(0)">
+            </div>
+        </div>
+    </div>
 </div>
 
+
 <div class="formularioTabla">
-    <table id="tablaArtesanos" class="ui table">
+    <table id="tablaArtesanos" class="ui celled striped table">
         <thead>
-        <th> Nombres </th>
-        <th> Apellidos </th>
-        <th> Servicio Ofrecido </th>
-        <th> Telefonos de Contacto </th>
-        <th> Direccion </th>
-        <th> Editar Información</th>
-        <th> </th>
+            <th> Nombres </th>
+            <th> Apellidos </th>
+            <th> Servicio Ofrecido </th>
+            <th> Telefonos de Contacto </th>
+            <th> Direccion </th>
+            <!--<th> Disponibilidad </th>-->
+            <th> </th>
         </thead>
-        <tbody></tbody>
+        <tbody>
+        </tbody>
         <tfoot>
             <tr>
                 <th colspan="8">
-                    <div>
-                        <input type="button" id="btnBack" value="Atras"></input>
-                        <input type="button" id="btnNext" value="Siguiente"></input>
+                    <div class="ui right floated pagination menu">
+                        <a class="icon item" id="btnBack" href="#">
+                            <i class="chevron left icon"></i>
+                        </a>
+                        <a class="icon item" id="btnNext" href="#">
+                            <i class="right chevron icon"></i>
+                        </a>
                     </div>
                 </th>
             </tr>

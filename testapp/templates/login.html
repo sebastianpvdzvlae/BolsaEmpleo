@@ -6,31 +6,45 @@
 <script src="{{ url_for('static',filename='javascript/login.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<h1>Inicio de Sesion</h1>
-<form class="ui form" action='Login' method='POST'>
+<h1 style="text-align: center;">Inicio de Sesion</h1>
+<div class="ui raised very padded text container segment">
+    <form class="ui form" action='Login' method='POST'>
         <div class="field">
-            <label>Correo electronico:</label>
-            <input type="text" name="email" id="email" placeholder="usuario@mail.com">
+            <label>Correo Electrónico</label>
+            <div class="ui left icon input">
+                <input type="text" name="email" id="email" placeholder="usuario@mail.com">
+                <i class="user icon"></i>
+            </div>
         </div>
         <div class="field">
-            <label>Contraseña:</label>
-            <input type="password" name="password" id="password" placeholder="******">
+            <label>Contraseña</label>
+            <div class="ui left icon input">
+                <input type="password" name="password" id="password" placeholder="******">
+                <i class="lock icon"></i>
+            </div>
         </div>
-<!--
-        <table>
-            <tr>
-                <td>Correo electronico: </td>
-                <td><input type="email" name="email" id="email" size="40" placeholder="usuario@mail.com" onchange="cambiarColorCampo(this)"></td>
-            </tr>
-            <tr>
-                <td>Contraseña:</td>
-                <td><input type="password" name="password" id="password" size="40" placeholder="*****" onchange="cambiarColorCampo(this)"></td>
-            </tr>
-        </table>-->
-    <div class="three fields">
-        <input type="submit" value="Iniciar Sesion" class="ui blue button">
-        <a class="ui green button" onclick="location.href = '/Registrate'">Registrate</a>
-        <a class="ui button" onclick="location.href = '/index'">Invitado</a>
-    </div>
-</form>
+        <div class="ui stackable three column grid">
+            <div class="column">
+                <button type="submit" class="ui blue submit button">
+                    <i class="sign in icon"></i>
+                    Iniciar Sesión
+                </button>
+            </div>
+            <div class="column">
+                <a class="ui labeled icon button" onclick="location.href = '/Registrate'">
+                    <i class="signup icon"></i>
+                    Regístrate
+                </a>
+            </div>
+            <div class="column">
+                <a class="ui labeled green icon button" onclick="location.href = '/index'">
+                    <i class="user icon"></i>
+                    Invitado
+                </a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
 {% endblock %}

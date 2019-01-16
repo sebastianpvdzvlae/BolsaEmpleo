@@ -13,7 +13,8 @@ function botonCambioClave(){
         if(password.value == currentPassword){
             if(newPassword.value == newPassword2.value){
                 var user = {
-                    password: newPassword.value
+                    oldPassword:password.value,
+                    newPassword: newPassword.value
                 }
                 $.ajax({
                     url: url,
