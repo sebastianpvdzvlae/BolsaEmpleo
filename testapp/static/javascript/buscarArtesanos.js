@@ -22,7 +22,7 @@ function tablaArtesanos(page) {
         var data = { page: page, pageSize: pageSize }
     }
     else{
-        url = serverUrl + "/services/";
+        url = serverUrl + "/artesanos/artesanos-by-service";
         var data = { page: page, pageSize: pageSize, service: txtBusqueda}
     }
     $.get({ url: url, cache: false, data })

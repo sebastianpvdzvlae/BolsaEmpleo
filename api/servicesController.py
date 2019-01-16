@@ -12,22 +12,7 @@ servicesParser.add_argument(
     'page', type=int, help='page number', location='head')
 servicesParser.add_argument('pageSize', type=int,
                              help='page size', location='head')
-servicesParser.add_argument('service', type=str,
-                             help='serviceName', location='head')
 
-queryServices = {"tipoUser": 1,
-              "tipoId": 1,
-              "identificacion": 1,
-              "email": 1,
-              "apellidos": 1,
-              "nombres": 1,
-              "direccion": 1,
-              "ubicacion": 1,
-              "telefonos": 1,
-              "estado": 1,
-              "intentos": 1,
-              "servicios": 1
-              }
 
 
 @api.route('/')
@@ -38,12 +23,7 @@ class Services(Resource):
         args = request.args
         page = int(args['page'])
         pageSize = int(args['pageSize'])
-        if args['service']:
-            people = list(db["users"].find({"tipoUser": "artesano", "servicios": args['service']}, queryServices).skip(
-            page * pageSize).limit(pageSize))
-        else:
-            people = list(db["users"].find({"tipoUser": "artesano"}, queryServices).skip(
-                page * pageSize).limit(pageSize))
-        for person in people:
-            person['_id'] = str(person['_id'])
-        return {"total": db["users"].count_documents({"tipoUser": "artesano", "servicios": args['service']}), "items": people}, 200
+        services = list(db["services"].find({}).skip(page * pageSize).limit(pageSize))
+        for service in services:
+            service['_id'] = str(service['_id'])
+        return {"total": db["services"].count_documents({}), "items": services}, 200
