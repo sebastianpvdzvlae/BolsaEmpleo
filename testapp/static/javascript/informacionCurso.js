@@ -5,24 +5,32 @@ url = serverUrl + "/courses/";
 
 $(document).ready(function() {
 
-    var data = { page: currentPage, pageSize: pageSize }
+    var data = { page: currentPage, pageSize: pageSize}
     $.get({ url: url, cache: false, data })
         .then(function (response) {
             $("#cursos").find("option").remove();
             $.map(response.courses, function (course) {
                 $("#cursos").append('<option name="' + course.nombre + '" value = "' + course._id + '">' + course.nombre + '</option>');
-          
             });
-            cargarDatos();
+            if ($("#hiddenId").val() != null) {
+                cargarDatos($("#hiddenId").val());
+            } else {
+                cargarDatos(null);
+            }
         }).fail(function (data, textStatus, xhr) {
             console.log([data, textStatus, xhr]);
         });
     
 });
 
-function cargarDatos() {
-    var curso;
-    var cursoId = $('#cursos').find(":selected").val();
+function cargarDatos(idCourse) {
+    var cursoId;
+
+    if (idCourse == null)
+        cursoId = $('#cursos').find(":selected").val();
+    else 
+        cursoId = idCourse;
+ 
     url = serverUrl + "/courses/"; 
 
     $.get({ url: url + cursoId, cache: false, data: {} })
@@ -30,6 +38,8 @@ function cargarDatos() {
             curso = response;
             $('#fechaInicio').val("");
             $('#fechaFin').val("");
+            $('#cursos').find(":selected").val(curso.nombre);//este valor esta como null
+            console.log($('#cursos').find(":selected").val(curso.nombre).val());//si imprime el nombre correcto
             if (curso.fecha_inicio != "") 
                 $('#fechaInicio').val(curso.fecha_inicio);
             if (curso.fecha_fin != "")

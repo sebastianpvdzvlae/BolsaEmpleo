@@ -1,7 +1,9 @@
 var pageSize = 5;
 var currentPage = 0;
+url = serverUrl + "/courses/";
 
 $(document).ready(function () {
+    cargarCursos();
     cargarTablaCursos(0);
     $("#btnNext").on('click', {}, function () {
         if ($(this).hasClass('disabled')) return;
@@ -16,14 +18,31 @@ $(document).ready(function () {
     });
 });
 
+function cargarCursos() {
+    var data = { page: currentPage, pageSize: pageSize }
+    $.get({ url: url, cache: false, data })
+        .then(function (response) {
+            $("#txtBusqueda").find("option").remove();
+            $.map(response.courses, function (course) {
+                $("#txtBusqueda").append('<option name="' + course.nombre + '" value = "' + course._id + '">' + course.nombre + '</option>');
+            });
+        }).fail(function (data, textStatus, xhr) {
+            console.log([data, textStatus, xhr]);
+        });
+}
 
 function cargarTablaCursos(page) {
-    url = serverUrl + "/courses/";
-    var data = { page: page, pageSize: pageSize }
+    if (txtBusqueda.value == "") {
+        url = serverUrl + "/courses/";
+        var data = { page: page, pageSize: pageSize }
+    }
+    else {
+        url = serverUrl + "/courses/find-by-name";
+        var data = { page: page, pageSize: pageSize, course: $('#txtBusqueda').find(":selected").attr("name") }
+    }
 
     $.get({ url: url, cache: false, data })
         .then(function (response) {
-
             $("#tablaCursos").children('tbody').empty("");
             var total = response.count;
             var items = response.courses;

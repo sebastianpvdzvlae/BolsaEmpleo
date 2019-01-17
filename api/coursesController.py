@@ -23,12 +23,23 @@ coursePayload = api.model('coursePayload', {
     "participantes" : fields.List(fields.String)
 })
 
+queryCourses = {"nombre": 1,
+              "descripcion": 1,
+              "fechaInicio": 1,
+              "fechaFin": 1,
+              "numParticipantes": 1,
+              "lugar": 1,
+              "horario": 1,
+              "participantes": 1
+              }
+
 courseParser = api.parser()
 courseParser.add_argument(
     'page', type=int, help='page number', location='head')
 courseParser.add_argument('pageSize', type=int,
                         help='page size', location='head')
-
+courseParser.add_argument('course', type=str,
+                        help='course Name', location='head')
 
 @api.route('/')
 class Courses(Resource):
@@ -42,7 +53,7 @@ class Courses(Resource):
             page * pageSize).limit(pageSize))
         for course in courses:
             course['_id'] = str(course['_id'])
-        return {"count": len(courses), "courses": courses}, 200
+        return {"count": len(courses), "courses": courses}, 200	
 
     @api.expect(createCoursePayload)
     def post(self):
@@ -53,6 +64,19 @@ class Courses(Resource):
         res = collection.insert_one(body)
         return {"_id": str(res.inserted_id)}, 200
 
+@api.route('/find-by-name')
+class CourseByName(Resource):
+    @api.doc(parser=courseParser)
+    def get(self):
+        collection = get_db()['courses']
+        args = request.args
+        page = int(args['page'])
+        pageSize = int(args['pageSize'])
+        if args['course']:
+            courses = list(collection.find({"nombre": args['course']}, queryCourses).skip(page * pageSize).limit(pageSize))
+        for course in courses:
+            course['_id'] = str(course['_id'])
+        return {"total":collection["courses"].count_documents({"nombre":args['course']}), "courses": courses},200		
 
 @api.route('/<string:id>')
 class Course(Resource):
@@ -82,3 +106,4 @@ class Course(Resource):
         if res.deleted_count <= 0:
             return {"_id": id}, 404
         return {}, 200
+        #return {"count": len(courses), "courses": courses}, 200
