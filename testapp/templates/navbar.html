@@ -2,13 +2,14 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!--    <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ url_for('static',filename='javascript/main.js') }}"></script>
-    <link href="{{ url_for('static',filename='styles/semantic.css') }}" rel="stylesheet" type="text/css">
     <script src="{{ url_for('static',filename='styles/semantic.min.js') }}"></script>
+    <link href="{{ url_for('static',filename='styles/semantic.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static',filename='styles/common.css') }}" rel="stylesheet" type="text/css">
 
     {% if title %}
     <title>{{ title }}</title>
@@ -30,64 +31,32 @@
                 x.className = "topnav";
             }
         }
-
-        function botonRegistrarse() {
-            alert("Datos Registrados con Exito");
-        }
-
-        function botonLogin() {
-            alert("Inicio de sesion");
-        }
-
-        function mostrarBoton() {
-            var opciones = document.getElementById("opciones");
-            var parroquias = document.getElementById("Parroquias");
-            var seleccionado = opciones.value;
-        }
-        function mostrarTabla() {
-            var tablaArtesanos = document.getElementById("tablaArtesanos");
-            var botonDatos = document.getElementById("btnDatos")
-            tablaArtesanos.style.visibility = "visible";
-            botonDatos.style.visibility = "visible";
-        }
-
-        function mostrarTabla(){
-            var tablaArtesanos = document.getElementById("tablaArtesanos");
-            var botonDatos = document.getElementById("btnDatos")
-            tablaArtesanos.style.visibility="visible"; 
-            botonDatos.style.visibility="visible";
-        }
     </script>
 
 
-    <div class="topnav" id="myTopnav">
-        <a href="/index"><img src="{{url_for('static', filename='logo2.png')}}"></a>
-        <a style="font-size:30px; color: rgb(74, 116, 241)">Bolsa de Empleo</a>
-        <div class="topnav-right">
+    <div class="ui stackable menu" id="myTopnav">
+        <a class="item" href="/index"><img src="{{url_for('static', filename='logo2.png')}}">  Bolsa de Empleo</a>
+        <div class="right menu">
         {% if current_user.is_authenticated %}
 
             {% if current_user.tipoUser == "admin" %}
-            <a href="/UsuariosBloqueados"><i class="fas fa-user-slash"></i>Usuarios Bloqueados</a>
-            <div class="dropdown">
-                <button class="dropbtn">Artesanos
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="/BusquedaAdministrador"><i class="fa fa-fw fa-search"></i>Buscar Artesano</a>
-                    <a href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
-                    <a href="/RegistrarAcuerdo"><i class="fas fa-file-signature"></i>Registrar Convenio</a>
+            <a class="item" href="/UsuariosBloqueados"><i class="fas fa-user-slash"></i>Usuarios Bloqueados</a>
+            <div class="ui simple dropdown item">
+                Artesanos<i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="/BusquedaAdministrador"><i class="fa fa-fw fa-search"></i>Buscar Artesano</a>
+                    <a class="item" href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
+                    <a class="item" href="/RegistrarAcuerdo"><i class="fas fa-file-signature"></i>Registrar Convenio</a>
                 </div>
             </div>
 
             {% elif current_user.tipoUser == "artesano" %}
-            <div class="dropdown">
-                <button class="dropbtn">Artesanos
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesano</a>
-                    <a href="/RegistrarArtesano/{{current_user.id}}"><i class="fa fa-fw fa-address-card"></i>Registrar Datos</a>
-                    <a href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
+            <div class="ui simple dropdown item">
+                Artesanos<i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesano</a>
+                    <a class="item" href="/RegistrarArtesano/{{current_user.id}}"><i class="fa fa-fw fa-address-card"></i>Registrar Datos</a>
+                    <a class="item" href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
                 </div>
             </div>
 
@@ -95,56 +64,48 @@
 
             {% if  current_user.tipoUser == "cliente" %}
 
-            <div class="dropdown">
-                <button class="dropbtn">Clientes
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesanos</a>
-                    <a href="/Convenios"><i class="fas fa-file-alt"></i> Convenios</a>
+            <div class="ui simple dropdown item">
+                Clientes<i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesanos</a>
+                    <a class="item" href="/Convenios"><i class="fas fa-file-alt"></i> Convenios</a>
                 </div>
             </div>
 
             {% endif %}
 
             {% if current_user.tipoUser == "admin" %}
-            <div class="dropdown">
-                <button class="dropbtn">Cursos
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="/CrearCurso"><i class="fa fa-fw fa-users"></i>Crear Cursos</a>
-                    <a href="/InfoCurso"><i class="fa fa-fw fa-book"></i>Informacion de Curso</a>
-                    <a href="/ListarCursos"><i class="fa fa-fw fa-book"></i>Listar Cursos</a>
+            <div class="ui simple dropdown item">
+                Cursos<i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="/CrearCurso"><i class="fa fa-fw fa-users"></i>Crear Cursos</a>
+                    <a class="item" href="/InfoCurso"><i class="fa fa-fw fa-book"></i>Informacion de Curso</a>
+                    <a class="item" href="/ListarCursos"><i class="fa fa-fw fa-book"></i>Listar Cursos</a>
                 </div>
             </div>
             {% endif %}
         {% endif %}
         {% if current_user.is_anonymous %}
-        <a href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesanos</a>
+        <a class="item" href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesanos</a>
         {% endif %}
             {% if current_user.is_anonymous %}
-            <a href="/Login" class="active"><i class="fa fa-user-circle"></i>Login</a>
+            <a class="item" href="/Login" class="active"><i class="fa fa-user-circle"></i>Login</a>
             {% else %}
-            <div class="dropdown">
-                <button class="dropbtn">{{current_user.nombres}}
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="/CambiarContraseña"><i class="fa fa-fw fa-users"></i>Cambiar Contraseña</a>
-                    <a href="/Logout"><i class="fa fa-user-circle"></i>Logout</a>
+            <div class="ui simple dropdown item">
+                {{current_user.nombres}}
+                <div class="menu">
+                    <a class="item" href="/CambiarContraseña"><i class="fa fa-fw fa-users"></i>Cambiar Contraseña</a>
+                    <a class="item" href="/Logout"><i class="fa fa-user-circle"></i>Logout</a>
                 </div>
             </div>
 
 
             {% endif %}
-            
-
-            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
         </div>
     </div>
-    <hr>
-    {% block content %}{% endblock %}
+    <div class="ui container">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 
 </html>

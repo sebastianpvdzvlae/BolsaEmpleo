@@ -5,72 +5,52 @@
 
 <h1> Desbloquear Usuarios</h1>
 
-<div class = "formulario">
-<table style="margin: 0 auto;">
-<tr>
-    <td style = "text-align: center">Buscar: </td>
-</tr>
-<tr>
-    <td ><select id="opciones" onchange="mostrarBoton()">
-        <option value="correoElectronico">Por E-mail</option>
-  </select></td>
-</tr>
-	
-</tr>
-<tr>
-    <td><input type = "text" id="correo" size="40" placeholder="Ingrese el dato a buscar" ></td>
-</tr>
-<tr>
-    <td>
-        <div class= "botonBuscar" >
-            <input type="submit" value="Buscar" onclick="mostrarTabla()">
-        </div>        
-    </td>    
-</tr>
-</table>
-</div>
-    
-<div class= "formularioTabla">
-  <form>
-<table id="tablaArtesanos">
+<form class="ui form">
+    <div class="field">
+        <label>Buscar:</label>
+        <div class="fields">
+            <div class="four wide field">
+                <select id="opciones" onchange="mostrarBoton()">
+                    <option value="correoElectronico">Por E-mail</option>
+                </select>
+            </div>
+            <div class="twelve wide field">
+                <input type="text" id="correo" size="40" placeholder="Ingrese el dato a buscar">
+            </div>
+        </div>
+    </div>
+    <div class= "field" >
+        <a class="ui button" onclick="mostrarTabla()">Buscar</a>
+    </div>
+</form>        
+
+<div class="ui container">
+<table class="ui compact celled table" id="tablaArtesanos">
     <thead>
     <th> Nombres </th>
     <th> Apellidos </th>
     <th> Identificacion </th>
     <th> Correo Electronico </th>
     <th> Estado </th>
-    <th> </th>
     </thead>
     <tbody>
     </tbody>    
-    <tr>
-        <td>Cosme</td>
-        <td>Fulanito</td>
-        <td>17276394</td>
-        <td>cosme.fulanito@gmail.com</td>
-        <td>Bloqueado</td>
-        <td><input type="button" value="Desbloquear">
-    </tr>
-    <tr>
-        <td>Cosme1</td>
-        <td>Fulanito1</td>
-        <td>172763941</td>
-        <td>cosme1.fulanit1o@gmail.com</td>
-        <td>Bloqueado</td>
-        <td><input type="button" value="Desbloquear">
-    </tr>
     <tfoot>
         <tr>
-            <th colspan="8">
-                <div>
-                    <input type="button" id="btnBack" value="Atras"></input>
-                    <input type="button" id="btnNext" value="Siguiente"></input>
+            <th colspan="5">
+                <div class="ui right floated pagination menu">
+                    <a class="icon item" id="btnBack">
+                        <i class="chevron left icon"></i>
+                    </a>
+                    <a class="icon item" id="btnNext">
+                        <i class="right chevron icon"></i>
+                    </a>
                 </div>
             </th>
         </tr>
     </tfoot>
 </table>
-</form>
+
 </div>
 
 {% endblock %}

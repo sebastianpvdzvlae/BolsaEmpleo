@@ -30,7 +30,7 @@ function camposVacios(){
     var telf0 = document.getElementById("inputTelefono").value;
 
     if(identificacion == "" || nombres == "" || apellidos == "" || direccion=="" || telf0 == ""){
-        alert("Campos Obligatorios Vaciós");
+        alert("Campos Obligatorios Vacíos");
         if(identificacion == ""){
             document.getElementById("txt_id").style.borderColor="#E70D34";
         }

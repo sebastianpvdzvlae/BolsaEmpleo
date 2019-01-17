@@ -4,22 +4,17 @@
 
 {% with messages = get_flashed_messages() %}
 {% if messages %}
-<ul> 
     {% for message in messages %}
-    <h1> {{message}} </h1>
+    <h1 class="ui center aligned header"> {{message}} </h1>
     {% endfor %}
-</ul>
 {% else %}
-<h1>Bienvenido {{current_user.nombres}}</h1>
+<h1 class="ui center aligned header">Bienvenido {{current_user.nombres}}</h1>
 {% endif %}
 {% endwith %}
-
-<div class="formulario">
-    <p>
-        Reciba un cordial saludo de parte de quienes conformamos la Bolsa de Empleo del Gobierno Autónomo Descentralizado de la Provincia de Pichincha.
-    </p>
-    <p>
-        Esta página tiene como fin facilitar la búsqueda de empleados y empleadores del sector artesanal de la construcción.
-    </p>
+<div class="ui container">
+    <div class="ui raised very padded text container segment">
+    Reciba un cordial saludo de parte de quienes conformamos la Bolsa de Empleo del Gobierno Autónomo Descentralizado de la Provincia de Pichincha.</br>
+    Esta página tiene como fin facilitar la búsqueda de empleados y empleadores del sector artesanal de la construcción.
+    </div>
 </div>
 {% endblock %}

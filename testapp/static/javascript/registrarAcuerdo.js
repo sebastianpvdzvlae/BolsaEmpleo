@@ -15,13 +15,13 @@ function botonGuardar(){
         fechaFin: fechaFin.value,
         comentario: comentario.value
     }
-    url='http://127.0.0.1:5000/users/';
+    url='http://127.0.0.1:5000/acuerdos/';
     console.log(acuerdo);
    $.ajax({
         url: url,
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(user),
+        data: JSON.stringify(acuerdos),
         dataType: "json"
     }).then(function (response) {
         console.log(response._id);

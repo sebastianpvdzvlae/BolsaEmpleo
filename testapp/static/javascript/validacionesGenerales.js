@@ -97,6 +97,15 @@ function validarCorreo(email) {
     return regex.test(email) ? true : false;
 }
 
+function validarfechaFinMayor(fechaFin, fechaInicio){
+    if(fechaFin>fechaInicio){
+        return true;
+    }else{
+        alert("La fecha de Fin debe ser mayor a la fecha de Inicio");
+        return false;
+    }
+}
+
 
 function cambiarColorCampo(elemento) {
     if ($(elemento).val() != "") {

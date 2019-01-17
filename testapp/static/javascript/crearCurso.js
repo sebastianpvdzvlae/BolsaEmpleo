@@ -12,7 +12,7 @@ function crearCurso() {
 		url: url,
 		type: "POST",
 		contentType: "application/json; charset=utf-8",
-		data: JSON.stringify(curso),
+		data: JSON.stringify(courses),
 		dataType: "json"
 	}).then(function (response) {
 		console.log(response._id);

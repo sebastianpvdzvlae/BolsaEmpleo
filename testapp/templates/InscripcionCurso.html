@@ -2,48 +2,64 @@
 
 {% block content %}
 
-	<h1> Inscripcion a Curso de Capacitacion</h1>
+<script src="{{ url_for('static',filename='javascript/validarDatosRegistrarConvenio.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static',filename='javascript/registrarAcuerdo.js') }}" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-	<div class="formulario">
-		<table align="center">
-			<tr>
-				<td>Seleccione un Curso:</td>
-				<td><select>
-						<option value="curso1">Curso 1</option>
-						<option value="curso2">Curso 2</option>
-						<option value="curso3">Curso 3</option>
-					</select></td>
-			</tr>
-			<tr>
-				<td>Descripcion del Curso:</td>
-				<td><textarea cols="40" rows="6" id="descripcion" disabled></textarea></td>
-			</tr>
-			<tr>
-				<td>Nombre del Instructor: </td>
-				<td><input type="text" id="nombreInstructor" size="40" disabled></td>
-			</tr>
-			<tr>
-				<td>Fecha de Inicio:</td>
-				<td><input type="date" id="fechaInicio" size="40" disabled></td>
-			</tr>
-			<tr>
-				<td>Fecha de Fin:</td>
-				<td><input type="date" id="fechaFin" size="40" disabled></td>
-			</tr>
-			<tr>
-				<td>Lugar:</td>
-				<td><input type="text" id="lugar" size="40" disabled></td>
-			</tr>
-			<tr>
-				<td>Horario:</td>
-				<td><input type="text" id="horario" size="40" disabled></td>
-			</tr>
-		</table>
+<h1 class="ui centered align header"> Inscripción a Curso de Capacitacion</h1>
+
+<div class="ui form">
+	<div class="field">
+		<label>Seleccione un Curso</label>
+		<select class="ui fluid dropdown">
+			<option value="curso1">Curso 1</option>
+			<option value="curso2">Curso 2</option>
+			<option value="curso3">Curso 3</option>
+		</select>
 	</div>
-	<div class="botones">
-		<tr>
-			<td> <input type="submit" value="Inscribirse" onclick="botonGuardar()">
-				<input type="submit" value="Regresar" onclick="location.href = '/index'"></td>
-		</tr>
+	<div class="field">
+		<label>Descripción del Curso</label>
+		<textarea disabled></textarea>
 	</div>
-	{% endblock %}
+	<div class="field">
+		<label>Nombre del Instructor</label>
+		<input type="text" id="nombreInstructor" size="40" disabled>
+	</div>
+	<div class="field">
+		<label>Fecha de Inicio</label>
+		<input type="date" id="fechaInicio" size="40" disabled>
+	</div>
+	<div class="field">
+		<label>Fecha de Fin</label>
+		<input type="date" id="fechaFin" size="40" disabled>
+	</div>
+	<div class="field">
+		<label>Lugar</label>
+		<input type="text" id="lugar" size="40" disabled>
+	</div>
+	<div class="field">
+		<label>Horario</label>
+		<input type="text" id="horario" size="40" disabled>
+	</div>
+</div>
+
+<p></p>
+
+<!--BOTONES-->
+<div class="ui stackable four column centered grid">
+	<div class="column">
+		<a class="ui labeled icon button" onclick="botonGuardar()">
+			<i class="user plus icon"></i>
+			Inscribirse
+		</a>
+	</div>
+	<div class="column">
+		<a class="ui labeled green icon button" onclick="location.href = '/index'">
+			<i class="arrow left icon"></i>
+			Regresar
+		</a>
+	</div>
+</div>
+
+
+{% endblock %}

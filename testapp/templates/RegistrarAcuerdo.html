@@ -1,51 +1,65 @@
+{% extends "navbar.html" %}
 
-	{% extends "navbar.html" %}
+{% block content %}
 
-	{% block content %}
+<script src="{{ url_for('static',filename='javascript/validacionesGenerales.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static',filename='javascript/validarDatosRegistrarConvenio.js') }}" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="{{ url_for('static',filename='javascript/registrarAcuerdo.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}"></script>
 
-	<script src="{{ url_for('static',filename='javascript/validarDatosRegistrarConvenio.js') }}" type="text/javascript"></script>
-	<script src="{{ url_for('static',filename='javascript/registrarAcuerdo.js') }}" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<h1 class="ui centered align header"> Registro de Acuerdo</h1>
 
-	<h1> Registro de Acuerdo</h1>
-
-	<div class="formulario">
-		<table align="center">
-			<tr>
-				<td>Nombre del Artesano:</td>
-				<td><input type="text" id="nombreArtesano" size="40" disabled></td>
-			</tr>
-			<tr>
-				<td>Acuerdo de: </td>
-				<td><input type="text" id="acuerdo" size="40" onchange="cambiarColorCampo(this)"></td>
-			</tr>
-			<tr>
-				<td>Descripcion de la Tarea:</td>
-				<td><textarea cols="40" rows="6" id="descripcion" onchange="cambiarColorCampo(this)"></textarea></td>
-			</tr>
-			<tr>
-				<td>Valor del Acuerdo:</td>
-				<td><input type="number" id="valor" size="40" step=".01" oninput="cambiarColorCampo(this)"></td>
-			</tr>
-			<tr>
-				<td>Fecha de Inicio:</td>
-				<td><input type="date" id="fechaInicio" size="40"></td>
-			</tr>
-			<tr>
-				<td>Fecha de Fin:</td>
-				<td><input type="date" id="fechaFin" size="40"></td>
-			</tr>
-			<tr>
-				<td>Comentario:</td>
-				<td><textarea cols="40" rows="6" id="comentario"></textarea></td>
-			</tr>
-		</table>
+<div class="ui form">
+	<div class="field">
+		<label>Nombre del Artesano</label>
+		<input type="text" id="nombreArtesano" size="40" disabled>
 	</div>
-	<div class="botones">
-		<tr>
-			<td> <input type="submit" value="Registrar" onclick="validarDatosRegistrarConvenio()">
-				<input type="submit" value="Limpiar Campos">
-				<input type="submit" value="Regresar" onclick="location.href = '/index'"></td>
-		</tr>
+	<div class="field">
+		<label>Acuerdo de</label>
+		<input type="text" id="acuerdo" size="40" onchange="cambiarColorCampo(this)">
 	</div>
-	{% endblock %}
+	<div class="field">
+		<label>Descripcion de la Tarea</label>
+		<textarea cols="40" rows="6" id="descripcion" onchange="cambiarColorCampo(this)"></textarea>
+	</div>
+	<div class="field">
+		<label>Valor del Acuerdo</label>
+		<input type="number" id="valor" size="40" step=".01" min="0.01" onchange="cambiarColorCampo(this)">
+	</div>
+	<div class="field">
+		<label>Fecha de Inicio</label>
+		<input type="date" id="fechaInicio" size="40" onchange="cambiarColorCampo(this)">
+	</div>
+	<div class="field">
+		<label>Fecha de Fin</label>
+		<input type="date" id="fechaFin" size="40" onchange="cambiarColorCampo(this)">
+	</div>
+	<div class="field">
+		<label>Comentario</label>
+		<textarea cols="40" rows="6" id="comentario"></textarea>
+	</div>
+</div>
+<p></p>
+<!--BOTONES-->
+<div class="ui stackable five column centered grid">
+	<div class="column">
+		<a class="ui labeled blue icon button" onclick="validarDatosRegistrarConvenio()">
+			<i class="user plus icon"></i>
+			Registrar
+		</a>
+	</div>
+	<div class="column">
+		<a class="ui labeled icon button" onclick="limpiarCamposRegistraConvenio()">
+			<i class="arrow left icon"></i>
+			Limpiar Campos
+		</a>
+	</div>
+	<div class="column">
+		<a class="ui labeled green icon button" onclick="location.href = '/index'">
+			<i class="arrow left icon"></i>
+			Regresar
+		</a>
+	</div>
+</div>
+{% endblock %}
