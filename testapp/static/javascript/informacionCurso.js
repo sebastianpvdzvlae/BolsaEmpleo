@@ -132,7 +132,7 @@ function registrarInfoCurso() {
 		lugar: lugar.value,
 		horario: horario.value
 	}
-	
+	url=serverUrl + "/courses/";
 	console.log(info_curso);
     $.ajax({
         url: url + curso.value,
