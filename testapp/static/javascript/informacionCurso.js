@@ -64,44 +64,22 @@ function cargarTablaInstructores() {
     $.get({ url: url, cache: false, data })
         .then(function(response) {
 
-            $("#tablaInstructores").find("tbody").remove();
+            $("#tablaInstructores").find("tbody").empty("");
             var total = response.count;
             var items = response.courses;
-            var pages = Math.ceil(total / pageSize);
-            /*$("#btnNext").addClass('disabled');
-            if (pages > currentPage + 1) {
-                $("#btnNext").removeClass('disabled');
-            }
-            $("#btnBack").addClass('disabled');
-            if (currentPage > 0) {
-                $("#btnBack").removeClass('disabled');
-            }*/
-            var tbl = document.getElementById("tablaInstructores");
-            var tblBody = document.createElement("tbody");
-            
-            
-            for (var i = 0; i < items.length; i++) {
-                var fila = document.createElement("tr");
-                var celda = document.createElement("td");
-                var textoCelda = document.createTextNode(items[i]['identificacion']);
-                celda.appendChild(textoCelda);
-                fila.appendChild(celda);
-                celda = document.createElement("td");
-                textoCelda = document.createTextNode(items[i]['nombres']);
-                celda.appendChild(textoCelda);
-                fila.appendChild(celda);
-                celda = document.createElement("td");
-                textoCelda = document.createTextNode(items[i]['apellidos']);
-                celda.appendChild(textoCelda);
-                fila.appendChild(celda);
-                celda = document.createElement("td");
-                textoCelda = document.createTextNode(items[i]['telefono']);
-                celda.appendChild(textoCelda);
-                fila.appendChild(celda);
-                tblBody.appendChild(fila);
-            }
+            //var pages = Math.ceil(total / pageSize);
 
-            tbl.appendChild(tblBody);
+            var tableBody = $('#tablaInstructores').children('tbody');
+            for (var i = 0; i < items.length; i++) {
+                tableBody.append(
+                    "<tr>" +
+                    "<td>" + items[i]['identificacion'] + "</td>" +
+                    "<td>" + items[i]['nombres'] + "</td>" +
+                    "<td>" + items[i]['apellidos'] + "</td>" +
+                    "<td>" + items[i]['telefono'] + "</td>" +
+                    "</tr>"
+                );
+            }
         }).fail(function(data, textStatus, xhr) {
             window.alert("Error tabla");
             console.log([data, textStatus, xhr]);
