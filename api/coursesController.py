@@ -44,8 +44,14 @@ courseParser.add_argument(
     'page', type=int, help='page number', location='head')
 courseParser.add_argument('pageSize', type=int,
                         help='page size', location='head')
-courseParser.add_argument('course', type=str,
-                        help='course Name', location='head')
+
+findByNameParser = api.parser()
+findByNameParser.add_argument(
+    'page', type=int, help='page number', location='head')
+findByNameParser.add_argument('pageSize', type=int,
+                          help='page size', location='head')
+findByNameParser.add_argument('course', type=str,
+                          help='course Name', location='head')
 
 @api.route('/')
 class Courses(Resource):
@@ -72,7 +78,7 @@ class Courses(Resource):
 
 @api.route('/find-by-name')
 class CourseByName(Resource):
-    @api.doc(parser=courseParser)
+    @api.doc(parser=findByNameParser)
     def get(self):
         collection = get_db()['courses']
         args = request.args
