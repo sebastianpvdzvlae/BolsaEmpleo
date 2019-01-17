@@ -17,11 +17,10 @@
     </select>
 </div>
         <div class= "field">
-            <input class="ui button" type="submit" value="Buscar" onclick="tablaArtesanos(0)">
+            <a class="ui button" onclick="tablaArtesanos(0)">Buscar</a>
         </div>        
 </form>
-    
-<div class= "formularioTabla">
+
 <table id="tablaArtesanos" class="ui celled table">
     <thead>
     <th> Nombres </th>
@@ -47,35 +46,4 @@
         </tr>
     </tfoot>
 </table>
-</div>
-
-<div class="formularioTabla">
-        <table id="tablaArtesanos" class="ui celled table">
-            <thead>
-                <th> Nombres </th>
-                <th> Apellidos </th>
-                <th> Servicio Ofrecido </th>
-                <th> Telefonos de Contacto </th>
-                <th> Direccion </th>
-                <!--<th> Disponibilidad </th>-->
-                <th> </th>
-            </thead>
-            <tbody>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="8">
-                        <div class="ui right floated pagination menu">
-                            <a class="icon item" id="btnBack" href="#">
-                                <i class="chevron left icon"></i>
-                            </a>
-                            <a class="icon item" id="btnNext" href="#">
-                                <i class="right chevron icon"></i>
-                            </a>
-                        </div>
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
 {% endblock %}

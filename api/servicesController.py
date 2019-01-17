@@ -12,23 +12,10 @@ servicesParser.add_argument(
     'page', type=int, help='page number', location='head')
 servicesParser.add_argument('pageSize', type=int,
                              help='page size', location='head')
-servicesParser.add_argument('service', type=str,
-                             help='serviceName', location='head')
 
-queryServices = {"tipoUser": 1,
-              "tipoId": 1,
-              "identificacion": 1,
-              "email": 1,
-              "apellidos": 1,
-              "nombres": 1,
-              "direccion": 1,
-              "ubicacion": 1,
-              "telefonos": 1,
-              "estado": 1,
-              "intentos": 1,
-              "servicios": 1
-              }
-
+servicePayload = api.model('servicePayload', {
+    "name": fields.String
+})
 
 @api.route('/')
 class Services(Resource):
@@ -38,14 +25,46 @@ class Services(Resource):
         args = request.args
         page = int(args['page'])
         pageSize = int(args['pageSize'])
-        if args['service']:
-            people = list(db["users"].find({"tipoUser": "artesano", "servicios": args['service']}, queryServices).skip(
-            page * pageSize).limit(pageSize))
-        else:
-            people = list(db["users"].find({"tipoUser": "artesano"}, queryServices).skip(
-                page * pageSize).limit(pageSize))
-        for person in people:
-            person['_id'] = str(person['_id'])
-        return {"total": db["users"].count_documents({"tipoUser": "artesano", "servicios": args['service']}), "items": people}, 200
+        services = list(db["services"].find({}).skip(page * pageSize).limit(pageSize))
+        for service in services:
+            service['_id'] = str(service['_id'])
+        return {"total": db["services"].count_documents({}), "items": services}, 200
+
+    @api.expect(servicePayload)
+    def post(self):
+        collection = get_db()['services']
+        body = api.payload
+        if collection.find_one({"name" : body['name']}):
+            return {"serviceExists" : True}, 400
+        res = collection.insert_one(body)
+        return {"_id" : str(res.inserted_id)}, 200
 
 
+@api.route('/<string:id>')
+class Service(Resource):
+    def get(self, id):
+        collection = get_db()['services']
+        service = collection.find_one({"_id": ObjectId(id)})
+        if service is None:
+            return {"_id" : id}
+        service['_id'] = str(service['_id'])
+        return service, 200
+
+    def delete(self, id):
+        collection = get_db()['services']
+        res = collection.delete_one({"_id": ObjectId(id)})
+        if res.deleted_count <= 0:
+            return {"_id": id}, 404
+        return {}, 200
+
+    @api.expect(servicePayload)
+    def put(self, id):
+        collection = get_db()['services']
+        service = collection.find_one({"_id": ObjectId(id)})
+        if service == None:
+            return {"id": id}, 404
+        body = api.payload
+        collection.update_one({"_id": ObjectId(id)}, {"$set": body})
+        service = collection.find_one({"_id": ObjectId(id)})
+        service['_id'] = str(service['_id'])
+        return service, 200

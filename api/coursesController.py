@@ -20,7 +20,12 @@ coursePayload = api.model('coursePayload', {
     "numParticipantes" : fields.Integer,
     "lugar" : fields.String,
     "horario" : fields.String,
-    "participantes" : fields.List(fields.String)
+    "participantes" : fields.List(fields.String),
+    "instructores": fields.List(fields.String)
+})
+
+inscripcionPayload = api.model('inscripcionPayload', {
+    "id": fields.String
 })
 
 queryCourses = {"nombre": 1,
@@ -30,7 +35,8 @@ queryCourses = {"nombre": 1,
               "numParticipantes": 1,
               "lugar": 1,
               "horario": 1,
-              "participantes": 1
+              "participantes": 1,
+              "instructores": 1
               }
 
 courseParser = api.parser()
@@ -106,4 +112,40 @@ class Course(Resource):
         if res.deleted_count <= 0:
             return {"_id": id}, 404
         return {}, 200
-        #return {"count": len(courses), "courses": courses}, 200
+
+
+@api.route('/<string:id>/inscripcion')
+class Participantes(Resource):
+    @api.expect(inscripcionPayload)
+    def post(self, id):
+        collection = get_db()['courses']
+        course = collection.find_one({"_id": ObjectId(id)})
+        if course == None:
+            return {"id": id}, 404
+        body = api.payload
+        if len(course['participantes']) < course['numParticipantes']:
+            course['participantes'].append(body["id"])
+            collection.update_one({"_id": ObjectId(id)}, {"$set": {"participantes": course['participantes']}})
+            course = collection.find_one({"_id": ObjectId(id)})
+            course['_id'] = str(course['_id'])
+            return course, 200
+        return {"courseIsFull" : True}, 400
+
+    @api.expect(inscripcionPayload)
+    def put(self, id):
+        collection = get_db()['courses']
+        course = collection.find_one({"_id": ObjectId(id)})
+        if course == None:
+            return {"id": id}, 404
+        body = api.payload
+        try:
+            course['participantes'].remove(body["id"])
+        except Exception:
+            return {"idParticipante" : body["id"]}, 404           
+        collection.update_one({"_id": ObjectId(id)}, {"$set": {"participantes": course['participantes']}})
+        course = collection.find_one({"_id": ObjectId(id)})
+        course['_id'] = str(course['_id'])
+        return course, 200       
+ 
+    
+
