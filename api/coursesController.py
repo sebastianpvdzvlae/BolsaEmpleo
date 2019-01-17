@@ -20,8 +20,24 @@ coursePayload = api.model('coursePayload', {
     "numParticipantes" : fields.Integer,
     "lugar" : fields.String,
     "horario" : fields.String,
-    "participantes" : fields.List(fields.String)
+    "participantes" : fields.List(fields.String),
+    "instructores": fields.List(fields.String)
 })
+
+inscripcionPayload = api.model('inscripcionPayload', {
+    "id": fields.String
+})
+
+queryCourses = {"nombre": 1,
+              "descripcion": 1,
+              "fechaInicio": 1,
+              "fechaFin": 1,
+              "numParticipantes": 1,
+              "lugar": 1,
+              "horario": 1,
+              "participantes": 1,
+              "instructores": 1
+              }
 
 courseParser = api.parser()
 courseParser.add_argument(
@@ -29,6 +45,13 @@ courseParser.add_argument(
 courseParser.add_argument('pageSize', type=int,
                         help='page size', location='head')
 
+findByNameParser = api.parser()
+findByNameParser.add_argument(
+    'page', type=int, help='page number', location='head')
+findByNameParser.add_argument('pageSize', type=int,
+                          help='page size', location='head')
+findByNameParser.add_argument('course', type=str,
+                          help='course Name', location='head')
 
 @api.route('/')
 class Courses(Resource):
@@ -42,7 +65,7 @@ class Courses(Resource):
             page * pageSize).limit(pageSize))
         for course in courses:
             course['_id'] = str(course['_id'])
-        return {"count": len(courses), "courses": courses}, 200
+        return {"count": len(courses), "courses": courses}, 200	
 
     @api.expect(createCoursePayload)
     def post(self):
@@ -53,6 +76,19 @@ class Courses(Resource):
         res = collection.insert_one(body)
         return {"_id": str(res.inserted_id)}, 200
 
+@api.route('/find-by-name')
+class CourseByName(Resource):
+    @api.doc(parser=findByNameParser)
+    def get(self):
+        collection = get_db()['courses']
+        args = request.args
+        page = int(args['page'])
+        pageSize = int(args['pageSize'])
+        if args['course']:
+            courses = list(collection.find({"nombre": args['course']}, queryCourses).skip(page * pageSize).limit(pageSize))
+        for course in courses:
+            course['_id'] = str(course['_id'])
+        return {"total":collection["courses"].count_documents({"nombre":args['course']}), "courses": courses},200		
 
 @api.route('/<string:id>')
 class Course(Resource):
@@ -82,3 +118,40 @@ class Course(Resource):
         if res.deleted_count <= 0:
             return {"_id": id}, 404
         return {}, 200
+
+
+@api.route('/<string:id>/inscripcion')
+class Participantes(Resource):
+    @api.expect(inscripcionPayload)
+    def post(self, id):
+        collection = get_db()['courses']
+        course = collection.find_one({"_id": ObjectId(id)})
+        if course == None:
+            return {"id": id}, 404
+        body = api.payload
+        if len(course['participantes']) < course['numParticipantes']:
+            course['participantes'].append(body["id"])
+            collection.update_one({"_id": ObjectId(id)}, {"$set": {"participantes": course['participantes']}})
+            course = collection.find_one({"_id": ObjectId(id)})
+            course['_id'] = str(course['_id'])
+            return course, 200
+        return {"courseIsFull" : True}, 400
+
+    @api.expect(inscripcionPayload)
+    def put(self, id):
+        collection = get_db()['courses']
+        course = collection.find_one({"_id": ObjectId(id)})
+        if course == None:
+            return {"id": id}, 404
+        body = api.payload
+        try:
+            course['participantes'].remove(body["id"])
+        except Exception:
+            return {"idParticipante" : body["id"]}, 404           
+        collection.update_one({"_id": ObjectId(id)}, {"$set": {"participantes": course['participantes']}})
+        course = collection.find_one({"_id": ObjectId(id)})
+        course['_id'] = str(course['_id'])
+        return course, 200       
+ 
+    
+
