@@ -1,7 +1,8 @@
 var pageSize = 5;
 var currentPage = 0;
+url = serverUrl + "/services/"; 
+
 $(document).ready(function () {
-    tablaArtesanosAdmin(0);
     $("#btnNext").on('click', {}, function () {
         if ($(this).hasClass('disabled')) return;
         currentPage++;
@@ -13,14 +14,20 @@ $(document).ready(function () {
         currentPage--;
         tablaArtesanosAdmin(currentPage);
     });
+
+    $("#txtBusqueda").find("option").remove();
+    $("#txtBusqueda").append('<option name=" " value = ""></option>');
+
+    var data = { page: currentPage, pageSize: 20}
     $.get({ url: url, cache: false, data })
         .then(function (response) {
-            $("#txtBusqueda").find("option").remove();
-            $.map(response.services, function (service) {
-                $("#txtBusqueda").append('<option name="' + service.nombre + '" value = "' + service._id + '">' + service.nombre + '</option>');
-          
+            $.map(response.items, function (service) {
+                $("#txtBusqueda").append('<option name="' + service.name + '" value = "' + service.name + '">' + service.name + '</option>');
             });
+        });
+    tablaArtesanosAdmin(0);
 });
+
 
 function tablaArtesanosAdmin(page) {
     var txtBusqueda = $("#txtBusqueda").val()
@@ -29,7 +36,7 @@ function tablaArtesanosAdmin(page) {
         var data = { page: page, pageSize: pageSize }
     }
     else {
-        url = serverUrl + "/services/";
+        url = serverUrl + "/artesanos/artesanos-by-service";
         var data = { page: page, pageSize: pageSize, service: txtBusqueda }
     }
     $.get({ url: url, cache: false, data })

@@ -11,46 +11,46 @@
             <h4 class="ui header">Buscar por Servicios:</h2>
         </div>
         <div class="column" style="width: 50%;">
-            <select class="ui fluid dropdown" id="txtBusqueda" onchange="mostrarBoton()">
-                <option value=""></option>
-                <option value="Albañil">Albañil</option>
-                <option value="Electricista">Electricista</option>
-                <option value="Pintor">Pintor</option>
-                <option value="Carpintero">Carpintero</option>
+            <select class="ui fluid dropdown" id="txtBusqueda" >
+
             </select>
         </div>
         <div class="centered row">
-            <input type="submit" class="ui blue submit button" value="Buscar" onclick="tablaArtesanos(0)">
+            <a class="ui labeled blue icon button" onclick="tablaArtesanos(0)">
+                <i class="search icon"></i>
+                Buscar
+            </a>
         </div>
     </div>
 </div>
 
-<div class= "formularioTabla">
-<table id="tablaArtesanos" class="ui celled table">
-    <thead>
-    <th> Nombres </th>
-    <th> Apellidos </th>
-    <th> Servicio Ofrecido </th>
-    <th> Telefonos de Contacto </th>
-    <th> Direccion </th>
-    </thead>
-    <tbody>
-    </tbody>
-    <tfoot>
-        <tr>
-            <th colspan="6">
-                <div class="ui right floated pagination menu">
-                    <a class="icon item" id="btnBack" href="#">
-                        <i class="chevron left icon"></i>
-                    </a>
-                    <a class="icon item" id="btnNext" href="#">
-                        <i class="right chevron icon"></i>
-                    </a>
-                </div>
-            </th>
-        </tr>
-    </tfoot>
-</table>
+<div class="formularioTabla">
+
+    <table id="tablaArtesanos" class="ui celled table">
+        <thead>
+            <th> Nombres </th>
+            <th> Apellidos </th>
+            <th> Servicio Ofrecido </th>
+            <th> Telefonos de Contacto </th>
+            <th> Direccion </th>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="6">
+                    <div class="ui right floated pagination menu">
+                        <a class="icon item" id="btnBack" href="#">
+                            <i class="chevron left icon"></i>
+                        </a>
+                        <a class="icon item" id="btnNext" href="#">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
 </div>
 
 {% endblock %}

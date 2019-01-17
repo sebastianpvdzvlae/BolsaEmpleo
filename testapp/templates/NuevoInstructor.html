@@ -4,6 +4,8 @@
 
 <script src="{{ url_for('static',filename='javascript/registrarInstructor.js') }}"></script>
 <script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}"></script>
+<script src="{{ url_for('static',filename='javascript/validacionesGenerales.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static',filename='javascript/validarDatosNuevoInstrcutor.js') }}" type="text/javascript"></script>
 
 <h1> Crear un nuevo Instructor</h1>
 
@@ -42,8 +44,8 @@
 <div class="botones">
     <tr>
         <td>
-            <input type="submit" value="Guardar" onclick="registrarInstructor()">
-            <input type="submit" value="Limpiar Campos" onclick="">
+            <input type="submit" value="Guardar" onclick="validarDatosNuevoInstrcutor()">
+            <input type="submit" value="Limpiar Campos" onclick="limpiarCamposNuevoInstructor()">
             <input type="submit" value="Regresar" onclick="document.location.href='/InfoCurso'">
         </td>
     </tr>

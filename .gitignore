@@ -2,3 +2,7 @@
 .vs/VSWorkspaceState.json
 .vs/slnx.sqlite
 .vs/BolsaEmpleo/v15/.suo
+
+\.vscode/
+
+api/__pycache__/

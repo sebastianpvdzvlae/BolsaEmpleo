@@ -61,3 +61,10 @@ function limpiarCamposInfoCurso(){
 	var lugar = document.getElementById("lugar").value = "";
 	var horario = document.getElementById("horario").value = "";
 }
+
+function limpiarCamposNuevoInstructor(){
+    var id = document.getElementById("id").value = "";
+	var nombres = document.getElementById("nombres").value = "";
+	var apellidos = document.getElementById("apellidos").value = "";
+	var telf = document.getElementById("telf").value = "";
+}
