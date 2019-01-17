@@ -11,108 +11,87 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="{{ url_for('static',filename='javascript/registrarArtesano.js') }}"></script>
 
-<h1> Registrar Artesano</h1>
-<div class="formulario">
-	<table class="tabla1">
-		<tr>
-			<td class="tdTipo">Tipo de identificación:</td>
-			<td></td>
-			<td align="center">
-				<div align="left">
-					<select id="opciones" name="opciones" style="font-size: 15px;">
-						<option value="cedula" name="opc_cedula">Cédula</option>
-						<option value="pasaporte" name="opc_pasaporte">Pasaporte</option>
-						<option value="ruc" name="opc_ruc">RUC</option>
-						<option value="permiso" name="opc_permiso">Permiso de trabajo</option>
-					</select>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>Número de Identificación:</td>
-			<td></td>
-			<td><input type="text" id="txt_id" value="" onchange="cambiarColorCampo(this)"/></td>
-		</tr>
-
-		<tr>
-			<td>Apellidos:</td>
-			<td></td>
-			<td><input type="text" id="txt_apellidos" value="" onKeyPress="return soloLetras(event)" onchange="cambiarColorCampo(this)"/></td>
-		</tr>
-		<tr>
-			<td>Nombres:</td>
-			<td></td>
-			<td><input type="text" id="txt_nombres" value="" onKeyPress="return soloLetras(event)" onchange="cambiarColorCampo(this)"/></td>
-		</tr>
-
-		<tr>
-			<td>Dirección:</td>
-			<td></td>
-			<td><input type="text" id="txt_direccion" value="" onchange="cambiarColorCampo(this)"/></td>
-		</tr>
-
-
-        <tr id="idRow">
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 3ac05056372f72dfe3ad3671d9f8bd2831b5f4a8
-			<td>Teléfono:</td>
-			<td>
-				<input type="image" src="{{url_for('static', filename='minus-sign-inside.svg')}}" class="button" id="btn_menos" style="display: none;" onclick='quitarTelefono()'>
-			</td>
-			<td><input type="text" name="txt_telefono" value="" id="inputTelefono" onKeyPress="return soloNumeros(event)" onchange="cambiarColorCampo(this)"/>
-				<table id="idTable">
-					<tr>
-					</tr>
-				</table>
-			</td>
-			<td>
-				<input type="image" src="{{url_for('static', filename='plus-circle-solid.svg')}}" class="button" id="btn_mas" onclick='agregarTelefono()'>
-			</td>
-			
-		</tr>
-
-        <tr>
-            <td>Provincia:</td>
-            <td></td>
-            <td align="center">
-                <div align="center">
-                    <select id="provincia" name="opciones" style="font-size: 15px"></select>
-                </div>
-            </td>
-        </tr>
-
-        <tr class="h3">
-            <td>Canton:</td>
-            <td></td>
-            <td align="center">
-                <div align="center">
-                    <select id="canton" name="opciones" style="font-size: 15px"></select>
-                </div>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Parroquia:</td>
-            <td></td>
-            <td align="center">
-                <div align="center">
-                    <select id="parroquia" name="opciones" style="font-size: 15px"></select>
-                </div>
-            </td>
-        </tr>
-
-    </table>
-</div>
-	<div class="botones">
-		<tr>
-			<td>
-				<input type="submit" name="btn_registrar" value="Registrar" onclick="validarDatos()"/>
-				<input type="submit" name="btn_limpiar" value="Limpiar Campos" />
-				<input type="submit" name="btn_regresar" value="Regresar" onclick="location.href = '/index'" />
-			</td>
-		</tr>
+<h1 class="ui centered align header"> Registrar Artesano</h1>
+<div class="ui form">
+	<div class="field">
+		<label>Tipo de identificación:</label>
+		<select id="opciones" class="ui fluid dropdown" name="opciones" style="font-size: 15px;">
+			<option value="cedula" name="opc_cedula">Cédula</option>
+			<option value="pasaporte" name="opc_pasaporte">Pasaporte</option>
+			<option value="ruc" name="opc_ruc">RUC</option>
+			<option value="permiso" name="opc_permiso">Permiso de trabajo</option>
+		</select>
 	</div>
+	<div class="field">
+		<label>Número de Identificación:</label>
+		<input type="text" id="txt_id" value="" onchange="cambiarColorCampo(this)"/>
+	</div>
+	<div class="field">
+		<label>Apellidos:</label>
+		<input type="text" id="txt_apellidos" value="" onKeyPress="return soloLetras(event)" onchange="cambiarColorCampo(this)"/>
+	</div>	
+	<div class="field">
+		<label>Nombres:</label>
+		<input type="text" id="txt_nombres" value="" onKeyPress="return soloLetras(event)" onchange="cambiarColorCampo(this)"/>
+	</div>	
+	<div class="field">
+		<label>Dirección:</label>
+		<input type="text" id="txt_direccion" value="" onchange="cambiarColorCampo(this)"/>
+	</div>
+	<div class="field">
+		<label>Teléfono:</label>
+		<div class="ui grid">
+			
+			<div id= "idDiv" class="eight wide column" >
+				<input type="text" name="txt_telefono" value="" id="inputTelefono" onKeyPress="return soloNumeros(event)" onchange="cambiarColorCampo(this)"/>
+			</div>
+			<div class="two wide column">
+				<a class="ui icon button" id="btn_mas"  onclick='agregarTelefono()'>
+					<i class="plus circle icon" ></i>
+				</a>
+			</div>
+			<div class="two wide column">
+				<a class="ui icon button"  id="btn_menos" style="display: none;" onclick='quitarTelefono()'>
+					<i class="minus circle icon"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="field">
+		<label>Provincia:</label>
+		<select  class="ui fluid dropdown"  id="provincia" name="opciones"></select>
+	</div>
+	
+	<div class="field">
+		<label>Canton:</label>
+		<select  class="ui fluid dropdown" id="canton" name="opciones"></select>
+	</div>
+	<div class="field">
+			<label>Parroquia:</label>
+			<select  class="ui fluid dropdown" id="parroquia" name="opciones"></select>
+	</div>
+
+	<div class="ui stackable five column centered grid">
+		<div class="column">
+			<button type="submit" value="Guardar" onclick="validarDatosInfoCurso()" class="ui blue submit button">
+				<i class="user plus icon"></i>
+				Registrar
+			</button>
+		</div>
+		<div class="column">
+			<button type="submit" class="ui labeled icon button" onclick="limpiarCamposInfoCurso()" onclick="location.href = '/Registrate'">
+				<i class="trash alternate outline icon"></i>
+				Limpiar Campos
+			</button>
+		</div>
+		<div class="column">
+			<button type="submit" class="ui labeled green icon button" onclick="location.href = '/index'">
+				<i class="arrow left icon"></i>
+				Regresar
+			</button>
+		</div>
+	</div>
+</div>
+	
+
 	{% endblock %}
