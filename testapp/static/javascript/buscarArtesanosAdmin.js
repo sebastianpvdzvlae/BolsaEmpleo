@@ -13,6 +13,13 @@ $(document).ready(function () {
         currentPage--;
         tablaArtesanosAdmin(currentPage);
     });
+    $.get({ url: url, cache: false, data })
+        .then(function (response) {
+            $("#txtBusqueda").find("option").remove();
+            $.map(response.services, function (service) {
+                $("#txtBusqueda").append('<option name="' + service.nombre + '" value = "' + service._id + '">' + service.nombre + '</option>');
+          
+            });
 });
 
 function tablaArtesanosAdmin(page) {
