@@ -5,47 +5,57 @@
 <script src="{{ url_for('static',filename='javascript/registrarInstructor.js') }}"></script>
 <script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}"></script>
 
-<h1> Crear un nuevo Instructor</h1>
+<h1 class="ui centered align header"> Registrar un nuevo Instructor</h1>
 
-<div class="formulario">
-    <table align="center">
+<div class="ui form">
+    <div class="field">
+        <label>Tipo de Identificacion:</label>
+        <div>
+            <select id="tipoID" class="ui fluid dropdown">
+                <option value="cedula">Cedula</option>
+                <option value="pasaporte">Pasaporte</option>
+                <option value="ruc">RUC</option>
+            </select>
+        </div>
+    </div>
+    <div class="field">
+        <label>Numero de Identificacion:</label>
+        <input type="text" id="id">
+    </div>
+    <div class="field">
+        <label> Nombres:</label>
+        <input type="text" id="nombres" />
+    </div>
+    <div class="field">
+        <label>Apellidos:</label>
+        <input type="text" id="apellidos" />
+    </div>
+    <div class="field">
+        <label>Telefono de contacto:</label>
+        <input type="text" id="telef" />
+    </div>
 
-
-        <tr>
-            <td>Tipo de Identificacion:</td>
-            <td>
-                <select id="tipoID">
-                    <option value="cedula">Cedula</option>
-                    <option value="pasaporte">Pasaporte</option>
-                    <option value="ruc">RUC</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Numero de Identificacion:</td>
-            <td><input type="text" id="id" siz="40"></td>
-        </tr>
-        <tr>
-            <td>Nombres:</td>
-            <td><input type="text" id="nombres" siz="40"></td>
-        </tr>
-        <tr>
-            <td>Apellidos:</td>
-            <td><input type="text" id="apellidos" siz="40"></td>
-        </tr>
-        <tr>
-            <td>Telefono de contacto:</td>
-            <td><input type="text" id="telf" size="40"></td>
-        </tr>
-    </table>
+    <div class="ui stackable five column centered grid">
+        <div class="column">
+            <a onclick="registrarInstructor()" class="ui blue submit button">
+                <i class="save outline icon"></i>
+                Guardar
+            </a>
+        </div>
+        <div class="column">
+            <a class="ui labeled icon button" onclick="limpiarCamposRegistrarInstructor()">
+                <i class="trash alternate outline icon"></i>
+                Limpiar Campos
+            </a>
+        </div>
+        <div class="column">
+            <a class="ui labeled green icon button" onclick="document.location.href='/InfoCurso'">
+                <i class="arrow left icon"></i>
+                Regresar
+            </a>
+        </div>
+    </div>
 </div>
-<div class="botones">
-    <tr>
-        <td>
-            <input type="submit" value="Guardar" onclick="registrarInstructor()">
-            <input type="submit" value="Limpiar Campos" onclick="">
-            <input type="submit" value="Regresar" onclick="document.location.href='/InfoCurso'">
-        </td>
-    </tr>
-</div>
-	{% endblock %}
+
+
+    {% endblock %}
