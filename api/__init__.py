@@ -11,7 +11,7 @@ from clientesController import api as clientes
 from instructorsController import api as instructors
 from servicesController import api as services
 from provincesController import api as provinces
-
+from acuerdosUsersController import api as acuerdosUser
 
 app = Flask(__name__)
 CORS(app)
@@ -30,7 +30,7 @@ api.add_namespace(artesanos)
 api.add_namespace(instructors)
 api.add_namespace(services)
 api.add_namespace(provinces)
-
+api.add_namespace(acuerdosUser)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
