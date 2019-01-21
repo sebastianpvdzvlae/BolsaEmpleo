@@ -10,28 +10,25 @@
 <div class="ui raised very padded text container segment">
     <div class="ui doubling two column grid">
         <div class="column">
-            <h4 class="ui header">Buscar por Servicios:</h2>
+            <h4 class="ui header">Buscar por Servicios</h2>
         </div>
         <div class="column" style="width: 50%;">
-            <select class="ui fluid dropdown" id="txtBusqueda" onchange="mostrarBoton()">
-                <option value=""></option>
-                <option value="Albañil">Albañil</option>
-                <option value="Electricista">Electricista</option>
-                <option value="Pintor">Pintor</option>
-                <option value="Carpintero">Carpintero</option>
+            <select class="ui fluid dropdown" id="txtBusqueda">
+
             </select>
         </div>
         <div class="centered row">
-            <div class="botonBuscar">
-                <input type="submit" class="ui blue submit button" value="Buscar" onclick="tablaArtesanosAdmin(0)">
-            </div>
+            <a class="ui labeled blue icon button" onclick="tablaArtesanosAdmin(0)">
+                <i class="search icon"></i>
+                Buscar
+            </a>
         </div>
     </div>
 </div>
 
 
 <div class="formularioTabla">
-    <table id="tablaArtesanos" class="ui celled striped table">
+    <table id="tablaArtesanos" class="ui celled table">
         <thead>
             <th> Nombres </th>
             <th> Apellidos </th>

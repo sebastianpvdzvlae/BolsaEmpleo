@@ -1,7 +1,9 @@
 var pageSize = 5;
 var currentPage = 0;
+url = serverUrl + "/services/"; 
+
+
 $(document).ready(function () {
-    tablaArtesanos(0);
     $("#btnNext").on('click', {}, function () {
         if ($(this).hasClass('disabled')) return;
         currentPage++;
@@ -13,6 +15,19 @@ $(document).ready(function () {
         currentPage--;
         tablaArtesanos(currentPage);
     });
+
+    $("#txtBusqueda").find("option").remove();
+    $("#txtBusqueda").append('<option name=" " value = ""></option>');
+
+    var data = { page: currentPage, pageSize: 20}
+    $.get({ url: url, cache: false, data })
+        .then(function (response) {
+            $.map(response.items, function (service) {
+                $("#txtBusqueda").append('<option name="' + service.name + '" value = "' + service.name + '">' + service.name + '</option>');
+            });
+        });
+    
+    tablaArtesanos(0);
 });
 
 function tablaArtesanos(page) {

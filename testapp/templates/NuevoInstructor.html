@@ -4,6 +4,8 @@
 
 <script src="{{ url_for('static',filename='javascript/registrarInstructor.js') }}"></script>
 <script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}"></script>
+<script src="{{ url_for('static',filename='javascript/validacionesGenerales.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static',filename='javascript/validarDatosNuevoInstrcutor.js') }}" type="text/javascript"></script>
 
 <h1 class="ui centered align header"> Registrar un nuevo Instructor</h1>
 
@@ -37,7 +39,7 @@
 
     <div class="ui stackable five column centered grid">
         <div class="column">
-            <a onclick="registrarInstructor()" class="ui blue submit button">
+            <a onclick="registrarInstructor()" class="ui blue submit button" >
                 <i class="save outline icon"></i>
                 Guardar
             </a>
