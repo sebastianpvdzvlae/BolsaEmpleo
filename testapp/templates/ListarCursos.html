@@ -9,16 +9,16 @@
 <div class="formularioTabla">
     <div class="ui form">
         <div class="field">
-            <label>Buscar por servicios: </label>
+            <label>Buscar por nombre: </label>
             <div>
-                <select id="txtBusqueda" onchange="" class="ui fluid dropdown">
+                <select id="txtBusqueda" onchange="cargarTablaCursos(0)" class="ui fluid dropdown">
                     <option value=""></option>
                 </select>
             </div>
         </div>
         <div class="ui stackable seven column centered grid">
             <div class="column">
-                <a value="Buscar" onclick="" class="ui blue submit button">
+                <a value="Buscar" onclick="cargarTablaCursos(0)" class="ui blue submit button">
                     <i class="search icon"></i>
                     Buscar
                 </a>
