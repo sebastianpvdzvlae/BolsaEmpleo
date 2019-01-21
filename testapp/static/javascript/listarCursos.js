@@ -65,7 +65,7 @@ function cargarTablaCursos(page) {
                     "<td>" + items[i]['numParticipantes'] + "</td>" +
                     "<td>" + items[i]['lugar'] + "</td>" +
                     "<td>" + items[i]['horario'] + "</td>" +
-                    '<td> <a class="ui button" href="' + window.location.origin + "/InfoCurso/" + items[i]['_id'] + '">Editar</a></td>' +
+                    '<td> <a class="ui button" href="' + window.location.origin + "/InfoCurso/" + items[i]['_id'] + '"><i class="edit icon"></i> Editar</a></td>' +
                     "</tr>"
                 );
             }

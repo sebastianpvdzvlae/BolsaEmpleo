@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}"></script>
 
-<h1> Crear un nuevo Curso de Capacitacion</h1>
+<h1 class="ui centered align header"> Crear un nuevo Curso de Capacitacion</h1>
 
 <form class="ui form">
     <div class="field">
@@ -19,18 +19,26 @@
         <label>Descripcion del Curso:</label>
         <textarea cols="40" rows="6" id="descripcion" placeholder="Escriba la descripcion del Curso" onchange="cambiarColorCampo(this)"></textarea>
     </div>
-    <div class="ui container">
-        <div class="ui stackable three column center aligned grid">
-            <div class="column">
-                <a class="ui primary button" onclick="validarDatosCrearCurso()">Guardar</a>
-            </div>
-            <div class="column">
-                <a class="ui button" onclick="limpiarCamposCrearCurso()">Limpiar Campos</a>
-            </div>
-            <div class="column">
-                <a class="ui button" onclick="location.href = '/index'">Regresar</a>
-            </div>
+    <div class="ui stackable five column centered grid">
+        <div class="column cent">
+            <a onclick="validarDatosCrearCurso()" class="ui blue submit button">
+                <i class="save outline icon"></i>
+                Guardar
+            </a>
+        </div>
+        <div class="column">
+            <a class="ui labeled icon button" onclick="limpiarCamposCrearCurso()">
+                <i class="trash alternate outline icon"></i>
+                Limpiar Campos
+            </a>
+        </div>
+        <div class="column">
+            <a class="ui labeled green icon button" onclick="location.href = '/index'">
+                <i class="arrow left icon"></i>
+                Regresar
+            </a>
         </div>
     </div>
+
 </form>
 {% endblock %}

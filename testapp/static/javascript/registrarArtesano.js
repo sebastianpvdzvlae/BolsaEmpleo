@@ -100,11 +100,10 @@ function cargarArtesano(userId){
 }
 
 function agregarTelefono() {
-    var table = document.getElementById('idTable');
-    var count = table.getElementsByTagName('tr').length;
+    var div = document.getElementById('idDiv');
+    var count = div.getElementsByTagName('input').length;
     var btn_menos = document.getElementById('btn_menos');
     var btn_mas = document.getElementById('btn_mas');
-
     if (count == 1) {
         btn_menos.style.display = 'block';
     }
@@ -114,16 +113,18 @@ function agregarTelefono() {
     }
 
     if (count < 6) {
-        var row = table.insertRow(0);
-        row.innerHTML = "<input type=\"text\" id=\"telf" + count + "\"/>";
+        var nuevo = document.createElement('div');
+        nuevo.setAttribute("id","nuevo"+count);
+        nuevo.innerHTML = "<input type=\"text\" id=\"telf" + count + "\"/>";
+        div.appendChild(nuevo);
     }
 }
 
 function quitarTelefono() {
-    var table = document.getElementById('idTable');
-    var count = table.getElementsByTagName('tr').length;
-    var btn_mas = document.getElementById('btn_mas');
+    var div = document.getElementById('idDiv');
+    var count = div.getElementsByTagName('input').length;
     var btn_menos = document.getElementById('btn_menos');
+    var btn_mas = document.getElementById('btn_mas');
 
     if (count == 2) {
         btn_menos.style.display = 'none';
@@ -132,9 +133,11 @@ function quitarTelefono() {
     if (count == 6) {
         btn_mas.style.display = 'block';
     }
-
-    table.deleteRow(0);
+    var st = "nuevo" + (count-1);
+    var element = document.getElementById(st);
+    div.removeChild(element);
 }
+
 
 function upProvincia(){
     $.get({ url: url + $('#provincia').find(":selected").val(), cache: false, data : {} })
