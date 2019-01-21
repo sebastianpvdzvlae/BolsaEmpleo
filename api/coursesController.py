@@ -129,7 +129,7 @@ class Participantes(Resource):
         if course == None:
             return {"id": id}, 404
         body = api.payload
-        if len(course['participantes']) < course['numParticipantes']:
+        if len(course['participantes']) < int(course['numParticipantes']):
             course['participantes'].append(body["id"])
             collection.update_one({"_id": ObjectId(id)}, {"$set": {"participantes": course['participantes']}})
             course = collection.find_one({"_id": ObjectId(id)})
