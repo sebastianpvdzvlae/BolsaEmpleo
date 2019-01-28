@@ -6,3 +6,5 @@
 \.vscode/
 
 api/__pycache__/
+api/__pycache__/acuerdosController.cpython-37.pyc
+

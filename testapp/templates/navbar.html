@@ -40,23 +40,25 @@
         {% if current_user.is_authenticated %}
 
             {% if current_user.tipoUser == "admin" %}
-            <a class="item" href="/UsuariosBloqueados"><i class="fas fa-user-slash"></i>Usuarios Bloqueados</a>
-            <div class="ui simple dropdown item">
-                Artesanos<i class="dropdown icon"></i>
+            <a class="item" href="/UsuariosBloqueados"><i class="user times icon"></i>Usuarios Bloqueados</a>
+            <div class="ui simple dropdown labeled item">
+                <i class="users icon"></i>
+                Artesanos
                 <div class="menu">
-                    <a class="item" href="/BusquedaAdministrador"><i class="fa fa-fw fa-search"></i>Buscar Artesano</a>
-                    <a class="item" href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
-                    <a class="item" href="/RegistrarAcuerdo"><i class="fas fa-file-signature"></i>Registrar Convenio</a>
+                    <a class="item" href="/BusquedaAdministrador"><i class="search icon"></i>Buscar Artesano</a>
+                    <a class="item" href="/InscripcionCurso"><i class="clipboard outline icon"></i>Inscripcion a Curso</a>
+                    <a class="item" href="/RegistrarAcuerdo"><i class="edit icon"></i>Registrar Convenio</a>
                 </div>
             </div>
 
             {% elif current_user.tipoUser == "artesano" %}
             <div class="ui simple dropdown item">
-                Artesanos<i class="dropdown icon"></i>
+                <i class="users icon"></i>
+                Artesanos
                 <div class="menu">
-                    <a class="item" href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesano</a>
-                    <a class="item" href="/RegistrarArtesano/{{current_user.id}}"><i class="fa fa-fw fa-address-card"></i>Registrar Datos</a>
-                    <a class="item" href="/InscripcionCurso"><i class="fa fa-fw fa-clipboard"></i>Inscripcion a Curso</a>
+                    <a class="item" href="/BusquedaArtesanos"><i class="search icon"></i>Buscar Artesano</a>
+                    <a class="item" href="/RegistrarArtesano/{{current_user.id}}"><i class="address card icon"></i>Registrar Datos</a>
+                    <a class="item" href="/InscripcionCurso"><i class="clipboard outline icon"></i>Inscripcion a Curso</a>
                 </div>
             </div>
 
@@ -65,10 +67,11 @@
             {% if  current_user.tipoUser == "cliente" %}
 
             <div class="ui simple dropdown item">
-                Clientes<i class="dropdown icon"></i>
+                <i class="users icon"></i>
+                Clientes
                 <div class="menu">
-                    <a class="item" href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesanos</a>
-                    <a class="item" href="/Convenios"><i class="fas fa-file-alt"></i> Convenios</a>
+                    <a class="item" href="/BusquedaArtesanos"><i class="search icon"></i>Buscar Artesanos</a>
+                    <a class="item" href="/Convenios"><i class="file icon"></i> Convenios</a>
                 </div>
             </div>
 
@@ -76,26 +79,28 @@
 
             {% if current_user.tipoUser == "admin" %}
             <div class="ui simple dropdown item">
-                Cursos<i class="dropdown icon"></i>
+                <i class="table icon"></i>
+                Cursos
                 <div class="menu">
-                    <a class="item" href="/CrearCurso"><i class="fa fa-fw fa-users"></i>Crear Cursos</a>
-                    <a class="item" href="/InfoCurso"><i class="fa fa-fw fa-book"></i>Informacion de Curso</a>
-                    <a class="item" href="/ListarCursos"><i class="fa fa-fw fa-book"></i>Listar Cursos</a>
+                    <a class="item" href="/CrearCurso"><i class="users icon"></i>Crear Cursos</a>
+                    <a class="item" href="/InfoCurso"><i class="book icon"></i>Informacion de Curso</a>
+                    <a class="item" href="/ListarCursos"><i class="list alternate outline icon"></i>Listar Cursos</a>
                 </div>
             </div>
             {% endif %}
         {% endif %}
         {% if current_user.is_anonymous %}
-        <a class="item" href="/BusquedaArtesanos"><i class="fa fa-fw fa-search"></i>Buscar Artesanos</a>
+        <a class="item" href="/BusquedaArtesanos"><i class="search icon"></i>Buscar Artesanos</a>
         {% endif %}
             {% if current_user.is_anonymous %}
-            <a class="item" href="/Login" class="active"><i class="fa fa-user-circle"></i>Login</a>
+            <a class="item" href="/Login" class="active"><i class="user icon"></i>Login</a>
             {% else %}
             <div class="ui simple dropdown item">
+                <i class="user circle icon"></i>
                 {{current_user.nombres}}
                 <div class="menu">
-                    <a class="item" href="/CambiarContraseña"><i class="fa fa-fw fa-users"></i>Cambiar Contraseña</a>
-                    <a class="item" href="/Logout"><i class="fa fa-user-circle"></i>Logout</a>
+                    <a class="item" href="/CambiarContraseña"><i class="user icon"></i>Cambiar Contraseña</a>
+                    <a class="item" href="/Logout"><i class="power off icon"></i>Logout</a>
                 </div>
             </div>
 
