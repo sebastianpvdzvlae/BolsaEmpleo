@@ -8,7 +8,6 @@
 
 <script src="{{ url_for('static',filename='javascript/validarDatosRegistroArtesanos.js') }}" type="text/javascript"></script>
 <script src="{{ url_for('static',filename='javascript/validacionesGenerales.js') }}" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="{{ url_for('static',filename='javascript/registrarArtesano.js') }}"></script>
 <script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}"></script>
 
@@ -17,10 +16,10 @@
 	<div class="field">
 		<label>Tipo de identificación:</label>
 		<select id="opciones" class="ui fluid dropdown" name="opciones" style="font-size: 15px;">
-			<option value="cedula" name="opc_cedula">Cédula</option>
-			<option value="pasaporte" name="opc_pasaporte">Pasaporte</option>
-			<option value="ruc" name="opc_ruc">RUC</option>
-			<option value="permiso" name="opc_permiso">Permiso de trabajo</option>
+			<option value="cedula">Cédula</option>
+			<option value="pasaporte">Pasaporte</option>
+			<option value="ruc">RUC</option>
+			<option value="permiso">Permiso de trabajo</option>
 		</select>
 	</div>
 	<div class="field">
@@ -80,7 +79,7 @@
 			</button>
 		</div>
 		<div class="column">
-			<button type="submit" class="ui labeled icon button" onclick="limpiarCamposRegistrarArtesano()" onclick="location.href = '/Registrate'">
+			<button type="submit" class="ui labeled icon button" onclick="limpiarCamposRegistrarArtesano()">
 				<i class="trash alternate outline icon"></i>
 				Limpiar Campos
 			</button>
