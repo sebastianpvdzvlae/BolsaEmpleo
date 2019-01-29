@@ -27,7 +27,9 @@ coursePayload = api.model('coursePayload', {
 inscripcionPayload = api.model('inscripcionPayload', {
     "id": fields.String
 })
-
+instructorPayload = api.model('instructorsPayload', {
+    "instructor": fields.String
+})
 queryCourses = {"nombre": 1,
               "descripcion": 1,
               "fechaInicio": 1,
@@ -89,6 +91,35 @@ class CourseByName(Resource):
         for course in courses:
             course['_id'] = str(course['_id'])
         return {"total":collection["courses"].count_documents({"nombre":args['course']}), "courses": courses},200		
+
+@api.route('/<string:idCourse>/curso')
+class CourseInstructor(Resource):
+    @api.expect(instructorPayload)
+    def put(self, idCourse):
+        collection = get_db()['courses']
+        course = collection.find_one({"_id": ObjectId(idCourse)})
+        body = api.payload
+        if course == None:
+            return {"id": idCourse}, 404
+        collection.update_one({"_id": ObjectId(idCourse)}, {"$push": {'instructores':body["instructor"]}})
+        course = collection.find_one({"_id": ObjectId(idCourse)})
+        course['_id'] = str(course['_id'])
+        return course, 200
+    def get(self, idCourse):
+        collection = get_db()['courses']
+        res = collection.find_one({"_id": ObjectId(idCourse)}, {"instructores": 1})
+        instructoresDB = get_db()['instructores']
+        if res is None:
+            return {"id": id}, 404
+        instructores = []
+        try:
+            for instructor in res['instructores']:
+                instructores.append(instructoresDB.find_one({"_id": ObjectId(instructor)}))
+            for instructor in instructores:
+                instructor['_id'] = str(instructor['_id'])
+        except Exception:
+            return {"id": id}, 404
+        return {"count": len(instructores), "instructores": instructores}, 200
 
 @api.route('/<string:id>')
 class Course(Resource):
