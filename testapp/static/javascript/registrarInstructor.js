@@ -6,14 +6,14 @@ function registrarInstructor() {
 	var id = document.getElementById("id");
 	var nombres = document.getElementById("nombres");
 	var apellidos = document.getElementById("apellidos");
-	var telf = document.getElementById("telf");
-	
+    var telefono = document.getElementById("telefono");
+
 	var instructor = {
 		tipoId: tipoIDSelect.value,
 		identificacion: id.value,
 		nombres: nombres.value,
 		apellidos: apellidos.value,
-		telefono: telf.value
+		telefono: telefono.value
 	}
 	console.log(instructor);
     $.ajax({
@@ -23,13 +23,34 @@ function registrarInstructor() {
 		data: JSON.stringify(instructor),
 		dataType: "json"
 	}).then(function (response) {
-		console.log(response._id);
+        console.log(response._id);
+        registrarInstructorCurso(response._id);
         window.alert("Registro exitoso");
         window.location.reload(true);
 	}).fail(function (data, textStatus, xhr) {
-		window.alert("Error");
+		window.alert("Error Instructor");
 		console.log([data, textStatus, xhr]);
-	});
+        });
+    
+}
 
-	
+function registrarInstructorCurso(idInstructor) {
+    url = serverUrl + "/courses/" + $("#hiddenId").val() + "/curso"; 
+    var instructor = {
+        instructor: idInstructor
+    }
+    console.log(instructor);
+    $.ajax({
+        url: url,
+        type: "PUT",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(instructor), 
+        dataType: "json"
+    }).then(function (response) {
+    }).fail(function (data, textStatus, xhr) {
+        window.alert("Error Curso");
+        console.log([data, textStatus, xhr]);
+    });
+
+
 }
