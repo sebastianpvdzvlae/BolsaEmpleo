@@ -133,7 +133,7 @@ def InfoCurso(id = ''):
                 return flask.redirect(flask.url_for('index'))
 
 @app.route('/NuevoInstructor')
-@app.route('/NuevoInstructor/<id>/curso/')
+@app.route('/NuevoInstructor/<id>')
 @flask_login.login_required
 def NuevoInstructor(id = ''):
     if flask_login.current_user.tipoUser == 'admin' or flask_login.current_user.tipoUser == 'cliente':
