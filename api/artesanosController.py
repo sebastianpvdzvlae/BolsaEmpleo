@@ -35,6 +35,18 @@ servicesParser.add_argument('pageSize', type=int,
 servicesParser.add_argument('service', type=str,
                             help='serviceName', location='head')
 
+allParser = api.parser()
+allParser.add_argument(
+    'page', type=int, help='page number', location='head')
+allParser.add_argument('pageSize', type=int,
+                            help='page size', location='head')
+allParser.add_argument('service', type=str,
+                            help='serviceName', location='head')
+allParser.add_argument('canton', type=str,
+                       help='canton', location='head')
+allParser.add_argument('parroquia', type=str,
+                       help='parroquia', location='head')
+
 queryServices = {"tipoUser": 1,
                  "tipoId": 1,
                  "identificacion": 1,
@@ -82,3 +94,22 @@ class ArtesanosService(Resource):
         for person in people:
             person['_id'] = str(person['_id'])
         return {"total": db["users"].count_documents({"tipoUser": "artesano", "servicios": args['service']}), "items": people}, 200
+
+
+@api.route('/artesanos-by-all')
+class ArtesanosService(Resource):
+    @api.doc(parser=allParser)
+    def get(self):
+        db = get_db()
+        args = request.args
+        page = int(args['page'])
+        pageSize = int(args['pageSize'])
+        if args['service'] and args['canton'] and args['parroquia']:
+            people = list(db["users"].find({"tipoUser": "artesano", "servicios": args['service'], "ubicacion.parroquia": args['parroquia']}, queryServices).skip(
+                page * pageSize).limit(pageSize))
+        else:
+            people = list(db["users"].find({"tipoUser": "artesano"}, queryServices).skip(
+                page * pageSize).limit(pageSize))
+        for person in people:
+            person['_id'] = str(person['_id'])
+        return {"total": len(people), "items": people}, 200
