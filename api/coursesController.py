@@ -9,7 +9,8 @@ api = Namespace('courses', description='Courses related operations')
 
 createCoursePayload = api.model('createCoursePayload', {
     "nombre": fields.String,
-    "descripcion": fields.String
+    "descripcion": fields.String,
+	"instructores": fields.List(fields.String)
 })
 
 coursePayload = api.model('coursePayload', {
