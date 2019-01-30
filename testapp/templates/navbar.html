@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<!--    <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet" type="text/css">
+    <!--    <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ url_for('static',filename='javascript/main.js') }}"></script>
@@ -35,9 +35,10 @@
 
 
     <div class="ui stackable menu" id="myTopnav">
-        <a class="item" href="/index"><img src="{{url_for('static', filename='logo2.png')}}">  Bolsa de Empleo</a>
+        <a class="item" href="/index"><img src="{{url_for('static', filename='logo2.png')}}"> Bolsa de Empleo</a>
+
         <div class="right menu">
-        {% if current_user.is_authenticated %}
+            {% if current_user.is_authenticated %}
 
             {% if current_user.tipoUser == "admin" %}
             <a class="item" href="/UsuariosBloqueados"><i class="user times icon"></i>Usuarios Bloqueados</a>
@@ -57,14 +58,15 @@
                 Artesanos
                 <div class="menu">
                     <a class="item" href="/BusquedaArtesanos"><i class="search icon"></i>Buscar Artesano</a>
-                    <a class="item" href="/RegistrarArtesano/{{current_user.id}}"><i class="address card icon"></i>Registrar Datos</a>
+                    <a class="item" href="/RegistrarArtesano/{{current_user.id}}"><i class="address card icon"></i>Registrar
+                        Datos</a>
                     <a class="item" href="/InscripcionCurso"><i class="clipboard outline icon"></i>Inscripcion a Curso</a>
                 </div>
             </div>
 
             {% endif %}
 
-            {% if  current_user.tipoUser == "cliente" %}
+            {% if current_user.tipoUser == "cliente" %}
 
             <div class="ui simple dropdown item">
                 <i class="users icon"></i>
@@ -88,10 +90,10 @@
                 </div>
             </div>
             {% endif %}
-        {% endif %}
-        {% if current_user.is_anonymous %}
-        <a class="item" href="/BusquedaArtesanos"><i class="search icon"></i>Buscar Artesanos</a>
-        {% endif %}
+            {% endif %}
+            {% if current_user.is_anonymous %}
+            <a class="item" href="/BusquedaArtesanos"><i class="search icon"></i>Buscar Artesanos</a>
+            {% endif %}
             {% if current_user.is_anonymous %}
             <a class="item" href="/Login" class="active"><i class="user icon"></i>Login</a>
             {% else %}
@@ -99,7 +101,7 @@
                 <i class="user circle icon"></i>
                 {{current_user.nombres}}
                 <div class="menu">
-                    <a class="item" href="/CambiarContraseña"><i class="user icon"></i>Cambiar Contraseña</a>
+                    <a class="item" href="/CambiarContraseña"><i class="edit icon"></i>Cambiar Contraseña</a>
                     <a class="item" href="/Logout"><i class="power off icon"></i>Logout</a>
                 </div>
             </div>
