@@ -1,10 +1,11 @@
 var pageSize = 24;
 var currentPage = 0;
+url = serverUrl + "/provinces/";
 var provincia = {};
 var cantonNumber = 0;
 $(document).ready(function () {
     var data = { page: currentPage, pageSize: pageSize }
-    $.get({ url: serverUrl + "/provinces/", cache: false, data })
+    $.get({ url: url, cache: false, data })
     .then(function (response) {
         $("#provincia").find("option").remove();
         $.map(response.items, function (province) {
@@ -14,7 +15,7 @@ $(document).ready(function () {
     }).fail(function (data, textStatus, xhr) {
         console.log([data, textStatus, xhr]);
     });
-    if ($("#hiddenId").val()) cargarArtesano($("#hiddenId").val());
+    /*if ($("#hiddenId").val())*/ cargarArtesano($("#hiddenId").val());
     $("#provincia").change(function () {
         upProvincia();
     });
@@ -33,15 +34,17 @@ function registrarArtesano(){
     var cantones = $("#canton").val();
     var parroquias = $("#parroquia").val();
     var telf0 = document.getElementById("inputTelefono");
-    var table = document.getElementById('idTable');
+    var div = document.getElementById('idDiv');
+    var count = div.getElementsByTagName('div').length; 
     var telefono = new Array();
     telefono.push(telf0.value);
     var i;
-    for(i=1; i<table.rows.length; i++){
-        var idTelf = "telf"+i;
-        var input = document.getElementById(idTelf);
-        telefono.push(input.value);
+    for(i=1; i<count; i++){
+        var st = "telf" + (i);
+        var element = document.getElementById(st);
+        telefono.push(element.value);
     }
+    console.log(telefono);
     var user = {
         tipoId: tipoIdentificacion.value,
         identificacion: identificacion.value,
@@ -56,7 +59,7 @@ function registrarArtesano(){
         telefonos: telefono
     };
     console.log(user);
-   $.ajax({
+    $.ajax({
        url: serverUrl + "/users/" + $("#hiddenId").val(),
         type: "PUT",
         contentType: "application/json; charset=utf-8",
@@ -139,7 +142,7 @@ function quitarTelefono() {
 
 
 function upProvincia(){
-    $.get({ url: serverUrl + "/provinces/" + $('#provincia').find(":selected").val(), cache: false, data : {} })
+    $.get({ url: url + $('#provincia').find(":selected").val(), cache: false, data : {} })
         .then(function (response) {
             provincia = response;
             $("#canton").find("option").remove();
