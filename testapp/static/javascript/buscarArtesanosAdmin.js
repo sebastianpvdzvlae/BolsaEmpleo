@@ -25,6 +25,27 @@ $(document).ready(function () {
                 $("#txtBusqueda").append('<option name="' + service.name + '" value = "' + service.name + '">' + service.name + '</option>');
             });
         });
+
+        var data = { page: currentPage, pageSize: pageSize }
+        $.get({ url: serverUrl + "/provinces/", cache: false, data })
+            .then(function (response) {
+                $("#busquedaProvincia").find("option").remove();
+                $.map(response.items, function (province) {
+                    $("#busquedaProvincia").append('<option name="' + province.nombre + '" value = "' + province._id + '">' + province.nombre + '</option>');
+                });
+                upProvincia();
+            }).fail(function (data, textStatus, xhr) {
+                console.log([data, textStatus, xhr]);
+            });
+    
+        $("#busquedaProvincia").change(function () {
+            upProvincia();
+        });
+    
+        $("#busquedaCanton").change(function () {
+            upParroquia();
+        });
+    
     tablaArtesanosAdmin(0);
 });
 
@@ -76,4 +97,36 @@ function tablaArtesanosAdmin(page) {
 function redirigir(id) {
     location.href = serverUrl+"/RegistrarArtesano/"+id
         
+}
+
+function upProvincia() {
+    $.get({ url: serverUrl + "/provinces/" + $('#busquedaProvincia').find(":selected").val(), cache: false, data: {} })
+        .then(function (response) {
+            provincia = response;
+            $("#busquedaCanton").find("option").remove();
+            var i = 0;
+            $.map(response.cantones, function (canton) {
+                $("#busquedaCanton").append('<option name="' + canton.nombre + '" value = ' + i + '>' + canton.nombre + '</option>');
+                i++;
+            });
+            $("#busquedaParroquia").find("option").remove();
+            i = 0;
+            $.map(provincia.cantones[parseInt($('#busquedaCanton').find(":selected").val())].parroquias, function (parroquia) {
+                $("#busquedaParroquia").append('<option name="' + parroquia + '" value = ' + i + '>' + parroquia + '</option>');
+                i++;
+            });
+
+        }).fail(function (data, textStatus, xhr) {
+            console.log([data, textStatus, xhr]);
+        });
+}
+
+
+function upParroquia(){
+    $("#busquedaParroquia").find("option").remove();
+    var i = 0;
+    $.map(provincia.cantones[parseInt($('#busquedaCanton').find(":selected").val())].parroquias, function (parroquia) {
+        $("#busquedaParroquia").append('<option name="' + parroquia + '" value = ' + i + '>' + parroquia + '</option>');
+        i++;
+    });
 }

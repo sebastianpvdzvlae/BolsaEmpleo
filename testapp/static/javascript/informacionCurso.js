@@ -26,10 +26,11 @@ $(document).ready(function() {
 function cargarDatos(idCourse) {
     var cursoId;
 
-    if (idCourse == null)
+    if (idCourse == null) {
         cursoId = $('#cursos').find(":selected").val();
-    else 
+    } else {
         cursoId = idCourse;
+    }
  
     url = serverUrl + "/courses/"; 
 
@@ -38,8 +39,6 @@ function cargarDatos(idCourse) {
             curso = response;
             $('#fechaInicio').val("");
             $('#fechaFin').val("");
-            $('#cursos').find(":selected").val(curso.nombre);//este valor esta como null
-            console.log($('#cursos').find(":selected").val(curso.nombre).val());//si imprime el nombre correcto
             if (curso.fecha_inicio != "") 
                 $('#fechaInicio').val(curso.fecha_inicio);
             if (curso.fecha_fin != "")
@@ -50,26 +49,27 @@ function cargarDatos(idCourse) {
                 $('#lugar').val(curso.lugar);
             if (curso.horario != "")
                 $('#horario').val(curso.horario);
-            cargarTablaInstructores();
+            cargarTablaInstructores(cursoId);
 
         }).fail(function (data, textStatus, xhr) {
             console.log([data, textStatus, xhr]);
         });
 }
 
-function cargarTablaInstructores() {
-    url = serverUrl + "/instructors/";
-    var data = { page: currentPage, pageSize: pageSize }
+function cargarTablaInstructores(idCourseInstructor) {
+    url = serverUrl + "/courses/" + idCourseInstructor + "/curso";
+    var data = {}
 
     $.get({ url: url, cache: false, data })
-        .then(function(response) {
-
+        .then(function (response) {
+            console.log(response);
             $("#tablaInstructores").find("tbody").empty("");
             var total = response.count;
-            var items = response.courses;
-            //var pages = Math.ceil(total / pageSize);
+            var items = response.instructores;
 
             var tableBody = $('#tablaInstructores').children('tbody');
+
+            console.log(items);
             for (var i = 0; i < items.length; i++) {
                 tableBody.append(
                     "<tr>" +
@@ -87,6 +87,13 @@ function cargarTablaInstructores() {
 
 }
 
+function nuevoInstructor() {
+    if ($("#hiddenId").val() != null)
+        document.location.href = '/NuevoInstructor/' + $("#hiddenId").val() + '/curso/';
+    else
+        document.location.href = '/NuevoInstructor/' + $('#cursos').find(":selected").val() + '/curso/';
+        
+}
 function formato(texto) { //cambiar formato de dd/mm/yyyy a yyyy-mm-dd
     return texto.replace(/^(\d{2})\/(\d{2})\/(\d{4})$/g, '$3-$2-$1');
 }
