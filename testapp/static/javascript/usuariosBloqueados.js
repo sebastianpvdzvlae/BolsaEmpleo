@@ -16,6 +16,26 @@ $(document).ready(function () {
     });
 });
 
+function cambioEstado(id,estadoActual){
+    var est= estadoActual?"lock":"unlock";
+    var action = {
+        action: est
+    }
+    $.ajax({
+        type: "POST",
+        url: serverUrl + "/sessions/unlock-users/" + id,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(action),
+        dataType: "json"
+    }).then(function (response) {
+        window.location.reload(true);
+    }).fail(function(data, textStatus, xhr){
+        console.log("Error Post");
+        console.log([data, textStatus, xhr]);
+    });
+
+}
+
 function tablaArtesanos(page) {
     //var txtBusqueda = $("#txtBusqueda").val()
     
@@ -45,17 +65,19 @@ function tablaArtesanos(page) {
                 "<td><label>" + items[i]['identificacion'] + "</label></td>" +
                 "<td><label>" + items[i]['email'] + "</label></td>" +
                 "<td><label>" + items[i]['tipoUser'] + "</label></td>" +
-                "<td>" + '<a class="ui green button" id="btnUnlock">' + ((items[i]['estado']) ? "Bloquear" : "Desbloquear") + "</a>" + "</td>" +
+                "<td>" + '<a class="ui green button" id="'+ items[i]["identificacion"] +
+                '" onclick="cambioEstado(\''+items[i]["_id"]+'\','+items[i]['estado']+')">' + 
+                ((items[i]['estado']) ? "Bloquear" : "Desbloquear") + "</a>" + "</td>" +
                 "</tr>"
             );
-            $("#btnUnlock").onclick = function (id){
-                $.get({ url: serverUrl + "/sessions/" + id, cache: false, data : {} }).then(function (response) {});
-                window.location.reload(true);
-            };
+
+            if (items[i]['estado'])
+                document.getElementById(items[i]['identificacion']).setAttribute('class','ui red button');
+
+            
         }
     }).fail(function (data, textStatus, xhr) {
         window.alert("Error tabla");
         console.log([data, textStatus, xhr]);
     });
-
-}
+}   
