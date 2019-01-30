@@ -139,7 +139,7 @@ function quitarTelefono() {
 
 
 function upProvincia(){
-    $.get({ url: url + $('#provincia').find(":selected").val(), cache: false, data : {} })
+    $.get({ url: serverUrl + "/provinces/" + $('#provincia').find(":selected").val(), cache: false, data : {} })
         .then(function (response) {
             provincia = response;
             $("#canton").find("option").remove();
