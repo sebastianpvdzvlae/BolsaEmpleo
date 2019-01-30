@@ -44,6 +44,7 @@ function tablaArtesanos(page) {
                 "<td><label>" + items[i]['apellidos'] + "</label></td>" +
                 "<td><label>" + items[i]['identificacion'] + "</label></td>" +
                 "<td><label>" + items[i]['email'] + "</label></td>" +
+                "<td><label>" + items[i]['tipoUser'] + "</label></td>" +
                 "<td>" + '<a class="ui green button" id="btnUnlock">' + ((items[i]['estado']) ? "Bloquear" : "Desbloquear") + "</a>" + "</td>" +
                 "</tr>"
             );

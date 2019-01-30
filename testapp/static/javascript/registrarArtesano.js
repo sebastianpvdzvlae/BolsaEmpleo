@@ -1,11 +1,10 @@
 var pageSize = 24;
 var currentPage = 0;
-url = serverUrl + "/provinces/";
 var provincia = {};
 var cantonNumber = 0;
 $(document).ready(function () {
     var data = { page: currentPage, pageSize: pageSize }
-    $.get({ url: url, cache: false, data })
+    $.get({ url: serverUrl + "/provinces/", cache: false, data })
     .then(function (response) {
         $("#provincia").find("option").remove();
         $.map(response.items, function (province) {
@@ -15,7 +14,7 @@ $(document).ready(function () {
     }).fail(function (data, textStatus, xhr) {
         console.log([data, textStatus, xhr]);
     });
-    /*if ($("#hiddenId").val())*/ cargarArtesano($("#hiddenId").val());
+    if ($("#hiddenId").val()) cargarArtesano($("#hiddenId").val());
     $("#provincia").change(function () {
         upProvincia();
     });
