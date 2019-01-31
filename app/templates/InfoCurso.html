@@ -1,82 +1,103 @@
+{% extends "navbar.html" %}
 
-	{% extends "navbar.html" %}
 
-	{% block content %}
-	
-	<h1> Llenar Informacion de Curso de Capacitacion</h1>
+{% block content %}
 
-	<div class="formulario">
-		<table align="center">
-			<tr>
-				<td>Seleccione un Curso:</td>
-				<td><select>
-						<option value="curso1">Curso 1</option>
-						<option value="curso2">Curso 2</option>
-						<option value="curso3">Curso 3</option>
-					</select></td>
-			</tr>
-			<tr>
-				<td>Nombre del Curso:</td>
-				<td><input type="text" id="nombreCurso" siz="40" disabled></td>
-			</tr>
-			<tr>
-				<td>
-					<p><b>Llene los siguientes campos:</b></p>
-				</td>
-			</tr>
-			<tr>
-				<td>Fecha de Inicio:</td>
-				<td><input type="date" id="fechaInicio" size="40"></td>
-			</tr>
-			<tr>
-				<td>Fecha de Fin:</td>
-				<td><input type="date" id="fechaFin" size="40"></td>
-			</tr>
-			<tr>
-				<td>Numero de Participantes Maximo:</td>
-				<td><input type="number" id="numParticipantes" size="40"></td>
-			</tr>
-			<tr>
-				<td>Lugar:</td>
-				<td><input type="text" id="lugar" size="40"></td>
-			</tr>
-			<tr>
-				<td>Horario:</td>
-				<td><input type="text" id="horario" size="40"></td>
-			</tr>
-			<tr>
-				<td>Ingrese un nuevo Instructor: </td>
-				<td>
-					<input type="image" src="{{url_for('static', filename='plus-circle-solid.svg')}}" class="button" id="btn_mas" onclick="document.location.href='/NuevoInstructor'">
-				</td>
-			</tr>
-		</table>
-		<table id="tablaArtesanos" style="width: 70%">
-			<thead>
-				<th> Identificacion </th>
-				<th> Nombres </th>
-				<th> Apellidos </th>
-				<th> Telefonos de Contacto </th>
-			</thead>
-			<tr>
-				<td>Uno</td>
-				<td>Dos</td>
-				<td>Tres</td>
-				<td>Cuatro</td>
-			</tr>
-			<tr>
-				<td>Uno</td>
-				<td>Dos</td>
-				<td>Tres</td>
-				<td>Cuatro</td>
-			</tr>
-		</table>
-	</div>
-	<div class="botones">
-		<tr>
-			<td> <input type="submit" value="Guardar" onclick="botonGuardar()"  >
-				<input type="submit" value="Limpiar Campos">
-				<input type="submit" value="Regresar" onclick="location.href = '/index'"></td>
-		</tr>
-	</div>
-	{% endblock %}
+{% if id %}
+<input type="hidden" value="{{ id }}" id="hiddenId" />
+{% endif %}
+<script src="{{ url_for('static',filename='javascript/informacionCurso.js') }}"></script>
+<script src="{{ url_for('static',filename='javascript/limpiarCampos.js') }}"></script>
+<script src="{{ url_for('static',filename='javascript/validacionesGenerales.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static',filename='javascript/validarDatosInfoCurso.js') }}" type="text/javascript"></script>
+
+<h1 class="ui centered align header"> Llenar Informacion de Curso de Capacitacion</h1>
+<div class="ui form">
+    <div class="field">
+        <label>Seleccione el Curso:</label>
+        <div>
+            <select id="cursos" onchange="cargarDatos()" class="ui fluid dropdown"></select>
+        </div>
+    </div>
+    <br />
+    <div class="field">
+        <label><b>Llene los siguientes campos:</b></label>
+    </div>
+    <br />
+    <div class="field">
+        <label>Fecha de Inicio:</label>
+        <input type="date" id="fechaInicio" onchange="cambiarColorCampo(this)">
+    </div>
+    <div class="field">
+        <label>Fecha de Fin:</label>
+        <input type="date" id="fechaFin" onchange="cambiarColorCampo(this)">
+    </div>
+    <div class="field">
+        <label>Numero de Participantes Maximo:</label>
+        <input type="number" id="numParticipantes" min="1" step="1" onchange="cambiarColorCampo(this)">
+    </div>
+    <div class="field">
+        <label>Lugar:</label>
+        <input type="text" id="lugar" onchange="cambiarColorCampo(this)">
+    </div>
+    <div class="field">
+        <label>Horario:</label>
+        <input type="text" id="horario" class="ui input" onchange="cambiarColorCampo(this)">
+    </div>
+    <div class="ui stackable three column grid">
+        <div class="column">
+            <label>Agregar instructores al curso:</label>
+        </div>
+        <div class="column">
+            <select id="instructores" class="ui fluid dropdown">
+                <option>Seleccione un instructor</option>
+            </select>
+        </div>
+        <div class="column">
+            <a class="ui inverted violet button" onclick="agregarInstructor()">
+                <i class="users icon"></i>
+                Agregar Instructor Seleccionado
+            </a>
+        </div>
+    </div>
+    <div class="field">
+        <a class="ui inverted purple button" onclick="nuevoInstructor()">
+            <i class="add icon user"></i>
+            Registrar Nuevo Instructor
+        </a>
+    </div>
+    <table class="ui compact celled table" id="tablaInstructores">
+        <thead>
+            <tr>
+                <th> Identificacion </th>
+                <th> Nombres </th>
+                <th> Apellidos </th>
+                <th> Telefonos de Contacto </th>
+                <th> Eliminar </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="ui stackable five column centered grid">
+        <div class="column">
+            <a onclick="validarDatosInfoCurso()" class="ui blue submit button">
+                <i class="save outline icon"></i>
+                Guardar
+            </a>
+        </div>
+        <div class="column">
+            <a class="ui labeled icon button" onclick="limpiarCamposInfoCurso()">
+                <i class="trash alternate outline icon"></i>
+                Limpiar Campos
+            </a>
+        </div>
+        <div class="column">
+            <a class="ui labeled green icon button" onclick="location.href = '/index'">
+                <i class="arrow left icon"></i>
+                Regresar
+            </a>
+        </div>
+    </div>
+</div>
+    {% endblock %}
