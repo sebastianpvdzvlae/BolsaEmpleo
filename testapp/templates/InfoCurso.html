@@ -44,16 +44,27 @@
         <label>Horario:</label>
         <input type="text" id="horario" class="ui input" onchange="cambiarColorCampo(this)">
     </div>
-    <div class="five fields">
-        <div class="field">
-            <label>Ingrese un nuevo Instructor:</label>
+    <div class="ui stackable three column grid">
+        <div class="column">
+            <label>Agregar instructores al curso:</label>
         </div>
-        <div class="field">
-            <a class="ui basic teal button" onclick="document.location.href='/NuevoInstructor'">
+        <div class="column">
+            <select id="instructores" class="ui fluid dropdown">
+                <option>Seleccione un instructor</option>
+            </select>
+        </div>
+        <div class="column">
+            <a class="ui basic teal button" onclick="agregarInstructor()">
                 <i class="add icon user"></i>
-                Nuevo Instructor
+                Agregar Instructor Seleccionado
             </a>
         </div>
+    </div>
+    <div class="field">
+        <a class="ui basic blue button" onclick="nuevoInstructor()">
+            <i class="add icon user"></i>
+            Registrar Nuevo Instructor
+        </a>
     </div>
     <table class="ui compact celled table" id="tablaInstructores">
         <thead>
@@ -62,6 +73,7 @@
                 <th> Nombres </th>
                 <th> Apellidos </th>
                 <th> Telefonos de Contacto </th>
+                <th> Eliminar </th>
             </tr>
         </thead>
         <tbody></tbody>
