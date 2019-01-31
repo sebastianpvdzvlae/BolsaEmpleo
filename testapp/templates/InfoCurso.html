@@ -16,7 +16,8 @@
     <div class="field">
         <label>Seleccione el Curso:</label>
         <div>
-            <select id="cursos" onchange="cargarDatos()" class="ui fluid dropdown"></select>
+            <select id="cursos" onchange="cargarDatos()" class="ui fluid dropdown">
+            </select>
         </div>
     </div>
     <br />
@@ -50,18 +51,18 @@
         </div>
         <div class="column">
             <select id="instructores" class="ui fluid dropdown">
-                <option>Seleccione un instructor</option>
+                <option value="" disabled selected hidden>Seleccione un instructor</option>
             </select>
         </div>
         <div class="column">
-            <a class="ui basic teal button" onclick="agregarInstructor()">
-                <i class="add icon user"></i>
+            <a class="ui inverted blue button" onclick="agregarInstructor()">
+                <i class="users icon"></i>
                 Agregar Instructor Seleccionado
             </a>
         </div>
     </div>
     <div class="field">
-        <a class="ui basic blue button" onclick="nuevoInstructor()">
+        <a class="ui inverted blue button" onclick="nuevoInstructor()">
             <i class="add icon user"></i>
             Registrar Nuevo Instructor
         </a>
