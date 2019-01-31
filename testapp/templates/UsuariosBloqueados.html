@@ -4,7 +4,6 @@
 <script src="{{ url_for('static',filename='javascript/usuariosBloqueados.js') }}"></script>
 
 <h1> Desbloquear Usuarios</h1>
-
 <form class="ui form">
     <div class="field">
         <label>Buscar:</label>
@@ -19,37 +18,41 @@
             </div>
         </div>
     </div>
-    <div class= "field" >
-        <a class="ui button" onclick="mostrarTabla()">Buscar</a>
+    <div class="field">
+        <a class="ui labeled blue icon button" onclick="mostrarTabla()">
+            <i class="search icon"></i>
+            Buscar
+        </a>
     </div>
-</form>        
+</form>
 
 <div class="ui container">
-<table class="ui compact celled table" id="tablaArtesanos">
-    <thead>
-    <th> Nombres </th>
-    <th> Apellidos </th>
-    <th> Identificacion </th>
-    <th> Correo Electronico </th>
-    <th> Estado </th>
-    </thead>
-    <tbody>
-    </tbody>    
-    <tfoot>
-        <tr>
-            <th colspan="5">
-                <div class="ui right floated pagination menu">
-                    <a class="icon item" id="btnBack">
-                        <i class="chevron left icon"></i>
-                    </a>
-                    <a class="icon item" id="btnNext">
-                        <i class="right chevron icon"></i>
-                    </a>
-                </div>
-            </th>
-        </tr>
-    </tfoot>
-</table>
+    <table class="ui compact celled table" id="tablaArtesanos">
+        <thead>
+            <th> Nombres </th>
+            <th> Apellidos </th>
+            <th> Identificacion </th>
+            <th> Correo Electronico </th>
+            <th> Tipo de usuario</th>
+            <th> Estado </th>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="6">
+                    <div class="ui right floated pagination menu">
+                        <a class="icon item" id="btnBack">
+                            <i class="chevron left icon"></i>
+                        </a>
+                        <a class="icon item" id="btnNext">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
 
 </div>
 

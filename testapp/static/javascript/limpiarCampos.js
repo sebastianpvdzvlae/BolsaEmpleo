@@ -4,7 +4,7 @@ function limpiarCamposRegistrarArtesano() {
     document.getElementById('txt_apellidos').value = "";
     document.getElementById('txt_nombres').value = "";
     document.getElementById('txt_direccion').value = "";
-    document.getElementById('txt_telefono').value = "";
+    document.getElementById('inputTelefono').value = "";
     limpiarTelefono();
     document.getElementById("provincias").selectedIndex = "0";
     document.getElementById("cantones").selectedIndex = "0";
@@ -35,11 +35,16 @@ function limpiarCamposRegistrarInstructor() {
 }
 
 function limpiarTelefono(){
-    var table = document.getElementById('idTable');
-    var count = table.getElementsByTagName('tr').length;
+    var div = document.getElementById('idDiv');
+    var count = div.getElementsByTagName('div').length;
+    var btn_menos = document.getElementById('btn_menos');
+    var btn_mas = document.getElementById('btn_mas');
+   
     while(count > 0){
-        count = table.getElementsByTagName('tr').length;
-        table.deleteRow(count-1);
+        var st = "nuevo" + (count);
+        var element = document.getElementById(st);
+        div.removeChild(element);
+        count = div.getElementsByTagName('div').length;
     }
     btn_menos.style.display = 'none';
     btn_mas.style.display = 'block';
@@ -60,4 +65,11 @@ function limpiarCamposInfoCurso(){
 	var numParticipantes = document.getElementById("numParticipantes").value = "";
 	var lugar = document.getElementById("lugar").value = "";
 	var horario = document.getElementById("horario").value = "";
+}
+
+function limpiarCamposNuevoInstructor(){
+    var id = document.getElementById("id").value = "";
+	var nombres = document.getElementById("nombres").value = "";
+	var apellidos = document.getElementById("apellidos").value = "";
+	var telf = document.getElementById("telf").value = "";
 }

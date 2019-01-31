@@ -6,39 +6,64 @@
 
 <h1 class="ui centered align header"> Búsqueda de Artesanos</h1>
 
-
-<div class="ui raised very padded text container segment">
-    <div class="ui doubling two column grid">
-        <div class="column">
+<div class="ui doubling two column grid">
+    <div class="centered row">
+        <div class="column" style="width: 30%">
             <h4 class="ui header">Buscar por Servicios:</h2>
         </div>
-        <div class="column" style="width: 50%;">
-            <select class="ui fluid dropdown" id="txtBusqueda" onchange="mostrarBoton()">
-                <option value=""></option>
-                <option value="Albañil">Albañil</option>
-                <option value="Electricista">Electricista</option>
-                <option value="Pintor">Pintor</option>
-                <option value="Carpintero">Carpintero</option>
+        <div class="column">
+            <select class="ui fluid dropdown" id="txtBusqueda">
             </select>
         </div>
-        <div class="centered row">
-            <div class="botonBuscar">
-                <input type="submit" class="ui blue submit button" value="Buscar" onclick="tablaArtesanosAdmin(0)">
-            </div>
+    </div>
+
+    <div class="centered row">
+        <div class="column" style="width: 30%">
+            <h4 class="ui header">Provincia:</h2>
+        </div>
+        <div class="column">
+            <select class="ui fluid dropdown" id="busquedaProvincia">
+            </select>
         </div>
     </div>
+    <div class="centered row">
+        <div class="column" style="width: 30%">
+            <h4 class="ui header">Cantón:</h2>
+        </div>
+        <div class="column">
+            <select class="ui fluid dropdown" id="busquedaCanton">
+            </select>
+        </div>
+    </div>
+    <div class="centered row">
+        <div class="column" style="width: 30%">
+            <h4 class="ui header">Parroquia:</h2>
+        </div>
+        <div class="column">
+            <select class="ui fluid dropdown" id="busquedaParroquia">
+            </select>
+        </div>
+    </div>
+
+    <div class="centered row">
+        <a class="ui labeled blue icon button" onclick="tablaArtesanosAdmin(0)">
+            <i class="search icon"></i>
+            Buscar
+        </a>
+    </div>
 </div>
+<p></p>
+<h1> </h1>
 
 
 <div class="formularioTabla">
-    <table id="tablaArtesanos" class="ui celled striped table">
+    <table id="tablaArtesanos" class="ui celled table">
         <thead>
             <th> Nombres </th>
             <th> Apellidos </th>
             <th> Servicio Ofrecido </th>
             <th> Telefonos de Contacto </th>
             <th> Direccion </th>
-            <!--<th> Disponibilidad </th>-->
             <th> </th>
         </thead>
         <tbody>

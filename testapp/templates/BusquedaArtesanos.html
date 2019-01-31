@@ -4,46 +4,84 @@
 
 <script src="{{ url_for('static',filename='javascript/buscarArtesanos.js') }}"></script>
 
-<h1> Busqueda de Artesanos</h1>
-<form class="ui form">
-<div class="field">
-    <label>Buscar por servicios:</label>
-	<select class="ui dropdown" id="txtBusqueda" onchange="mostrarBoton()" >
-          <option value=""></option>
-          <option value="Albañil">Albañil</option>
-          <option value="Electricista">Electricista</option>
-          <option value="Pintor">Pintor</option>
-          <option value="Carpintero">Carpintero</option>		  
-    </select>
-</div>
-        <div class= "field">
-            <a class="ui button" onclick="tablaArtesanos(0)">Buscar</a>
-        </div>        
-</form>
+<h1 class="ui centered align header"> Busqueda de Artesanos</h1>
+<h1> </h1>
+<div class="ui doubling two column grid">
+    <div class="centered row">
+        <div class="column" style="width: 30%">
+            <h4 class="ui header">Buscar por Servicios:</h2>
+        </div>
+        <div class="column">
+            <select class="ui fluid dropdown" id="txtBusqueda">
+            </select>
+        </div>
+    </div>
 
-<table id="tablaArtesanos" class="ui celled table">
-    <thead>
-    <th> Nombres </th>
-    <th> Apellidos </th>
-    <th> Servicio Ofrecido </th>
-    <th> Telefonos de Contacto </th>
-    <th> Direccion </th>
-    </thead>
-    <tbody>
-    </tbody>
-    <tfoot>
-        <tr>
-            <th colspan="6">
-                <div class="ui right floated pagination menu">
-                    <a class="icon item" id="btnBack" href="#">
-                        <i class="chevron left icon"></i>
-                    </a>
-                    <a class="icon item" id="btnNext" href="#">
-                        <i class="right chevron icon"></i>
-                    </a>
-                </div>
-            </th>
-        </tr>
-    </tfoot>
-</table>
+    <div class="centered row">
+        <div class="column" style="width: 30%">
+            <h4 class="ui header">Provincia:</h2>
+        </div>
+        <div class="column">
+            <select class="ui fluid dropdown" id="busquedaProvincia">
+            </select>
+        </div>
+    </div>
+    <div class="centered row">
+        <div class="column" style="width: 30%">
+            <h4 class="ui header">Cantón:</h2>
+        </div>
+        <div class="column">
+            <select class="ui fluid dropdown" id="busquedaCanton">
+            </select>
+        </div>
+    </div>
+    <div class="centered row">
+        <div class="column" style="width: 30%">
+            <h4 class="ui header">Parroquia:</h2>
+        </div>
+        <div class="column">
+            <select class="ui fluid dropdown" id="busquedaParroquia">
+            </select>
+        </div>
+    </div>
+
+    <div class="centered row">
+        <a class="ui labeled blue icon button" onclick="tablaArtesanos(0)">
+            <i class="search icon"></i>
+            Buscar
+        </a>
+    </div>
+</div>
+<p></p>
+<h1> </h1>
+
+<div class="formularioTabla">
+
+    <table id="tablaArtesanos" class="ui celled table">
+        <thead>
+            <th> Nombres </th>
+            <th> Apellidos </th>
+            <th> Servicio Ofrecido </th>
+            <th> Telefonos de Contacto </th>
+            <th> Direccion </th>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="6">
+                    <div class="ui right floated pagination menu">
+                        <a class="icon item" id="btnBack" href="#">
+                            <i class="chevron left icon"></i>
+                        </a>
+                        <a class="icon item" id="btnNext" href="#">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
 {% endblock %}

@@ -4,28 +4,32 @@
 
 <script src="{{ url_for('static',filename='javascript/VerConvenios.js') }}"></script>
 
-<h1> Convenios</h1>
+<h1 class="ui centered align header"> Convenios</h1>
 
 <div class="formularioTabla">
-    <table id="tablaAcuerdos">
+    <table id="tablaAcuerdos" class="ui celled table">
         <thead>
-        <th> Nombre </th>
-        <th> Cliente </th>
-        <th> Artesano </th>
-        <th> Descripcion </th>
-        <th> Fecha Inicio </th>
-        <th> Fecha Finalizacion</th>
-        <th> Valor</th>
-        <th> Comentario</th>
-        <th> </th>
+            <th> Nombre </th>
+            <th> Cliente </th>
+            <th> Artesano </th>
+            <th> Descripción </th>
+            <th> Fecha Inicio </th>
+            <th> Fecha Finalización</th>
+            <th> Valor</th>
+            <th> Comentario</th>
+            <th> </th>
         </thead>
         <tbody></tbody>
         <tfoot>
             <tr>
                 <th colspan="8">
-                    <div>
-                        <input type="button" id="btnBack" value="Atras"></input>
-                        <input type="button" id="btnNext" value="Siguiente"></input>
+                    <div class="ui right floated pagination menu">
+                        <a class="icon item" id="btnBack" href="#">
+                            <i class="chevron left icon"></i>
+                        </a>
+                        <a class="icon item" id="btnNext" href="#">
+                            <i class="right chevron icon"></i>
+                        </a>
                     </div>
                 </th>
             </tr>

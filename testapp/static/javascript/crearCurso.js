@@ -3,11 +3,12 @@ url = serverUrl + "/courses/";
 function crearCurso() {   
     var nombre_curso = document.getElementById("nombreCurso");
     var descripcion_curso  = document.getElementById("descripcion");
-	var curso = {
+	var courses = {
 		nombre: nombre_curso.value,
-		descripcion: descripcion_curso.value
+        descripcion: descripcion_curso.value,
+        instructores: []
 	}
-	console.log(curso);
+	console.log(courses);
     $.ajax({
 		url: url,
 		type: "POST",

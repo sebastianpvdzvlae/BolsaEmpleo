@@ -132,7 +132,17 @@ def InfoCurso(id = ''):
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
 
+@app.route('/NuevoInstructor')
+@app.route('/NuevoInstructor/<id>')
+@flask_login.login_required
+def NuevoInstructor(id = ''):
+    if flask_login.current_user.tipoUser == 'admin' or flask_login.current_user.tipoUser == 'cliente':
+        return render_template('NuevoInstructor.html', id = id, title='Nuevo Instructor')
+    else:
+        flash('No posee la autorizacion adecuada para ingresar a esa pagina')
+        return flask.redirect(flask.url_for('index'))
 
+        
 @app.route('/Login', methods=['GET', 'POST'])
 def Login():
         if flask.request.method == 'GET':
@@ -209,10 +219,6 @@ def unauthorized_handler():
         flash('No posee la autorizacion adecuada para ingresar a esa pagina')
         return flask.redirect(flask.url_for('index'))
 
-@app.route('/NuevoInstructor')
-@flask_login.login_required
-def NuevoInstructor():
-    return render_template('NuevoInstructor.html', title='Nuevo Instructor de Curso')
 
 @app.route('/Convenios')
 @flask_login.login_required

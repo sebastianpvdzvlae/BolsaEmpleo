@@ -34,15 +34,17 @@ function registrarArtesano(){
     var cantones = $("#canton").val();
     var parroquias = $("#parroquia").val();
     var telf0 = document.getElementById("inputTelefono");
-    var table = document.getElementById('idTable');
+    var div = document.getElementById('idDiv');
+    var count = div.getElementsByTagName('div').length; 
     var telefono = new Array();
     telefono.push(telf0.value);
     var i;
-    for(i=1; i<table.rows.length; i++){
-        var idTelf = "telf"+i;
-        var input = document.getElementById(idTelf);
-        telefono.push(input.value);
+    for(i=1; i<count; i++){
+        var st = "telf" + (i);
+        var element = document.getElementById(st);
+        telefono.push(element.value);
     }
+    console.log(telefono);
     var user = {
         tipoId: tipoIdentificacion.value,
         identificacion: identificacion.value,
@@ -57,7 +59,7 @@ function registrarArtesano(){
         telefonos: telefono
     };
     console.log(user);
-   $.ajax({
+    $.ajax({
        url: serverUrl + "/users/" + $("#hiddenId").val(),
         type: "PUT",
         contentType: "application/json; charset=utf-8",
