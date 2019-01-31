@@ -14,7 +14,7 @@ queryAcuerdosUser = {
                     "descripcion" : 1,
                     "valor" : 1,
                     "fechaInicio" : 1,
-                    "fechFin" : 1,
+                    "fechaFin" : 1,
                     "comentario" : 1
                     }}
 queryMatch = {"$match": {"cliente": id}}
@@ -46,5 +46,5 @@ class UserAcuerdo(Resource):
                 acuerdosU['artesanoID'] = str(acuerdosU['artesanoID'])
                 acuerdosU['acuerdoUsuario']['_id'] = str (acuerdosU['acuerdoUsuario']['_id'])
 
-        return {"total": collection.count_documents({}), "items": acuerdosUser}, 200
+        return {"total": len(acuerdosUser), "items": acuerdosUser}, 200
 

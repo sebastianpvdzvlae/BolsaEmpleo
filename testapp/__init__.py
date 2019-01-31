@@ -221,9 +221,14 @@ def unauthorized_handler():
 
 
 @app.route('/Convenios')
+@app.route('/Convenios/<id>')
 @flask_login.login_required
-def Convenios():
-    return render_template('VerConvenio.html', title='Ver Convenios')
+def Convenios(id = ''):
+        if flask_login.current_user.tipoUser == 'cliente':
+                return render_template('VerConvenio.html', id = id, title='Ver Convenios')
+        else:
+                flash('No posee la autorizacion adecuada para ingresar a esa pagina')
+                return flask.redirect(flask.url_for('index'))
 
 
 @app.route('/UsuariosBloqueados')

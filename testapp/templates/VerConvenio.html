@@ -2,24 +2,29 @@
 
 {% block content %}
 
+{% if id %}
+<input type="hidden" value="{{ id }}" id="hiddenId" />
+{% endif %}
+
 <script src="{{ url_for('static',filename='javascript/VerConvenios.js') }}"></script>
 
+<h1> Convenios</h1>
 <h1 class="ui centered align header"> Convenios</h1>
 
 <div class="formularioTabla">
-    <table id="tablaAcuerdos" class="ui celled table">
+    <table id="tablaAcuerdos" class="ui celled striped table">
         <thead>
-            <th> Nombre </th>
-            <th> Cliente </th>
-            <th> Artesano </th>
-            <th> Descripción </th>
-            <th> Fecha Inicio </th>
-            <th> Fecha Finalización</th>
-            <th> Valor</th>
-            <th> Comentario</th>
-            <th> </th>
+        <th> Usuario </th>
+        <th> Tipo Usuario </th>
+        <th> Descripcion </th>
+        <th> Fecha Inicio </th>
+        <th> Fecha Finalizacion</th>
+        <th> Valor</th>
+        <th> Comentario</th>
+           <!--<th> Disponibilidad </th>-->
         </thead>
-        <tbody></tbody>
+        <tbody>
+        </tbody>
         <tfoot>
             <tr>
                 <th colspan="8">
