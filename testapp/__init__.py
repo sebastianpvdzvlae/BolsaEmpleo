@@ -109,17 +109,10 @@ def CrearCurso():
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
 
-@app.route('/CambiarContraseña', methods=['GET', 'POST'])
+@app.route('/CambiarContraseña')
 @flask_login.login_required
 def CambiarContraseña():
-        if flask.request.method == 'GET':
-                return render_template('CambiarContraseña.html', title='Cambiar Contraseña')
-
-        password = flask.request.form.get('newpassword')
-        res = requests.put('http://127.0.0.1:5000/sessions/{}'.format(flask_login.current_user.id), json={"password": password})
-        if res.status_code == 200:
-                flash('Cambio exitoso')
-                return flask.redirect(flask.url_for('index'))
+        return render_template('CambiarContraseña.html', title='Cambiar Contraseña', id=flask_login.current_user.id)
 
 
 @app.route('/InfoCurso')

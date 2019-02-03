@@ -59,11 +59,13 @@ class Session(Resource):
         body = api.payload
         body['oldPassword'] = str(hashlib.sha256(
             body['oldPassword'].encode()).hexdigest())
+        body['newPassword'] = str(hashlib.sha256(
+            body['newPassword'].encode()).hexdigest())
         user = collection.find_one({"_id": ObjectId(id)})
         if user is None:
             return {"id": id}, 404
         elif user['password'] == body['oldPassword']:
-            collection.update_one({"_id": ObjectId(id)}, {"$set": {"password": body['password']}})
+            collection.update_one({"_id": ObjectId(id)}, {"$set": {"password": body['newPassword']}})
             return {"passwordUpdated": True}, 200
         return {"passwordUpdated": False}, 403
 
