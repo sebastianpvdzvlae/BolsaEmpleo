@@ -82,11 +82,11 @@ def RegistrarArtesano(id = ''):
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
 
-@app.route('/InscripcionCurso')
+@app.route('/InscripcionCurso/<id>')
 @flask_login.login_required
-def InscripcionCurso():
+def InscripcionCurso(id=''):
         if flask_login.current_user.tipoUser == 'admin' or flask_login.current_user.tipoUser == 'artesano':
-                return render_template('InscripcionCurso.html', title='Inscripcion a Curso')
+                return render_template('InscripcionCurso.html', title='Inscripcion a Curso', id=id)
         else:
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))

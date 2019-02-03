@@ -1,10 +1,10 @@
-1. Búsqueda de artesanos por servicio, cantón, parroquia. (MICHELLE)
+1. Bï¿½squeda de artesanos por servicio, cantï¿½n, parroquia. (MICHELLE)
 2. Registrar Artesanos (comboBox cantones, parroquias). (JUAN)
 3. Combobox (cargar cursos) de Inscripcion cursos. --Quitar nombre instructor. (JEFF, JUAN)
-4. Arreglar cambiar contraseña. (JUAN)
+4. Arreglar cambiar contraseï¿½a. (JUAN) Done
 5. Ver convenios paginado tablas. (SEBAS)
 6. Hacer una base de datos de prueba (ver formato de fechas). -- Migrar datos. (ALEJO) 
-7. En admin no mostrar inscripción a curso, registrar convenio (solo cliente). (SEBAS) 
+7. En admin no mostrar inscripciï¿½n a curso, registrar convenio (solo cliente). (SEBAS) 
 8. CLIENTE: registrar convenio. (SEBAS)
 9. Arreglar tildes (ERIKA).
 10. Cambiar testapp --> app  
