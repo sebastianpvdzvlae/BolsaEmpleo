@@ -1,6 +1,6 @@
 1. B�squeda de artesanos por servicio, cant�n, parroquia. (MICHELLE)
 2. Registrar Artesanos (comboBox cantones, parroquias). (JUAN)
-3. Combobox (cargar cursos) de Inscripcion cursos. --Quitar nombre instructor. (JEFF, JUAN)
+3. Combobox (cargar cursos) de Inscripcion cursos. --Quitar nombre instructor. (JEFF, JUAN [Done])
 4. Arreglar cambiar contrase�a. (JUAN) Done
 5. Ver convenios paginado tablas. (SEBAS)
 6. Hacer una base de datos de prueba (ver formato de fechas). -- Migrar datos. (ALEJO) 

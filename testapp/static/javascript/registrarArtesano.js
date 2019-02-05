@@ -3,19 +3,21 @@ var currentPage = 0;
 url = serverUrl + "/provinces/";
 var provincia = {};
 var cantonNumber = 0;
+userData = {};
 $(document).ready(function () {
     var data = { page: currentPage, pageSize: pageSize }
     $.get({ url: url, cache: false, data })
     .then(function (response) {
+        provincia = response;
         $("#provincia").find("option").remove();
         $.map(response.items, function (province) {
             $("#provincia").append('<option name="' + province.nombre +'" value = "' + province._id + '">' + province.nombre +'</option>');
         });
-        upProvincia();
     }).fail(function (data, textStatus, xhr) {
         console.log([data, textStatus, xhr]);
     });
-    /*if ($("#hiddenId").val())*/ cargarArtesano($("#hiddenId").val());
+    upProvincia();
+    if ($("#hiddenId").val()) cargarArtesano($("#hiddenId").val());
     $("#provincia").change(function () {
         upProvincia();
     });
@@ -78,27 +80,36 @@ function registrarArtesano(){
 function cargarArtesano(userId){
     $.get({ url: (serverUrl + "/users/" + userId), cache: false, data:{ }})
     .then(function (response){
-        $("#opciones").val(response.tipoId);
-        $("#txt_id").val(response.identificacion);
-        $("#txt_apellidos").val(response.apellidos);
-        $("#txt_nombres").val(response.nombres);
-        $("#txt_direccion").val(response.direccion);
-        for (var i = 0; i < response.telefonos.length; i++){
-            if (i == 0) $("#inputTelefono").val(response.telefonos[i]);
-            else {
-                agregarTelefono();
-                $("#telf" + i).val(response.telefonos[i]);
-            }
-        }
-        $("#provincia").val('5c0e62fd76045e50fc434fe9');
-        upProvincia();
-        $("#canton").val(1);
-        upParroquia();
-        $("#parroquia").val(4);
+        userData = response;
+        loadUser();
 
-    }).fail(function (data, textStatus, xhr) {
+    }, function (data, textStatus, xhr) {
         console.log([data, textStatus, xhr]);
     });
+}
+
+function loadUser(){
+    $("#opciones").val(userData.tipoId);
+    $("#txt_id").val(userData.identificacion);
+    $("#txt_apellidos").val(userData.apellidos);
+    $("#txt_nombres").val(userData.nombres);
+    $("#txt_direccion").val(userData.direccion);
+    for (var i = 0; i < userData.telefonos.length; i++) {
+        if (i == 0) $("#inputTelefono").val(userData.telefonos[i]);
+        else {
+            agregarTelefono();
+            $("#telf" + i).val(userData.telefonos[i]);
+        }
+    }
+    //$("#provincia").val('5c0e62fd76045e50fc434fe9');
+    //upProvincia();
+    prov = provincia;
+    var cId = prov.cantones.findIndex(function (x) { return x.nombre == userData.ubicacion.canton });
+    $("#canton").val(cId);
+    upParroquia();
+    var pId = prov.cantones[cId].parroquias.findIndex(function (x) { return x == userData.ubicacion.parroquia });
+    $("#parroquia").val(pId);
+    return;
 }
 
 function agregarTelefono() {
@@ -142,7 +153,7 @@ function quitarTelefono() {
 
 
 function upProvincia(){
-    $.get({ url: url + $('#provincia').find(":selected").val(), cache: false, data : {} })
+    $.get({ url: url + '5c0e62fd76045e50fc434fe9', cache: false, data : {} })
         .then(function (response) {
             provincia = response;
             $("#canton").find("option").remove();
@@ -175,7 +186,7 @@ function upCanton(){
 function upParroquia(){
     $("#parroquia").find("option").remove();
     var i = 0;
-    $.map(provincia.cantones[parseInt($('#canton').find(":selected").val())].parroquias, function (parroquia) {
+    $.map(provincia.cantones[parseInt($('#canton').val())].parroquias, function (parroquia) {
         $("#parroquia").append('<option name="' + parroquia + '" value = ' + i + '>' + parroquia + '</option>');
         i++;
     });
