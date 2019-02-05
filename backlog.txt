@@ -1,7 +1,13 @@
-- inscripcion a cursos (Juan)
-- informacíón a Curso --> relacionar instructor con cursos
-- cambiar servicios de un artesano para ser determinados por los cursos que tomo.**
-- registrar convenio (Michelle)-->relacionar cliente y artesano (Sebas).
-- bloquear y desbloquear usuarios (Alejo)
-- busqueda de convenios solo muestra los que pertenecen al cliente o al artesano que consulta. (Sebas)
-- cambiar Combo Box Servicios
+1. B�squeda de artesanos por servicio, cant�n, parroquia. (MICHELLE)
+2. Registrar Artesanos (comboBox cantones, parroquias). (JUAN)
+3. Combobox (cargar cursos) de Inscripcion cursos. --Quitar nombre instructor. (JEFF, JUAN)
+4. Arreglar cambiar contrase�a. (JUAN) Done
+5. Ver convenios paginado tablas. (SEBAS)
+6. Hacer una base de datos de prueba (ver formato de fechas). -- Migrar datos. (ALEJO) 
+7. En admin no mostrar inscripci�n a curso, registrar convenio (solo cliente). (SEBAS) 
+8. CLIENTE: registrar convenio. (SEBAS)
+9. Arreglar tildes (ERIKA).
+10. Cambiar testapp --> app  
+
+//
+JUAN -- courses.py, __init__.py(testapp)

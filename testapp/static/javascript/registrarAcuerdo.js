@@ -1,3 +1,12 @@
+var pageSize = 24;
+var currentPage = 0;
+url = serverUrl + "/users/";
+
+$(document).ready(function () { 
+    var data = { page: currentPage, pageSize: pageSize }
+    cargarAcuerdo($("#hiddenId").val());
+});
+
 function botonGuardar(){
     var acuerdo = document.getElementById("acuerdo");
     var descripcionTarea = document.getElementById("descripcion");
@@ -28,6 +37,16 @@ function botonGuardar(){
         window.alert("Acuerdo registrado con exito");
     }).fail(function (data, textStatus, xhr) {
         window.alert("Hubo un error al guardar los datos");            
+        console.log([data, textStatus, xhr]);
+    });
+}
+
+
+function cargarAcuerdo(userId){
+    $.get({ url: (serverUrl + "/users/" + userId), cache: false, data:{ }})
+    .then(function (response){
+        $("#nombreArtesano").val(response.nombres + " " + response.apellidos);
+    }).fail(function (data, textStatus, xhr) {
         console.log([data, textStatus, xhr]);
     });
 }

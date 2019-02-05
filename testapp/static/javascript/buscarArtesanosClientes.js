@@ -3,24 +3,24 @@ var currentPage = 0;
 url = serverUrl + "/services/";
 var provincia = {};
 
-
 $(document).ready(function () {
     $("#btnNext").on('click', {}, function () {
         if ($(this).hasClass('disabled')) return;
         currentPage++;
-        tablaArtesanos(currentPage);
+        tablaArtesanosAdmin(currentPage);
     });
 
     $("#btnBack").on('click', {}, function () {
         if ($(this).hasClass('disabled')) return;
         currentPage--;
-        tablaArtesanos(currentPage);
+        tablaArtesanosAdmin(currentPage);
     });
 
     $("#txtBusqueda").find("option").remove();
     $("#txtBusqueda").append('<option name=" " value = ""></option>');
+
     var data = { page: currentPage, pageSize: 20 }
-    $.get({ url: serverUrl + "/services/", cache: false, data })
+    $.get({ url: url, cache: false, data })
         .then(function (response) {
             $.map(response.items, function (service) {
                 $("#txtBusqueda").append('<option name="' + service.name + '" value = "' + service.name + '">' + service.name + '</option>');
@@ -37,16 +37,16 @@ $(document).ready(function () {
             $("#busquedaParroquia").append('<option name=" " value = ""></option>');
         } else {
             $.get({ url: serverUrl + "/provinces/", cache: false, data })
-            .then(function (response) {
-                $.map(response.items, function (province) {
-                    $("#busquedaProvincia").append('<option name="' + province.nombre + '" value = "' + province._id + '">' + province.nombre + '</option>');
+                .then(function (response) {
+                    $.map(response.items, function (province) {
+                        $("#busquedaProvincia").append('<option name="' + province.nombre + '" value = "' + province._id + '">' + province.nombre + '</option>');
+                    });
+                    upProvincia();
+                }).fail(function (data, textStatus, xhr) {
+                    console.log([data, textStatus, xhr]);
                 });
-                upProvincia();
-            }).fail(function (data, textStatus, xhr) {
-                console.log([data, textStatus, xhr]);
-            });
         }
-    });   
+    });
 
     $("#busquedaProvincia").change(function () {
         upProvincia();
@@ -56,10 +56,11 @@ $(document).ready(function () {
         upParroquia();
     });
 
-    tablaArtesanos(0);
+    tablaArtesanosCliente(0);
 });
 
-function tablaArtesanos(page) {
+
+function tablaArtesanosCliente(page) {
     var txtBusqueda = $("#txtBusqueda").val()
     var busquedaProvincia = $("#busquedaProvincia").val()
     var busquedaCanton = $("#busquedaCanton").val()
@@ -95,6 +96,7 @@ function tablaArtesanos(page) {
                     "<td>" + items[i]['servicios'] + "</td>" +
                     "<td>" + items[i]['telefonos'] + "</td>" +
                     "<td>" + items[i]['direccion'] + "</td>" +
+                    '<td>' + '<a class="ui blue button" href="' + window.location.origin + "/RegistrarAcuerdo/" + items[i]['_id'] + '">Registrar Convenio</a>' +'</td>' +
                     "</tr>"
                 );
             }
@@ -102,6 +104,11 @@ function tablaArtesanos(page) {
             window.alert("Error tabla");
             console.log([data, textStatus, xhr]);
         });
+
+}
+
+function redirigir(id) {
+    location.href = serverUrl + "/RegistrarArtesano/" + id
 
 }
 

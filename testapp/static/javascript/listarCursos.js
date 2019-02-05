@@ -60,8 +60,8 @@ function cargarTablaCursos(page) {
                 tableBody.append(
                     "<tr>" +
                     "<td>" + items[i]['nombre'] + "</td>" +
-                    "<td>" + items[i]['fechaInicio'] + "</td>" +
-                    "<td>" + items[i]['fechaFin'] + "</td>" +
+                    "<td>" + items[i]['fecha_inicio'] + "</td>" +
+                    "<td>" + items[i]['fecha_fin'] + "</td>" +
                     "<td>" + items[i]['numParticipantes'] + "</td>" +
                     "<td>" + items[i]['lugar'] + "</td>" +
                     "<td>" + items[i]['horario'] + "</td>" +

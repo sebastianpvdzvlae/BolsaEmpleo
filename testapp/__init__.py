@@ -72,6 +72,15 @@ def BusquedaAdministrador():
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
 
+@app.route('/BusquedaCliente')
+@flask_login.login_required
+def BusquedaCliente():
+        if flask_login.current_user.tipoUser == 'cliente':
+                return render_template('BusquedaArtesanosClientes.html', title='Buscar Artesanos Cliente')
+        else:
+                flash('No posee la autorizacion adecuada para ingresar a esa pagina')
+                return flask.redirect(flask.url_for('index'))
+
 @app.route('/RegistrarArtesano')
 @app.route('/RegistrarArtesano/<id>')
 @flask_login.login_required
@@ -82,20 +91,21 @@ def RegistrarArtesano(id = ''):
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
 
-@app.route('/InscripcionCurso')
+@app.route('/InscripcionCurso/<id>')
 @flask_login.login_required
-def InscripcionCurso():
+def InscripcionCurso(id=''):
         if flask_login.current_user.tipoUser == 'admin' or flask_login.current_user.tipoUser == 'artesano':
-                return render_template('InscripcionCurso.html', title='Inscripcion a Curso')
+                return render_template('InscripcionCurso.html', title='Inscripcion a Curso', id=id)
         else:
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
 
 @app.route('/RegistrarAcuerdo')
+@app.route('/RegistrarAcuerdo/<id>')
 @flask_login.login_required
-def RegistrarAcuerdo():
+def RegistrarAcuerdo(id = ''):
         if flask_login.current_user.tipoUser == 'admin' or flask_login.current_user.tipoUser == 'cliente':
-                return render_template('RegistrarAcuerdo.html', title='Registrar Acuerdo')
+                return render_template('RegistrarAcuerdo.html', title='Registrar Acuerdo', id = id)
         else:
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
@@ -109,17 +119,10 @@ def CrearCurso():
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
                 return flask.redirect(flask.url_for('index'))
 
-@app.route('/CambiarContraseña', methods=['GET', 'POST'])
+@app.route('/CambiarContraseña')
 @flask_login.login_required
 def CambiarContraseña():
-        if flask.request.method == 'GET':
-                return render_template('CambiarContraseña.html', title='Cambiar Contraseña')
-
-        password = flask.request.form.get('newpassword')
-        res = requests.put('http://127.0.0.1:5000/sessions/{}'.format(flask_login.current_user.id), json={"password": password})
-        if res.status_code == 200:
-                flash('Cambio exitoso')
-                return flask.redirect(flask.url_for('index'))
+        return render_template('CambiarContraseña.html', title='Cambiar Contraseña', id=flask_login.current_user.id)
 
 
 @app.route('/InfoCurso')

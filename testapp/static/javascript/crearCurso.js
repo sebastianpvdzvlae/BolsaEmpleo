@@ -6,7 +6,8 @@ function crearCurso() {
 	var courses = {
 		nombre: nombre_curso.value,
         descripcion: descripcion_curso.value,
-        instructores: []
+        instructores: [],
+        participantes: []
 	}
 	console.log(courses);
     $.ajax({

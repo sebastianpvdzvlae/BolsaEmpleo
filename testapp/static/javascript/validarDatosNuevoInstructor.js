@@ -8,9 +8,9 @@ function camposVacios(){
     var id = document.getElementById("id").value;
 	var nombres = document.getElementById("nombres").value;
 	var apellidos = document.getElementById("apellidos").value;
-	var telf = document.getElementById("telf").value;
+	var telefono = document.getElementById("telefono").value;
 
-    if(id == "" || nombres == "" || apellidos == "" || telf == ""){
+    if(id == "" || nombres == "" || apellidos == "" || telefono == ""){
         alert("Campos Obligatorios Vacíos");
         if(id == ""){
             document.getElementById("id").style.borderColor="#E70D34";
@@ -21,7 +21,7 @@ function camposVacios(){
         if(apellidos == ""){
             document.getElementById("apellidos").style.borderColor="#E70D34";
         }
-        if(telf == ""){
+        if(telefono == ""){
             document.getElementById("telf").style.borderColor="#E70D34";
         }
     }else{
