@@ -97,8 +97,7 @@ function tablaArtesanosAdmin(page) {
                     "<td>" + items[i]['telefonos'] + "</td>" +
                     "<td>" + items[i]['direccion'] + "</td>" +
                     '<td>' + '<a class="ui button" href="' + window.location.origin + "/RegistrarArtesano/" + items[i]['_id'] + '">Editar Datos</a>' +'</td>'+
-                    '<td>' + '<a class="ui blue button" href="' + window.location.origin + "/InscripcionCurso/" + items[i]['_id'] + '">Inscribir a Curso</a>' +'</td>'+
-                    '<td>' + '<a class="ui green button" href="' + window.location.origin + "/RegistrarAcuerdo/" + items[i]['_id'] + '">Registrar Convenio</a>' +'</td>' +
+                    '<td>' + '<a class="ui green button" href="' + window.location.origin + "/InscripcionCurso/" + items[i]['_id'] + '">Inscribir a Curso</a>' +'</td>'+
                     "</tr>"
                 );
             }
