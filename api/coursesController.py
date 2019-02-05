@@ -69,7 +69,7 @@ class Courses(Resource):
             page * pageSize).limit(pageSize))
         for course in courses:
             course['_id'] = str(course['_id'])
-        return {"count": len(courses), "courses": courses}, 200	
+        return {"count": collection.count_documents({}), "courses": courses}, 200	
 
     @api.expect(createCoursePayload)
     def post(self):

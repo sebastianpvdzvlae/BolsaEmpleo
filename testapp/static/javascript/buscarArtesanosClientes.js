@@ -7,13 +7,13 @@ $(document).ready(function () {
     $("#btnNext").on('click', {}, function () {
         if ($(this).hasClass('disabled')) return;
         currentPage++;
-        tablaArtesanosAdmin(currentPage);
+        tablaArtesanosCliente(currentPage);
     });
 
     $("#btnBack").on('click', {}, function () {
         if ($(this).hasClass('disabled')) return;
         currentPage--;
-        tablaArtesanosAdmin(currentPage);
+        tablaArtesanosCliente(currentPage);
     });
 
     $("#txtBusqueda").find("option").remove();

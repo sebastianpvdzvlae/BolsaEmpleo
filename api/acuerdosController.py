@@ -38,7 +38,7 @@ class Acuerdos(Resource):
             page * pageSize).limit(pageSize))
         for acuerdo in acuerdos:
             acuerdo['_id'] = str(acuerdo['_id'])
-        return {"count": len(acuerdos), "acuerdos": acuerdos}, 200
+        return {"total": db["acuerdos"].count_documents({}), "items": acuerdos}, 200
 
     @api.expect(acuerdoPayload)
     def post(self):

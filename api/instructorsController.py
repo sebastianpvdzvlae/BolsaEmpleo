@@ -34,7 +34,7 @@ class Instructores(Resource):
             page * pageSize).limit(pageSize))
         for instructor in instructores:
             instructor['_id'] = str(instructor['_id'])
-        return {"count": len(instructores), "courses": instructores}, 200
+        return {"count": collection.count_documents({}), "courses": instructores}, 200
 
     @api.expect(instructorPayload)
     def post(self):

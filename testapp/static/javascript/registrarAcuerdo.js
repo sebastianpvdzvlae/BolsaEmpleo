@@ -5,6 +5,7 @@ url = serverUrl + "/users/";
 $(document).ready(function () { 
     var data = { page: currentPage, pageSize: pageSize }
     cargarAcuerdo($("#hiddenId").val());
+    console.log($("#hiddenId2").val());
 });
 
 function botonGuardar(){
@@ -14,9 +15,9 @@ function botonGuardar(){
     var fechaInicio = document.getElementById("fechaInicio");
     var fechaFin = document.getElementById("fechaFin");
     var comentario = document.getElementById("comentario");
-    var acuerdo = {
-        cliente: "",
-        artesano: "",
+    var acuerdos = {
+        cliente: $("#hiddenId2").val(),
+        artesano: $("#hiddenId").val(),
         acuerdo: acuerdo.value,
         descripcion: descripcionTarea.value,
         valor: valor.value,
@@ -25,7 +26,7 @@ function botonGuardar(){
         comentario: comentario.value
     }
     url='http://127.0.0.1:5000/acuerdos/';
-    console.log(acuerdo);
+    console.log(acuerdos);
    $.ajax({
         url: url,
         type: "POST",

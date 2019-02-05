@@ -97,7 +97,7 @@ class ArtesanosService(Resource):
 
 
 @api.route('/artesanos-by-all')
-class ArtesanosService(Resource):
+class ArtesanosService2(Resource):
     @api.doc(parser=allParser)
     def get(self):
         db = get_db()

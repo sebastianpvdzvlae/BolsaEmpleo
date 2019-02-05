@@ -104,7 +104,7 @@ def InscripcionCurso(id=''):
 @app.route('/RegistrarAcuerdo/<id>')
 @flask_login.login_required
 def RegistrarAcuerdo(id = ''):
-        if flask_login.current_user.tipoUser == 'admin' or flask_login.current_user.tipoUser == 'cliente':
+        if flask_login.current_user.tipoUser == 'cliente':
                 return render_template('RegistrarAcuerdo.html', title='Registrar Acuerdo', id = id)
         else:
                 flash('No posee la autorizacion adecuada para ingresar a esa pagina')
