@@ -11,7 +11,8 @@ $(document).ready(function() {
             console.log(response);
             $("#cursos").find("option").remove();
             $.map(response.courses, function (course) {
-                $("#cursos").append('<option name="' + course.nombre + '" value = "' + course._id + '">' + course.nombre + '</option>');
+                if (course.numParticipantes != null)
+                    $("#cursos").append('<option name="' + course.nombre + '" value = "' + course._id + '">' + course.nombre + '</option>');
             });
             cargarDatos($('#cursos').find(":selected").val());
         }).fail(function (data, textStatus, xhr) {
