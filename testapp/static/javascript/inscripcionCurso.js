@@ -67,12 +67,14 @@ function inscribirse() {
         window.alert("Inscripción realizada de forma exitosa!");
         window.location.reload(true);
     }).fail(function (data, textStatus, xhr) {
-        if (data.status == 400)
+        if (data.responseJSON["alreadyInCourse"])
+            window.alert("Usted ya se encuentra inscrito en este curso!");
+        else if (data.responseJSON["courseIsFull"]) 
             window.alert("El curso se encuentra completo, no se aceptan más inscripciones");
-        else {
+        else{
             window.alert("Error");
             console.log([data, textStatus, xhr]);
-        }
+        } 
     });
 }
 
