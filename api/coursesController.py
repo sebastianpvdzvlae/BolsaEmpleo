@@ -69,7 +69,7 @@ class Courses(Resource):
             page * pageSize).limit(pageSize))
         for course in courses:
             course['_id'] = str(course['_id'])
-        return {"count": collection.count_documents({}), "courses": courses}, 200	
+        return {"count": collection.count_documents({}), "courses": courses}, 200
 
     @api.expect(createCoursePayload)
     def post(self):
@@ -107,6 +107,7 @@ class CourseInstructor(Resource):
         course = collection.find_one({"_id": ObjectId(idCourse)})
         course['_id'] = str(course['_id'])
         return course, 200
+
     def get(self, idCourse):
         collection = get_db()['courses']
         res = collection.find_one({"_id": ObjectId(idCourse)}, {"instructores": 1})
@@ -163,11 +164,12 @@ class Participantes(Resource):
             return {"id": id}, 404
         body = api.payload
         if len(course['participantes']) < int(course['numParticipantes']):
-            course['participantes'].append(body["id"])
-            collection.update_one({"_id": ObjectId(id)}, {"$set": {"participantes": course['participantes']}})
-            course = collection.find_one({"_id": ObjectId(id)})
-            course['_id'] = str(course['_id'])
-            return course, 200
+            updated = collection.update_one({"_id": ObjectId(id)}, {"$addToSet": {"participantes": body['id']}})
+            if updated.modified_count != 0:
+                course = collection.find_one({"_id": ObjectId(id)})
+                course['_id'] = str(course['_id'])
+                return course, 200
+            return {"alreadyInCourse": True}, 400 
         return {"courseIsFull" : True}, 400
 
     @api.expect(inscripcionPayload)
