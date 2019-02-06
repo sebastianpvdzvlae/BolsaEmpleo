@@ -19,10 +19,13 @@ $(document).ready(function () {
 });
 
 function cargarCursos() {
+    pageSize = 0;
+    currentPage = 0;
     var data = { page: currentPage, pageSize: pageSize }
     $.get({ url: url, cache: false, data })
         .then(function (response) {
             $("#txtBusqueda").find("option").remove();
+            $("#txtBusqueda").append('<option value = ""></option>');
             $.map(response.courses, function (course) {
                 $("#txtBusqueda").append('<option name="' + course.nombre + '" value = "' + course._id + '">' + course.nombre + '</option>');
             });
@@ -32,6 +35,7 @@ function cargarCursos() {
 }
 
 function cargarTablaCursos(page) {
+    pageSize = 5;
     if (txtBusqueda.value == "") {
         url = serverUrl + "/courses/";
         var data = { page: page, pageSize: pageSize }
