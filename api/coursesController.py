@@ -92,7 +92,7 @@ class CourseByName(Resource):
             courses = list(collection.find({"nombre": args['course']}, queryCourses).skip(page * pageSize).limit(pageSize))
         for course in courses:
             course['_id'] = str(course['_id'])
-        return {"total":collection["courses"].count_documents({"nombre":args['course']}), "courses": courses},200		
+        return {"count":collection["courses"].count_documents({"nombre":args['course']}), "courses": courses},200		
 
 @api.route('/<string:idCourse>/curso')
 class CourseInstructor(Resource):
